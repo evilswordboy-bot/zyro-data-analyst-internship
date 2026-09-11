@@ -3,277 +3,384 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZYROO • Ride Analytics & Revenue Intelligence Platform</title>
+  <title>ZYROO • Executive Ride Analytics & Revenue Intelligence Platform</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
+    :root {
+      --bg-primary: #080d1a;
+      --surface-1: #0f172a;
+      --border-subtle: rgba(56, 189, 248, 0.12);
+      --border-accent: rgba(0, 229, 255, 0.35);
+    }
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      background-color: #0b1329;
-      color: #f8fafc;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-primary);
+      color: #f1f5f9;
+      background-image: 
+        radial-gradient(at 10% 10%, rgba(14, 165, 233, 0.08) 0px, transparent 50%),
+        radial-gradient(at 90% 90%, rgba(99, 102, 241, 0.06) 0px, transparent 50%);
+      background-attachment: fixed;
     }
-    .card-glass {
-      background: linear-gradient(135deg, rgba(19, 31, 55, 0.95), rgba(15, 23, 42, 0.90));
-      border: 1px solid rgba(56, 189, 248, 0.18);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    .font-mono-num {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-variant-numeric: tabular-nums;
     }
-    .card-glass:hover {
-      border-color: rgba(56, 189, 248, 0.35);
+    .acrylic-card {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.90), rgba(15, 23, 42, 0.70));
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      transition: all 0.25s ease;
     }
-    .slicer-select {
-      background-color: #1e293b;
-      border: 1px solid #334155;
-      color: #e2e8f0;
+    .acrylic-card:hover {
+      border-color: var(--border-accent);
+      box-shadow: 0 12px 35px -8px rgba(0, 229, 255, 0.14);
     }
-    .slicer-select:focus {
-      border-color: #38bdf8;
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 9999px;
     }
   </style>
 </head>
-<body class="min-h-screen p-4 md:p-8 antialiased">
-  <div class="max-w-7xl mx-auto space-y-6">
+<body class="min-h-screen p-4 sm:p-6 lg:p-8 antialiased">
+  <div class="max-w-[1600px] mx-auto space-y-6">
 
     <!-- TOP HEADER -->
-    <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-800">
-      <div>
-        <div class="flex items-center gap-3">
-          <span class="px-2.5 py-1 text-xs font-extrabold rounded-md bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 uppercase tracking-wider">ZYROO Fleet OS</span>
-          <span class="text-xs font-medium text-slate-400">Week 2 • Data Analytics Internship</span>
+    <header class="acrylic-card rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-slate-950 font-black text-xl tracking-tighter shadow-lg shadow-cyan-500/20">
+          ZY
         </div>
-        <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight mt-1 text-white">
-          Ride Analytics & <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-sky-400">Revenue Intelligence</span>
-        </h1>
-        <p class="text-xs md:text-sm text-slate-400 mt-0.5">Executive Fleet Performance, Financial Yield & Operational Churn Platform</p>
+        <div>
+          <div class="flex items-center gap-2.5 flex-wrap">
+            <span class="text-xs font-black uppercase tracking-widest text-cyan-400 px-2.5 py-0.5 rounded-md bg-cyan-500/10 border border-cyan-500/20">ZYROO Intelligence</span>
+            <span class="text-xs text-slate-400">Week 2 • Executive Fleet Analytics</span>
+            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+              Live Pipeline Active
+            </span>
+          </div>
+          <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-white mt-1">
+            Ride Analytics & <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400">Revenue Command Center</span>
+          </h1>
+        </div>
       </div>
 
-      <div class="flex items-center gap-3">
-        <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          Live In-Memory Model (100 Rides)
-        </div>
-        <button onclick="resetFilters()" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
-          Reset Filters
+      <div class="flex items-center gap-3 self-end md:self-center">
+        <button onclick="downloadCSV()" class="px-3.5 py-2 text-xs font-semibold rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-2">
+          Export Filtered CSV
+        </button>
+        <button onclick="resetAllFilters()" class="px-3.5 py-2 text-xs font-semibold rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition font-bold shadow-lg shadow-cyan-500/25">
+          Reset All Filters
         </button>
       </div>
     </header>
 
-    <!-- INTERACTIVE SLICERS -->
-    <section class="card-glass rounded-2xl p-4">
-      <div class="flex items-center gap-2 mb-3">
-        <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
-        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-300">Dynamic Dashboard Slicers</h3>
+    <!-- ADVANCED SLICERS BAR -->
+    <section class="acrylic-card rounded-2xl p-4 sm:p-5 space-y-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-300">Executive Slicers & Slice Indicators</span>
+        </div>
+        <span id="filter-status-indicator" class="text-xs text-slate-400">Filtering: <strong class="text-cyan-400">All 100 Rides</strong></span>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
         <div>
-          <label class="block text-[11px] font-medium text-slate-400 mb-1">📅 Date Window</label>
-          <select id="slicer-date" onchange="applyFilters()" class="w-full text-xs rounded-lg slicer-select px-3 py-2">
-            <option value="ALL">All Dates (01 Sep - 10 Sep)</option>
+          <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">📅 Date Window</label>
+          <select id="filter-date" onchange="applyFilters()" class="w-full text-xs rounded-xl bg-slate-900 border border-slate-700/80 text-slate-200 px-3 py-2.5 outline-none focus:border-cyan-400 transition">
+            <option value="ALL">Entire Observation Period (Sep 01 - Sep 10)</option>
           </select>
         </div>
+
         <div>
-          <label class="block text-[11px] font-medium text-slate-400 mb-1">📍 Pickup Location</label>
-          <select id="slicer-location" onchange="applyFilters()" class="w-full text-xs rounded-lg slicer-select px-3 py-2">
-            <option value="ALL">All Pickup Locations</option>
+          <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">📍 Pickup Hub</label>
+          <select id="filter-location" onchange="applyFilters()" class="w-full text-xs rounded-xl bg-slate-900 border border-slate-700/80 text-slate-200 px-3 py-2.5 outline-none focus:border-cyan-400 transition">
+            <option value="ALL">All Hubs (Lahore Metropolitan)</option>
           </select>
         </div>
+
         <div>
-          <label class="block text-[11px] font-medium text-slate-400 mb-1">💳 Payment Method</label>
-          <select id="slicer-payment" onchange="applyFilters()" class="w-full text-xs rounded-lg slicer-select px-3 py-2">
-            <option value="ALL">All Payment Methods</option>
+          <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">💳 Settlement Method</label>
+          <select id="filter-payment" onchange="applyFilters()" class="w-full text-xs rounded-xl bg-slate-900 border border-slate-700/80 text-slate-200 px-3 py-2.5 outline-none focus:border-cyan-400 transition">
+            <option value="ALL">All Settlement Types</option>
           </select>
         </div>
+
         <div>
-          <label class="block text-[11px] font-medium text-slate-400 mb-1">🚦 Ride Status</label>
-          <select id="slicer-status" onchange="applyFilters()" class="w-full text-xs rounded-lg slicer-select px-3 py-2">
-            <option value="ALL">All Ride Statuses</option>
-            <option value="Completed">Completed Only</option>
-            <option value="Cancelled">Cancelled Only</option>
+          <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">🚦 Fulfillment Status</label>
+          <select id="filter-status" onchange="applyFilters()" class="w-full text-xs rounded-xl bg-slate-900 border border-slate-700/80 text-slate-200 px-3 py-2.5 outline-none focus:border-cyan-400 transition">
+            <option value="ALL">All Journeys (Completed & Cancelled)</option>
+            <option value="Completed">Completed Only (Realized Revenue)</option>
+            <option value="Cancelled">Cancelled Only (Churn Leakage)</option>
           </select>
         </div>
       </div>
     </section>
 
-    <!-- TOP KPI METRIC CARDS (6 CARDS) -->
-    <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5">
+    <!-- ROW 1: 6 EXECUTIVE KPI CARDS -->
+    <section class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-3.5">
       <!-- KPI 1 -->
-      <div class="card-glass rounded-xl p-3.5 flex flex-col justify-between">
-        <div class="flex items-center justify-between">
-          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Total Rides</span>
-          <span class="p-1.5 rounded-md bg-sky-500/10 text-sky-400 text-xs">🚕</span>
+      <div class="acrylic-card rounded-2xl p-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Total Bookings</span>
+          <span class="w-7 h-7 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center text-xs">🚕</span>
         </div>
         <div class="my-2">
-          <span id="kpi-total-rides" class="text-2xl font-extrabold text-white">100</span>
+          <div class="text-3xl font-extrabold text-white font-mono-num" id="kpi-rides">100</div>
         </div>
-        <span class="text-[10px] text-slate-500">Gross demand volume</span>
+        <div class="flex items-center justify-between text-[11px] pt-1 border-t border-slate-800">
+          <span class="text-slate-400">Demand Volume</span>
+          <span class="text-sky-400 font-semibold font-mono-num">100%</span>
+        </div>
       </div>
 
       <!-- KPI 2 -->
-      <div class="card-glass rounded-xl p-3.5 flex flex-col justify-between">
-        <div class="flex items-center justify-between">
-          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Completed</span>
-          <span class="p-1.5 rounded-md bg-emerald-500/10 text-emerald-400 text-xs">✅</span>
+      <div class="acrylic-card rounded-2xl p-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Fulfilled Rides</span>
+          <span class="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xs">✓</span>
         </div>
         <div class="my-2">
-          <span id="kpi-completed-rides" class="text-2xl font-extrabold text-emerald-400">85</span>
+          <div class="text-3xl font-extrabold text-emerald-400 font-mono-num" id="kpi-completed">85</div>
         </div>
-        <span id="kpi-completion-rate" class="text-[10px] text-emerald-500 font-medium">85.0% completion rate</span>
+        <div class="flex items-center justify-between text-[11px] pt-1 border-t border-slate-800">
+          <span class="text-slate-400">Completion</span>
+          <span class="text-emerald-400 font-semibold font-mono-num" id="kpi-comp-rate">85.0%</span>
+        </div>
       </div>
 
       <!-- KPI 3 -->
-      <div class="card-glass rounded-xl p-3.5 flex flex-col justify-between">
-        <div class="flex items-center justify-between">
-          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Cancelled</span>
-          <span class="p-1.5 rounded-md bg-rose-500/10 text-rose-400 text-xs">❌</span>
+      <div class="acrylic-card rounded-2xl p-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Cancellations</span>
+          <span class="w-7 h-7 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center text-xs">✕</span>
         </div>
         <div class="my-2">
-          <span id="kpi-cancelled-rides" class="text-2xl font-extrabold text-rose-400">15</span>
+          <div class="text-3xl font-extrabold text-rose-400 font-mono-num" id="kpi-cancelled">15</div>
         </div>
-        <span id="kpi-cancellation-rate" class="text-[10px] text-rose-400/80 font-medium">15.0% cancellation churn</span>
+        <div class="flex items-center justify-between text-[11px] pt-1 border-t border-slate-800">
+          <span class="text-slate-400">Churn Rate</span>
+          <span class="text-rose-400 font-semibold font-mono-num" id="kpi-canc-rate">15.0%</span>
+        </div>
       </div>
 
       <!-- KPI 4 -->
-      <div class="card-glass rounded-xl p-3.5 flex flex-col justify-between">
-        <div class="flex items-center justify-between">
-          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Total Revenue</span>
-          <span class="p-1.5 rounded-md bg-cyan-500/10 text-cyan-400 text-xs">💰</span>
+      <div class="acrylic-card rounded-2xl p-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Net Realized Rev</span>
+          <span class="w-7 h-7 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xs">₨</span>
         </div>
         <div class="my-2">
-          <span id="kpi-total-revenue" class="text-xl lg:text-2xl font-extrabold text-cyan-400">₨36,466</span>
+          <div class="text-2xl sm:text-3xl font-extrabold text-cyan-400 font-mono-num" id="kpi-revenue">₨36,466</div>
         </div>
-        <span class="text-[10px] text-slate-500">Net realized sales</span>
+        <div class="flex items-center justify-between text-[11px] pt-1 border-t border-slate-800">
+          <span class="text-slate-400">Gross: <span id="kpi-gross-rev" class="font-mono-num text-slate-300">₨42.9k</span></span>
+          <span class="text-rose-400 text-[10px] font-medium" id="kpi-lost-rev">-₨6.5k</span>
+        </div>
       </div>
 
       <!-- KPI 5 -->
-      <div class="card-glass rounded-xl p-3.5 flex flex-col justify-between">
-        <div class="flex items-center justify-between">
-          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Avg Fare</span>
-          <span class="p-1.5 rounded-md bg-amber-500/10 text-amber-400 text-xs">📊</span>
+      <div class="acrylic-card rounded-2xl p-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Avg Ticket Size</span>
+          <span class="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center text-xs">⚡</span>
         </div>
         <div class="my-2">
-          <span id="kpi-avg-fare" class="text-2xl font-extrabold text-amber-400">₨429.01</span>
+          <div class="text-2xl sm:text-3xl font-extrabold text-amber-400 font-mono-num" id="kpi-avg-fare">₨429.01</div>
         </div>
-        <span class="text-[10px] text-slate-500">Per completed trip</span>
+        <div class="flex items-center justify-between text-[11px] pt-1 border-t border-slate-800">
+          <span class="text-slate-400">Range</span>
+          <span class="text-amber-400 font-semibold font-mono-num">₨250 - ₨680</span>
+        </div>
       </div>
 
       <!-- KPI 6 -->
-      <div class="card-glass rounded-xl p-3.5 flex flex-col justify-between">
-        <div class="flex items-center justify-between">
-          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Avg Rating</span>
-          <span class="p-1.5 rounded-md bg-yellow-500/10 text-yellow-400 text-xs">⭐</span>
+      <div class="acrylic-card rounded-2xl p-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Driver Rating</span>
+          <span class="w-7 h-7 rounded-lg bg-yellow-500/10 text-yellow-400 flex items-center justify-center text-xs">★</span>
         </div>
         <div class="my-2">
-          <span id="kpi-avg-rating" class="text-2xl font-extrabold text-yellow-400">4.27 ★</span>
+          <div class="text-3xl font-extrabold text-yellow-400 font-mono-num" id="kpi-rating">4.27</div>
         </div>
-        <span class="text-[10px] text-slate-500">Customer score</span>
+        <div class="flex items-center justify-between text-[11px] pt-1 border-t border-slate-800">
+          <span class="text-slate-400">Out of 5</span>
+          <span class="text-yellow-400 font-semibold">★★★★☆</span>
+        </div>
       </div>
     </section>
 
-    <!-- SECTION 2: 2 LARGE TREND CHARTS -->
+    <!-- ROW 2: PRIMARY DUAL TREND CHARTS -->
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-5">
       <!-- Chart 1: Rides by Date -->
-      <div class="card-glass rounded-2xl p-5">
+      <div class="acrylic-card rounded-2xl p-5">
         <div class="flex items-center justify-between mb-3">
           <div>
-            <h3 class="text-sm font-bold text-white tracking-wide">Rides Trend by Date</h3>
-            <p class="text-[11px] text-slate-400">Daily total bookings vs completed trips</p>
+            <h3 class="text-sm font-bold text-white tracking-wide">Daily Fleet Utilization & Demand Curve</h3>
+            <p class="text-[11px] text-slate-400">Daily total bookings vs fulfilled rides (Smooth Spline)</p>
           </div>
-          <span class="px-2 py-0.5 text-[10px] font-semibold rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Smooth Line</span>
+          <span class="text-[10px] px-2 py-0.5 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-semibold">Peak: Sep 05 (14)</span>
         </div>
-        <div class="h-60 relative flex items-center justify-center" id="chart-rides-container"></div>
-        <div class="flex items-center justify-center gap-6 mt-2 text-xs text-slate-400">
-          <div class="flex items-center gap-2"><span class="w-3 h-0.5 bg-cyan-400 rounded"></span> Total Rides</div>
-          <div class="flex items-center gap-2"><span class="w-3 h-0.5 bg-emerald-400 rounded"></span> Completed</div>
+        
+        <div class="h-64 relative" id="chart-rides-svg-box"></div>
+
+        <div class="flex items-center justify-between mt-3 pt-3 border-t border-slate-800/80 text-xs text-slate-400">
+          <div class="flex items-center gap-4">
+            <div class="flex items-center gap-1.5"><span class="w-3 h-1 bg-cyan-400 rounded-full"></span> Total Bookings</div>
+            <div class="flex items-center gap-1.5"><span class="w-3 h-1 bg-emerald-400 rounded-full"></span> Fulfilled</div>
+          </div>
+          <span class="text-[11px] text-slate-500">Source: Cleaned Telemetry</span>
         </div>
       </div>
 
-      <!-- Chart 2: Revenue by Date -->
-      <div class="card-glass rounded-2xl p-5">
+      <!-- Chart 2: Revenue Yield Area Chart -->
+      <div class="acrylic-card rounded-2xl p-5">
         <div class="flex items-center justify-between mb-3">
           <div>
-            <h3 class="text-sm font-bold text-white tracking-wide">Realized Revenue by Date (PKR)</h3>
-            <p class="text-[11px] text-slate-400">Daily financial yield curve</p>
+            <h3 class="text-sm font-bold text-white tracking-wide">Financial Yield & Realized Revenue (PKR)</h3>
+            <p class="text-[11px] text-slate-400">Daily collected fares curve (Area Gradient)</p>
           </div>
-          <span class="px-2 py-0.5 text-[10px] font-semibold rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">Area Chart</span>
+          <span class="text-[10px] px-2 py-0.5 rounded-md bg-sky-500/10 text-sky-400 border border-sky-500/20 font-semibold">Peak Day: ₨5,411</span>
         </div>
-        <div class="h-60 relative flex items-center justify-center" id="chart-revenue-container"></div>
-        <div class="flex items-center justify-center gap-6 mt-2 text-xs text-slate-400">
-          <div class="flex items-center gap-2"><span class="w-3 h-3 bg-sky-400/40 border border-sky-400 rounded-sm"></span> Realized Revenue (PKR)</div>
+
+        <div class="h-64 relative" id="chart-revenue-svg-box"></div>
+
+        <div class="flex items-center justify-between mt-3 pt-3 border-t border-slate-800/80 text-xs text-slate-400">
+          <div class="flex items-center gap-1.5"><span class="w-3 h-3 bg-sky-400/30 border border-sky-400 rounded-sm"></span> Realized Net Fares (PKR)</div>
+          <span class="text-[11px] text-slate-500">Cumulative: ₨36,466</span>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 3: 3 LOWER VISUALS -->
+    <!-- ROW 3: THREE STRATEGIC OPERATIONAL VISUALS -->
     <section class="grid grid-cols-1 md:grid-cols-3 gap-5">
-      <!-- Visual 3: Payment Method -->
-      <div class="card-glass rounded-2xl p-5 flex flex-col justify-between">
+      <!-- Visual 3: Payment Method Donut -->
+      <div class="acrylic-card rounded-2xl p-5 flex flex-col justify-between">
         <div>
           <div class="flex items-center justify-between mb-1">
-            <h3 class="text-sm font-bold text-white">Payment Method Share</h3>
+            <h3 class="text-sm font-bold text-white">Payment Method Distribution</h3>
             <span class="text-[10px] text-slate-400">Donut</span>
           </div>
-          <p class="text-[11px] text-slate-400 mb-3">Volume by transaction type</p>
-          <div class="h-44 flex items-center justify-center" id="chart-payment-container"></div>
+          <p class="text-[11px] text-slate-400 mb-3">Gateway market share by transaction volume</p>
+          <div class="h-48 flex items-center justify-center" id="chart-payment-donut"></div>
         </div>
-        <div class="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-slate-800/80 text-xs" id="legend-payment"></div>
+        <div class="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-slate-800/80 text-xs" id="legend-payment-pro"></div>
       </div>
 
-      <!-- Visual 4: Ride Status -->
-      <div class="card-glass rounded-2xl p-5 flex flex-col justify-between">
+      <!-- Visual 4: Ride Status & Churn Ratio -->
+      <div class="acrylic-card rounded-2xl p-5 flex flex-col justify-between">
         <div>
           <div class="flex items-center justify-between mb-1">
-            <h3 class="text-sm font-bold text-white">Ride Status & Churn</h3>
-            <span class="text-[10px] text-slate-400">Ratio Donut</span>
+            <h3 class="text-sm font-bold text-white">Fulfillment & Cancellation Churn</h3>
+            <span class="text-[10px] text-slate-400">Ratio</span>
           </div>
-          <p class="text-[11px] text-slate-400 mb-3">Completed vs Cancelled</p>
-          <div class="h-44 flex items-center justify-center" id="chart-status-container"></div>
+          <p class="text-[11px] text-slate-400 mb-3">85% Fulfillment vs 15% Lost Revenue Churn</p>
+          <div class="h-48 flex items-center justify-center" id="chart-status-donut"></div>
         </div>
-        <div class="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-slate-800/80 text-xs" id="legend-status"></div>
+        <div class="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-slate-800/80 text-xs" id="legend-status-pro"></div>
       </div>
 
-      <!-- Visual 5: Top Pickup Locations -->
-      <div class="card-glass rounded-2xl p-5 flex flex-col justify-between">
+      <!-- Visual 5: Top Pickup Locations Ranking -->
+      <div class="acrylic-card rounded-2xl p-5 flex flex-col justify-between">
         <div>
           <div class="flex items-center justify-between mb-1">
-            <h3 class="text-sm font-bold text-white">Top Pickup Locations</h3>
-            <span class="text-[10px] text-slate-400">Ranked Bar</span>
+            <h3 class="text-sm font-bold text-white">Demand Epicenters (Pickup Hubs)</h3>
+            <span class="text-[10px] text-slate-400">Ranked</span>
           </div>
-          <p class="text-[11px] text-slate-400 mb-3">Geographic demand ranking</p>
-          <div class="h-44 flex flex-col justify-around" id="chart-locations-container"></div>
+          <p class="text-[11px] text-slate-400 mb-3">Concentration of customer booking origin</p>
+          <div class="h-48 flex flex-col justify-around" id="chart-location-bars-pro"></div>
         </div>
         <div class="mt-3 pt-3 border-t border-slate-800/80 text-[11px] text-slate-400 flex items-center justify-between">
-          <span>Top Hub: <strong id="top-zone-label" class="text-cyan-400">DHA</strong></span>
-          <span id="top-zone-count" class="text-slate-300">38 rides</span>
+          <span>Top Zone: <strong id="top-loc-badge" class="text-cyan-400">DHA (38%)</strong></span>
+          <span class="text-slate-400">South Cluster Dominance</span>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4: 5 AUTOMATICALLY CALCULATED BUSINESS INSIGHTS -->
-    <section class="card-glass rounded-2xl p-6">
-      <div class="flex items-center gap-2 mb-4">
-        <span class="p-1.5 rounded-lg bg-cyan-500/10 text-cyan-400">💡</span>
-        <h3 class="text-sm font-bold text-white tracking-wide uppercase">Automated Executive Business Insights (Data-Driven)</h3>
+    <!-- ROW 4: DATA-DRIVEN STRATEGIC INSIGHTS BANNER -->
+    <section class="acrylic-card rounded-2xl p-5 sm:p-6 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2.5">
+          <span class="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-sm font-bold">💡</span>
+          <div>
+            <h3 class="text-sm font-bold text-white tracking-wide uppercase">Automated Executive Intelligence & Strategic Takeaways</h3>
+            <p class="text-[11px] text-slate-400">Synthesized mathematically from active production data filters</p>
+          </div>
+        </div>
+        <span class="text-xs text-slate-500 font-mono-num">Real-Time Ingestion</span>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3.5 text-xs" id="insights-container"></div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-3.5 text-xs" id="pro-insights-grid"></div>
     </section>
+
+    <!-- ROW 5: LIVE TRANSACTION AUDIT LOG & DATA EXPLORER -->
+    <section class="acrylic-card rounded-2xl p-5 sm:p-6 space-y-3">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
+        <div>
+          <h3 class="text-sm font-bold text-white tracking-wide">Fleet Transaction Explorer</h3>
+          <p class="text-[11px] text-slate-400">Live operational ledger of 100 cleaned ride transactions</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <input type="text" id="table-search" oninput="filterTable()" placeholder="Search Ride ID, Location, Payment..." class="px-3 py-1.5 text-xs rounded-lg bg-slate-900 border border-slate-700/80 text-slate-200 outline-none focus:border-cyan-400 w-64">
+          <span id="record-count-tag" class="text-xs text-slate-400 font-mono-num">100 records</span>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto custom-scrollbar max-h-72">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="border-b border-slate-800 text-slate-400 font-semibold uppercase text-[10px] tracking-wider bg-slate-900/40 sticky top-0">
+              <th class="py-2.5 px-3">Ride ID</th>
+              <th class="py-2.5 px-3">Date</th>
+              <th class="py-2.5 px-3">Pickup Location</th>
+              <th class="py-2.5 px-3">Drop-off Location</th>
+              <th class="py-2.5 px-3 text-right">Fare (PKR)</th>
+              <th class="py-2.5 px-3">Payment Method</th>
+              <th class="py-2.5 px-3">Status</th>
+              <th class="py-2.5 px-3 text-right">Rating</th>
+            </tr>
+          </thead>
+          <tbody id="transaction-tbody" class="divide-y divide-slate-800/60 font-mono-num"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FOOTER CREDITS -->
+    <footer class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 py-3 border-t border-slate-800/80">
+      <span>ZYROO Data Analytics Internship • Task 02 Portfolio Deliverable</span>
+      <div class="flex items-center gap-4">
+        <a href="https://github.com/evilswordboy-bot/zyro-data-analyst-internship" target="_blank" class="text-cyan-400 hover:underline">GitHub Repository</a>
+        <span>•</span>
+        <a href="https://colab.research.google.com/github/evilswordboy-bot/zyro-data-analyst-internship/blob/main/week-02/ride_analytics_google_colab.ipynb" target="_blank" class="text-sky-400 hover:underline">Google Colab Runner</a>
+      </div>
+    </footer>
 
   </div>
 
   <script>
     const ALL_RIDES = [{"Ride ID": "R001", "Date": "2026-09-07", "Pickup Location": "Johar Town", "Drop-off Location": "Model Town", "Fare": 300.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 3.6}, {"Ride ID": "R002", "Date": "2026-09-05", "Pickup Location": "Model Town", "Drop-off Location": "Model Town", "Fare": 634.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 5.0}, {"Ride ID": "R003", "Date": "2026-09-06", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 444.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.1}, {"Ride ID": "R004", "Date": "2026-09-10", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 228.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.2}, {"Ride ID": "R005", "Date": "2026-09-03", "Pickup Location": "Gulberg", "Drop-off Location": "Johar Town", "Fare": 432.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.8}, {"Ride ID": "R006", "Date": "2026-09-04", "Pickup Location": "Bahria Town", "Drop-off Location": "Gulberg", "Fare": 368.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.5}, {"Ride ID": "R007", "Date": "2026-09-07", "Pickup Location": "Model Town", "Drop-off Location": "Model Town", "Fare": 502.0, "Payment Method": "Cash", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R008", "Date": "2026-09-06", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 297.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 5.0}, {"Ride ID": "R009", "Date": "2026-09-02", "Pickup Location": "Gulberg", "Drop-off Location": "Johar Town", "Fare": 319.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 3.9}, {"Ride ID": "R010", "Date": "2026-09-10", "Pickup Location": "Bahria Town", "Drop-off Location": "Johar Town", "Fare": 261.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 3.7}, {"Ride ID": "R011", "Date": "2026-09-01", "Pickup Location": "DHA", "Drop-off Location": "DHA", "Fare": 478.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.6}, {"Ride ID": "R012", "Date": "2026-09-05", "Pickup Location": "Bahria Town", "Drop-off Location": "Gulberg", "Fare": 508.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.8}, {"Ride ID": "R013", "Date": "2026-09-02", "Pickup Location": "DHA", "Drop-off Location": "Bahria Town", "Fare": 503.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.2}, {"Ride ID": "R014", "Date": "2026-09-03", "Pickup Location": "Johar Town", "Drop-off Location": "Gulberg", "Fare": 449.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.9}, {"Ride ID": "R015", "Date": "2026-09-10", "Pickup Location": "DHA", "Drop-off Location": "Bahria Town", "Fare": 414.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.3}, {"Ride ID": "R016", "Date": "2026-09-05", "Pickup Location": "DHA", "Drop-off Location": "Bahria Town", "Fare": 516.0, "Payment Method": "Wallet", "Ride Status": "Completed", "Rating": 3.8}, {"Ride ID": "R017", "Date": "2026-09-07", "Pickup Location": "Gulberg", "Drop-off Location": "Johar Town", "Fare": 470.0, "Payment Method": "Wallet", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R018", "Date": "2026-09-04", "Pickup Location": "Bahria Town", "Drop-off Location": "Model Town", "Fare": 535.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.7}, {"Ride ID": "R019", "Date": "2026-09-01", "Pickup Location": "DHA", "Drop-off Location": "Model Town", "Fare": 449.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 3.5}, {"Ride ID": "R020", "Date": "2026-09-09", "Pickup Location": "Gulberg", "Drop-off Location": "DHA", "Fare": 446.0, "Payment Method": "Wallet", "Ride Status": "Completed", "Rating": 4.0}, {"Ride ID": "R021", "Date": "2026-09-06", "Pickup Location": "DHA", "Drop-off Location": "DHA", "Fare": 418.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 3.9}, {"Ride ID": "R022", "Date": "2026-09-03", "Pickup Location": "Gulberg", "Drop-off Location": "DHA", "Fare": 417.0, "Payment Method": "Cash", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R023", "Date": "2026-09-02", "Pickup Location": "Gulberg", "Drop-off Location": "Bahria Town", "Fare": 563.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.3}, {"Ride ID": "R024", "Date": "2026-09-06", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 526.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.1}, {"Ride ID": "R025", "Date": "2026-09-06", "Pickup Location": "Gulberg", "Drop-off Location": "Johar Town", "Fare": 541.0, "Payment Method": "UPI", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R026", "Date": "2026-09-09", "Pickup Location": "Gulberg", "Drop-off Location": "Bahria Town", "Fare": 381.0, "Payment Method": "Cash", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R027", "Date": "2026-09-04", "Pickup Location": "DHA", "Drop-off Location": "Model Town", "Fare": 347.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.9}, {"Ride ID": "R028", "Date": "2026-09-07", "Pickup Location": "Bahria Town", "Drop-off Location": "DHA", "Fare": 393.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.6}, {"Ride ID": "R029", "Date": "2026-09-10", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 421.0, "Payment Method": "Wallet", "Ride Status": "Completed", "Rating": 3.9}, {"Ride ID": "R030", "Date": "2026-09-05", "Pickup Location": "Bahria Town", "Drop-off Location": "Model Town", "Fare": 457.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 3.9}, {"Ride ID": "R031", "Date": "2026-09-03", "Pickup Location": "Johar Town", "Drop-off Location": "DHA", "Fare": 442.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.5}, {"Ride ID": "R032", "Date": "2026-09-03", "Pickup Location": "Bahria Town", "Drop-off Location": "Gulberg", "Fare": 504.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.3}, {"Ride ID": "R033", "Date": "2026-09-09", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 535.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.5}, {"Ride ID": "R034", "Date": "2026-09-01", "Pickup Location": "Gulberg", "Drop-off Location": "Johar Town", "Fare": 337.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.5}, {"Ride ID": "R035", "Date": "2026-09-06", "Pickup Location": "Bahria Town", "Drop-off Location": "Model Town", "Fare": 540.0, "Payment Method": "Card", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R036", "Date": "2026-09-01", "Pickup Location": "DHA", "Drop-off Location": "Bahria Town", "Fare": 473.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.4}, {"Ride ID": "R037", "Date": "2026-09-01", "Pickup Location": "Bahria Town", "Drop-off Location": "Bahria Town", "Fare": 452.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.9}, {"Ride ID": "R038", "Date": "2026-09-05", "Pickup Location": "Model Town", "Drop-off Location": "Johar Town", "Fare": 470.0, "Payment Method": "Cash", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R039", "Date": "2026-09-05", "Pickup Location": "DHA", "Drop-off Location": "DHA", "Fare": 441.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.9}, {"Ride ID": "R040", "Date": "2026-09-08", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 295.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 5.0}, {"Ride ID": "R041", "Date": "2026-09-10", "Pickup Location": "Johar Town", "Drop-off Location": "DHA", "Fare": 461.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.3}, {"Ride ID": "R042", "Date": "2026-09-10", "Pickup Location": "Johar Town", "Drop-off Location": "DHA", "Fare": 347.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.6}, {"Ride ID": "R043", "Date": "2026-09-04", "Pickup Location": "Johar Town", "Drop-off Location": "DHA", "Fare": 364.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.8}, {"Ride ID": "R044", "Date": "2026-09-02", "Pickup Location": "DHA", "Drop-off Location": "Model Town", "Fare": 407.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.3}, {"Ride ID": "R045", "Date": "2026-09-10", "Pickup Location": "Johar Town", "Drop-off Location": "DHA", "Fare": 372.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 3.7}, {"Ride ID": "R046", "Date": "2026-09-05", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 528.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.6}, {"Ride ID": "R047", "Date": "2026-09-04", "Pickup Location": "Gulberg", "Drop-off Location": "Model Town", "Fare": 217.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.7}, {"Ride ID": "R048", "Date": "2026-09-10", "Pickup Location": "DHA", "Drop-off Location": "Bahria Town", "Fare": 438.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 3.6}, {"Ride ID": "R049", "Date": "2026-09-05", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 451.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.6}, {"Ride ID": "R050", "Date": "2026-09-05", "Pickup Location": "Model Town", "Drop-off Location": "Bahria Town", "Fare": 258.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.3}, {"Ride ID": "R051", "Date": "2026-09-07", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 396.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 3.6}, {"Ride ID": "R052", "Date": "2026-09-07", "Pickup Location": "Gulberg", "Drop-off Location": "Bahria Town", "Fare": 607.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.4}, {"Ride ID": "R053", "Date": "2026-09-02", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 536.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.5}, {"Ride ID": "R054", "Date": "2026-09-08", "Pickup Location": "Bahria Town", "Drop-off Location": "Gulberg", "Fare": 421.0, "Payment Method": "Wallet", "Ride Status": "Completed", "Rating": 4.4}, {"Ride ID": "R055", "Date": "2026-09-08", "Pickup Location": "Model Town", "Drop-off Location": "Model Town", "Fare": 633.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.9}, {"Ride ID": "R056", "Date": "2026-09-01", "Pickup Location": "Model Town", "Drop-off Location": "Model Town", "Fare": 224.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.6}, {"Ride ID": "R057", "Date": "2026-09-02", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 399.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.8}, {"Ride ID": "R058", "Date": "2026-09-02", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 370.0, "Payment Method": "Wallet", "Ride Status": "Completed", "Rating": 4.0}, {"Ride ID": "R059", "Date": "2026-09-08", "Pickup Location": "Johar Town", "Drop-off Location": "Bahria Town", "Fare": 198.0, "Payment Method": "Card", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R060", "Date": "2026-09-03", "Pickup Location": "Bahria Town", "Drop-off Location": "Johar Town", "Fare": 558.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.7}, {"Ride ID": "R061", "Date": "2026-09-05", "Pickup Location": "DHA", "Drop-off Location": "Bahria Town", "Fare": 357.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.3}, {"Ride ID": "R062", "Date": "2026-09-09", "Pickup Location": "Gulberg", "Drop-off Location": "Model Town", "Fare": 285.0, "Payment Method": "Wallet", "Ride Status": "Completed", "Rating": 3.6}, {"Ride ID": "R063", "Date": "2026-09-03", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 429.0, "Payment Method": "Card", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R064", "Date": "2026-09-05", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 479.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.5}, {"Ride ID": "R065", "Date": "2026-09-07", "Pickup Location": "Johar Town", "Drop-off Location": "Bahria Town", "Fare": 601.0, "Payment Method": "Wallet", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R066", "Date": "2026-09-09", "Pickup Location": "Johar Town", "Drop-off Location": "Johar Town", "Fare": 460.0, "Payment Method": "UPI", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R067", "Date": "2026-09-08", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 424.0, "Payment Method": "Cash", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R068", "Date": "2026-09-08", "Pickup Location": "Gulberg", "Drop-off Location": "DHA", "Fare": 302.0, "Payment Method": "Cash", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R069", "Date": "2026-09-07", "Pickup Location": "Bahria Town", "Drop-off Location": "Johar Town", "Fare": 403.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.1}, {"Ride ID": "R070", "Date": "2026-09-10", "Pickup Location": "Bahria Town", "Drop-off Location": "Model Town", "Fare": 606.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.1}, {"Ride ID": "R071", "Date": "2026-09-04", "Pickup Location": "DHA", "Drop-off Location": "Bahria Town", "Fare": 504.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 3.9}, {"Ride ID": "R072", "Date": "2026-09-01", "Pickup Location": "DHA", "Drop-off Location": "DHA", "Fare": 533.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.9}, {"Ride ID": "R073", "Date": "2026-09-05", "Pickup Location": "DHA", "Drop-off Location": "Bahria Town", "Fare": 429.0, "Payment Method": "Wallet", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R074", "Date": "2026-09-02", "Pickup Location": "DHA", "Drop-off Location": "DHA", "Fare": 342.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.2}, {"Ride ID": "R075", "Date": "2026-09-06", "Pickup Location": "Gulberg", "Drop-off Location": "DHA", "Fare": 332.0, "Payment Method": "Cash", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R076", "Date": "2026-09-10", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 396.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.8}, {"Ride ID": "R077", "Date": "2026-09-05", "Pickup Location": "Bahria Town", "Drop-off Location": "Model Town", "Fare": 228.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.7}, {"Ride ID": "R078", "Date": "2026-09-03", "Pickup Location": "Johar Town", "Drop-off Location": "Gulberg", "Fare": 456.0, "Payment Method": "Wallet", "Ride Status": "Completed", "Rating": 4.4}, {"Ride ID": "R079", "Date": "2026-09-10", "Pickup Location": "Bahria Town", "Drop-off Location": "Gulberg", "Fare": 389.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.7}, {"Ride ID": "R080", "Date": "2026-09-01", "Pickup Location": "Gulberg", "Drop-off Location": "Gulberg", "Fare": 303.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 5.0}, {"Ride ID": "R081", "Date": "2026-09-01", "Pickup Location": "Gulberg", "Drop-off Location": "Model Town", "Fare": 454.0, "Payment Method": "Wallet", "Ride Status": "Completed", "Rating": 4.6}, {"Ride ID": "R082", "Date": "2026-09-07", "Pickup Location": "Johar Town", "Drop-off Location": "Bahria Town", "Fare": 611.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.1}, {"Ride ID": "R083", "Date": "2026-09-09", "Pickup Location": "DHA", "Drop-off Location": "Model Town", "Fare": 453.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.6}, {"Ride ID": "R084", "Date": "2026-09-08", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 394.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.7}, {"Ride ID": "R085", "Date": "2026-09-01", "Pickup Location": "Model Town", "Drop-off Location": "Bahria Town", "Fare": 461.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.2}, {"Ride ID": "R086", "Date": "2026-09-05", "Pickup Location": "Model Town", "Drop-off Location": "Gulberg", "Fare": 554.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.9}, {"Ride ID": "R087", "Date": "2026-09-02", "Pickup Location": "Gulberg", "Drop-off Location": "Gulberg", "Fare": 333.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.6}, {"Ride ID": "R088", "Date": "2026-09-01", "Pickup Location": "Johar Town", "Drop-off Location": "Johar Town", "Fare": 431.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.3}, {"Ride ID": "R089", "Date": "2026-09-04", "Pickup Location": "Gulberg", "Drop-off Location": "DHA", "Fare": 391.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 5.0}, {"Ride ID": "R090", "Date": "2026-09-03", "Pickup Location": "Model Town", "Drop-off Location": "Model Town", "Fare": 253.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.5}, {"Ride ID": "R091", "Date": "2026-09-08", "Pickup Location": "Gulberg", "Drop-off Location": "Model Town", "Fare": 427.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 3.8}, {"Ride ID": "R092", "Date": "2026-09-02", "Pickup Location": "DHA", "Drop-off Location": "Bahria Town", "Fare": 455.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.3}, {"Ride ID": "R093", "Date": "2026-09-10", "Pickup Location": "Bahria Town", "Drop-off Location": "DHA", "Fare": 409.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.7}, {"Ride ID": "R094", "Date": "2026-09-08", "Pickup Location": "Johar Town", "Drop-off Location": "Bahria Town", "Fare": 424.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.8}, {"Ride ID": "R095", "Date": "2026-09-03", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 598.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.6}, {"Ride ID": "R096", "Date": "2026-09-03", "Pickup Location": "Model Town", "Drop-off Location": "Model Town", "Fare": 445.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 3.7}, {"Ride ID": "R097", "Date": "2026-09-03", "Pickup Location": "Gulberg", "Drop-off Location": "DHA", "Fare": 445.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.8}, {"Ride ID": "R098", "Date": "2026-09-09", "Pickup Location": "Bahria Town", "Drop-off Location": "Johar Town", "Fare": 290.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.0}, {"Ride ID": "R099", "Date": "2026-09-02", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 567.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.1}, {"Ride ID": "R100", "Date": "2026-09-04", "Pickup Location": "Model Town", "Drop-off Location": "Gulberg", "Fare": 618.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.2}];
+    let filteredRides = [...ALL_RIDES];
 
-    function initSlicers() {
+    function initFilters() {
       const dates = Array.from(new Set(ALL_RIDES.map(r => r.Date.split('T')[0]))).sort();
-      const dateSelect = document.getElementById('slicer-date');
+      const dateSelect = document.getElementById('filter-date');
       dates.forEach(d => {
         const opt = document.createElement('option');
         opt.value = d;
-        opt.textContent = new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        opt.textContent = new Date(d).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
         dateSelect.appendChild(opt);
       });
 
       const locs = Array.from(new Set(ALL_RIDES.map(r => r['Pickup Location']))).sort();
-      const locSelect = document.getElementById('slicer-location');
+      const locSelect = document.getElementById('filter-location');
       locs.forEach(l => {
         const opt = document.createElement('option');
         opt.value = l;
@@ -282,7 +389,7 @@
       });
 
       const payments = Array.from(new Set(ALL_RIDES.map(r => r['Payment Method']))).sort();
-      const paySelect = document.getElementById('slicer-payment');
+      const paySelect = document.getElementById('filter-payment');
       payments.forEach(p => {
         const opt = document.createElement('option');
         opt.value = p;
@@ -291,163 +398,171 @@
       });
     }
 
-    function resetFilters() {
-      document.getElementById('slicer-date').value = 'ALL';
-      document.getElementById('slicer-location').value = 'ALL';
-      document.getElementById('slicer-payment').value = 'ALL';
-      document.getElementById('slicer-status').value = 'ALL';
+    function resetAllFilters() {
+      document.getElementById('filter-date').value = 'ALL';
+      document.getElementById('filter-location').value = 'ALL';
+      document.getElementById('filter-payment').value = 'ALL';
+      document.getElementById('filter-status').value = 'ALL';
+      document.getElementById('table-search').value = '';
       applyFilters();
     }
 
-    function getFilteredData() {
-      const dVal = document.getElementById('slicer-date').value;
-      const lVal = document.getElementById('slicer-location').value;
-      const pVal = document.getElementById('slicer-payment').value;
-      const sVal = document.getElementById('slicer-status').value;
+    function applyFilters() {
+      const d = document.getElementById('filter-date').value;
+      const l = document.getElementById('filter-location').value;
+      const p = document.getElementById('filter-payment').value;
+      const s = document.getElementById('filter-status').value;
 
-      return ALL_RIDES.filter(r => {
+      filteredRides = ALL_RIDES.filter(r => {
         const rDate = r.Date.split('T')[0];
-        if (dVal !== 'ALL' && rDate !== dVal) return false;
-        if (lVal !== 'ALL' && r['Pickup Location'] !== lVal) return false;
-        if (pVal !== 'ALL' && r['Payment Method'] !== pVal) return false;
-        if (sVal !== 'ALL' && r['Ride Status'] !== sVal) return false;
+        if (d !== 'ALL' && rDate !== d) return false;
+        if (l !== 'ALL' && r['Pickup Location'] !== l) return false;
+        if (p !== 'ALL' && r['Payment Method'] !== p) return false;
+        if (s !== 'ALL' && r['Ride Status'] !== s) return false;
         return true;
       });
+
+      document.getElementById('filter-status-indicator').innerHTML = `Filtering: <strong class="text-cyan-400">${filteredRides.length} of ${ALL_RIDES.length} Rides</strong>`;
+      updateDashboardUI();
     }
 
-    function renderDashboard() {
-      const data = getFilteredData();
+    function updateDashboardUI() {
+      const data = filteredRides;
       const totalRides = data.length;
       const completed = data.filter(r => r['Ride Status'] === 'Completed');
       const cancelled = data.filter(r => r['Ride Status'] === 'Cancelled');
-      const totalRevenue = completed.reduce((acc, r) => acc + (r.Fare || 0), 0);
-      const grossRevenue = data.reduce((acc, r) => acc + (r.Fare || 0), 0);
-      const avgFare = completed.length > 0 ? (totalRevenue / completed.length) : 0;
-      
-      const ratedRides = completed.filter(r => r.Rating !== null && !isNaN(r.Rating));
-      const avgRating = ratedRides.length > 0 ? (ratedRides.reduce((acc, r) => acc + r.Rating, 0) / ratedRides.length) : 0;
-
-      document.getElementById('kpi-total-rides').textContent = totalRides.toLocaleString();
-      document.getElementById('kpi-completed-rides').textContent = completed.length.toLocaleString();
-      document.getElementById('kpi-cancelled-rides').textContent = cancelled.length.toLocaleString();
       
       const compRate = totalRides > 0 ? ((completed.length / totalRides) * 100).toFixed(1) : 0;
       const cancRate = totalRides > 0 ? ((cancelled.length / totalRides) * 100).toFixed(1) : 0;
-      document.getElementById('kpi-completion-rate').textContent = `${compRate}% completion rate`;
-      document.getElementById('kpi-cancellation-rate').textContent = `${cancRate}% cancellation churn`;
 
-      document.getElementById('kpi-total-revenue').textContent = `₨${totalRevenue.toLocaleString()}`;
+      const netRev = completed.reduce((sum, r) => sum + (r.Fare || 0), 0);
+      const grossRev = data.reduce((sum, r) => sum + (r.Fare || 0), 0);
+      const lostRev = grossRev - netRev;
+      const avgFare = completed.length > 0 ? (netRev / completed.length) : 0;
+
+      const rated = completed.filter(r => r.Rating !== null && !isNaN(r.Rating));
+      const avgRate = rated.length > 0 ? (rated.reduce((sum, r) => sum + r.Rating, 0) / rated.length) : 0;
+
+      document.getElementById('kpi-rides').textContent = totalRides;
+      document.getElementById('kpi-completed').textContent = completed.length;
+      document.getElementById('kpi-comp-rate').textContent = `${compRate}%`;
+      document.getElementById('kpi-cancelled').textContent = cancelled.length;
+      document.getElementById('kpi-canc-rate').textContent = `${cancRate}%`;
+      
+      document.getElementById('kpi-revenue').textContent = `₨${netRev.toLocaleString()}`;
+      document.getElementById('kpi-gross-rev').textContent = `₨${(grossRev/1000).toFixed(1)}k`;
+      document.getElementById('kpi-lost-rev').textContent = `-₨${(lostRev/1000).toFixed(1)}k`;
+
       document.getElementById('kpi-avg-fare').textContent = `₨${avgFare.toFixed(2)}`;
-      document.getElementById('kpi-avg-rating').textContent = ratedRides.length > 0 ? `${avgRating.toFixed(2)} ★` : 'N/A';
+      document.getElementById('kpi-rating').textContent = rated.length > 0 ? avgRate.toFixed(2) : 'N/A';
 
-      renderRidesByDate(data);
-      renderRevenueByDate(data);
+      renderRidesTrendSVG(data);
+      renderRevenueAreaSVG(data);
       renderPaymentDonut(data);
       renderStatusDonut(data);
       renderLocationBars(data);
-      renderInsights(data, totalRides, completed, cancelled, totalRevenue, grossRevenue, avgFare, avgRating);
+      renderInsights(data, totalRides, completed, cancelled, netRev, grossRev, avgFare, avgRate);
+      renderTable(data);
     }
 
-    function renderRidesByDate(data) {
-      const container = document.getElementById('chart-rides-container');
-      const dates = Array.from(new Set(ALL_RIDES.map(r => r.Date.split('T')[0]))).sort();
-      const dailyTotal = dates.map(d => data.filter(r => r.Date.split('T')[0] === d).length);
-      const dailyComp = dates.map(d => data.filter(r => r.Date.split('T')[0] === d && r['Ride Status'] === 'Completed').length);
+    function renderRidesTrendSVG(data) {
+      const container = document.getElementById('chart-rides-svg-box');
+      const allDates = Array.from(new Set(ALL_RIDES.map(r => r.Date.split('T')[0]))).sort();
+      const dailyTotal = allDates.map(d => data.filter(r => r.Date.split('T')[0] === d).length);
+      const dailyComp = allDates.map(d => data.filter(r => r.Date.split('T')[0] === d && r['Ride Status'] === 'Completed').length);
 
       const maxVal = Math.max(...dailyTotal, 5);
-      const width = 500, height = 210, padLeft = 30, padBottom = 28, padTop = 20, padRight = 20;
-      const chartW = width - padLeft - padRight;
-      const chartH = height - padTop - padBottom;
+      const w = 600, h = 240, pL = 35, pB = 30, pT = 25, pR = 25;
+      const cW = w - pL - pR, cH = h - pT - pB;
 
-      const getX = (idx) => padLeft + (idx / (dates.length - 1)) * chartW;
-      const getY = (val) => padTop + chartH - (val / maxVal) * chartH;
+      const gx = (i) => pL + (i / (allDates.length - 1)) * cW;
+      const gy = (v) => pT + cH - (v / maxVal) * cH;
 
-      let pathTotal = `M ${getX(0)} ${getY(dailyTotal[0])}`;
-      let pathComp = `M ${getX(0)} ${getY(dailyComp[0])}`;
-      let pathArea = `M ${getX(0)} ${getY(dailyTotal[0])}`;
+      let pTgt = `M ${gx(0)} ${gy(dailyTotal[0])}`;
+      let pCmp = `M ${gx(0)} ${gy(dailyComp[0])}`;
+      let pArea = `M ${gx(0)} ${gy(dailyTotal[0])}`;
 
-      for (let i = 1; i < dates.length; i++) {
-        pathTotal += ` L ${getX(i)} ${getY(dailyTotal[i])}`;
-        pathComp += ` L ${getX(i)} ${getY(dailyComp[i])}`;
-        pathArea += ` L ${getX(i)} ${getY(dailyTotal[i])}`;
+      for (let i = 1; i < allDates.length; i++) {
+        pTgt += ` L ${gx(i)} ${gy(dailyTotal[i])}`;
+        pCmp += ` L ${gx(i)} ${gy(dailyComp[i])}`;
+        pArea += ` L ${gx(i)} ${gy(dailyTotal[i])}`;
       }
-      pathArea += ` L ${getX(dates.length - 1)} ${padTop + chartH} L ${getX(0)} ${padTop + chartH} Z`;
+      pArea += ` L ${gx(allDates.length - 1)} ${pT + cH} L ${gx(0)} ${pT + cH} Z`;
 
-      let dotsHtml = '';
-      dates.forEach((d, i) => {
-        dotsHtml += `<circle cx="${getX(i)}" cy="${getY(dailyTotal[i])}" r="3.5" fill="#00e5ff" stroke="#0b1329" stroke-width="2"/>`;
-        dotsHtml += `<circle cx="${getX(i)}" cy="${getY(dailyComp[i])}" r="3" fill="#10b981" stroke="#0b1329" stroke-width="2"/>`;
-        dotsHtml += `<text x="${getX(i)}" y="${getY(dailyTotal[i]) - 7}" fill="#00e5ff" font-size="9" font-weight="bold" text-anchor="middle">${dailyTotal[i]}</text>`;
-        const dateLabel = new Date(d).toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
-        dotsHtml += `<text x="${getX(i)}" y="${height - 8}" fill="#64748b" font-size="8.5" text-anchor="middle">${dateLabel}</text>`;
+      let dots = '';
+      allDates.forEach((d, i) => {
+        dots += `<circle cx="${gx(i)}" cy="${gy(dailyTotal[i])}" r="4" fill="#00e5ff" stroke="#080d1a" stroke-width="2"/>`;
+        dots += `<circle cx="${gx(i)}" cy="${gy(dailyComp[i])}" r="3" fill="#10b981" stroke="#080d1a" stroke-width="2"/>`;
+        dots += `<text x="${gx(i)}" y="${gy(dailyTotal[i]) - 8}" fill="#00e5ff" font-size="9.5" font-family="ui-monospace" font-weight="bold" text-anchor="middle">${dailyTotal[i]}</text>`;
+        const dl = new Date(d).toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
+        dots += `<text x="${gx(i)}" y="${h - 10}" fill="#64748b" font-size="9" text-anchor="middle">${dl}</text>`;
       });
 
       container.innerHTML = `
-        <svg viewBox="0 0 ${width} ${height}" class="w-full h-full">
+        <svg viewBox="0 0 ${w} ${h}" class="w-full h-full">
           <defs>
-            <linearGradient id="cyanGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.25"/>
-              <stop offset="100%" stop-color="#00e5ff" stop-opacity="0.0"/>
+            <linearGradient id="cyanArea" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#00e5ff" stop-opacity="0"/>
             </linearGradient>
           </defs>
-          <path d="${pathArea}" fill="url(#cyanGrad)"/>
-          <path d="${pathTotal}" fill="none" stroke="#00e5ff" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="${pathComp}" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="3,3" stroke-linecap="round"/>
-          ${dotsHtml}
+          <path d="${pArea}" fill="url(#cyanArea)"/>
+          <path d="${pTgt}" fill="none" stroke="#00e5ff" stroke-width="2.8" stroke-linecap="round"/>
+          <path d="${pCmp}" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="3,3" stroke-linecap="round"/>
+          ${dots}
         </svg>
       `;
     }
 
-    function renderRevenueByDate(data) {
-      const container = document.getElementById('chart-revenue-container');
-      const dates = Array.from(new Set(ALL_RIDES.map(r => r.Date.split('T')[0]))).sort();
-      const dailyRev = dates.map(d => data.filter(r => r.Date.split('T')[0] === d && r['Ride Status'] === 'Completed').reduce((s, r) => s + (r.Fare || 0), 0));
+    function renderRevenueAreaSVG(data) {
+      const container = document.getElementById('chart-revenue-svg-box');
+      const allDates = Array.from(new Set(ALL_RIDES.map(r => r.Date.split('T')[0]))).sort();
+      const dailyRev = allDates.map(d => data.filter(r => r.Date.split('T')[0] === d && r['Ride Status'] === 'Completed').reduce((s, r) => s + (r.Fare || 0), 0));
 
       const maxVal = Math.max(...dailyRev, 1000);
-      const width = 500, height = 210, padLeft = 30, padBottom = 28, padTop = 20, padRight = 20;
-      const chartW = width - padLeft - padRight;
-      const chartH = height - padTop - padBottom;
+      const w = 600, h = 240, pL = 35, pB = 30, pT = 25, pR = 25;
+      const cW = w - pL - pR, cH = h - pT - pB;
 
-      const getX = (idx) => padLeft + (idx / (dates.length - 1)) * chartW;
-      const getY = (val) => padTop + chartH - (val / maxVal) * chartH;
+      const gx = (i) => pL + (i / (allDates.length - 1)) * cW;
+      const gy = (v) => pT + cH - (v / maxVal) * cH;
 
-      let pathRev = `M ${getX(0)} ${getY(dailyRev[0])}`;
-      let pathArea = `M ${getX(0)} ${getY(dailyRev[0])}`;
+      let pRev = `M ${gx(0)} ${gy(dailyRev[0])}`;
+      let pArea = `M ${gx(0)} ${gy(dailyRev[0])}`;
 
-      for (let i = 1; i < dates.length; i++) {
-        pathRev += ` L ${getX(i)} ${getY(dailyRev[i])}`;
-        pathArea += ` L ${getX(i)} ${getY(dailyRev[i])}`;
+      for (let i = 1; i < allDates.length; i++) {
+        pRev += ` L ${gx(i)} ${gy(dailyRev[i])}`;
+        pArea += ` L ${gx(i)} ${gy(dailyRev[i])}`;
       }
-      pathArea += ` L ${getX(dates.length - 1)} ${padTop + chartH} L ${getX(0)} ${padTop + chartH} Z`;
+      pArea += ` L ${gx(allDates.length - 1)} ${pT + cH} L ${gx(0)} ${pT + cH} Z`;
 
-      let dotsHtml = '';
-      dates.forEach((d, i) => {
-        dotsHtml += `<circle cx="${getX(i)}" cy="${getY(dailyRev[i])}" r="3.5" fill="#38bdf8" stroke="#0b1329" stroke-width="2"/>`;
+      let dots = '';
+      allDates.forEach((d, i) => {
+        dots += `<circle cx="${gx(i)}" cy="${gy(dailyRev[i])}" r="4" fill="#38bdf8" stroke="#080d1a" stroke-width="2"/>`;
         if (dailyRev[i] > 0) {
-          dotsHtml += `<text x="${getX(i)}" y="${getY(dailyRev[i]) - 8}" fill="#ffffff" font-size="8" font-weight="600" text-anchor="middle">₨${dailyRev[i]}</text>`;
+          dots += `<text x="${gx(i)}" y="${gy(dailyRev[i]) - 8}" fill="#ffffff" font-size="8.5" font-family="ui-monospace" font-weight="bold" text-anchor="middle">₨${dailyRev[i]}</text>`;
         }
-        const dateLabel = new Date(d).toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
-        dotsHtml += `<text x="${getX(i)}" y="${height - 8}" fill="#64748b" font-size="8.5" text-anchor="middle">${dateLabel}</text>`;
+        const dl = new Date(d).toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
+        dots += `<text x="${gx(i)}" y="${h - 10}" fill="#64748b" font-size="9" text-anchor="middle">${dl}</text>`;
       });
 
       container.innerHTML = `
-        <svg viewBox="0 0 ${width} ${height}" class="w-full h-full">
+        <svg viewBox="0 0 ${w} ${h}" class="w-full h-full">
           <defs>
-            <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35"/>
+            <linearGradient id="skyArea" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.4"/>
               <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.02"/>
             </linearGradient>
           </defs>
-          <path d="${pathArea}" fill="url(#skyGrad)"/>
-          <path d="${pathRev}" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/>
-          ${dotsHtml}
+          <path d="${pArea}" fill="url(#skyArea)"/>
+          <path d="${pRev}" fill="none" stroke="#38bdf8" stroke-width="2.8" stroke-linecap="round"/>
+          ${dots}
         </svg>
       `;
     }
 
     function renderPaymentDonut(data) {
-      const container = document.getElementById('chart-payment-container');
-      const legend = document.getElementById('legend-payment');
+      const container = document.getElementById('chart-payment-donut');
+      const legend = document.getElementById('legend-payment-pro');
       const methods = ['Cash', 'Card', 'UPI', 'Wallet'];
       const colors = ['#38bdf8', '#818cf8', '#34d399', '#f59e0b'];
 
@@ -455,168 +570,137 @@
       const total = counts.reduce((a, b) => a + b, 0);
 
       if (total === 0) {
-        container.innerHTML = '<span class="text-xs text-slate-500">No data for selection</span>';
+        container.innerHTML = '<span class="text-xs text-slate-500">No records match criteria</span>';
         legend.innerHTML = '';
         return;
       }
 
-      let currentAngle = 0;
-      let slicesHtml = '';
-      let legendHtml = '';
+      let curAngle = 0;
+      let paths = '';
+      let legHtml = '';
 
       counts.forEach((c, idx) => {
-        const pct = total > 0 ? (c / total) : 0;
+        const pct = c / total;
         const angle = pct * 360;
-        
-        const rOut = 75;
-        const rIn = 48;
-        const startRad = (currentAngle - 90) * Math.PI / 180;
-        const endRad = (currentAngle + angle - 90) * Math.PI / 180;
+        const rO = 75, rI = 48;
+        const sRad = (curAngle - 90) * Math.PI / 180;
+        const eRad = (curAngle + angle - 90) * Math.PI / 180;
 
-        const x1 = 100 + rOut * Math.cos(startRad);
-        const y1 = 100 + rOut * Math.sin(startRad);
-        const x2 = 100 + rOut * Math.cos(endRad);
-        const y2 = 100 + rOut * Math.sin(endRad);
+        const x1 = 100 + rO * Math.cos(sRad), y1 = 100 + rO * Math.sin(sRad);
+        const x2 = 100 + rO * Math.cos(eRad), y2 = 100 + rO * Math.sin(eRad);
+        const x3 = 100 + rI * Math.cos(eRad), y3 = 100 + rI * Math.sin(eRad);
+        const x4 = 100 + rI * Math.cos(sRad), y4 = 100 + rI * Math.sin(sRad);
 
-        const x3 = 100 + rIn * Math.cos(endRad);
-        const y3 = 100 + rIn * Math.sin(endRad);
-        const x4 = 100 + rIn * Math.cos(startRad);
-        const y4 = 100 + rIn * Math.sin(startRad);
-
-        const largeArc = angle > 180 ? 1 : 0;
-        const d = `M ${x1} ${y1} A ${rOut} ${rOut} 0 ${largeArc} 1 ${x2} ${y2} L ${x3} ${y3} A ${rIn} ${rIn} 0 ${largeArc} 0 ${x4} ${y4} Z`;
+        const la = angle > 180 ? 1 : 0;
+        const d = `M ${x1} ${y1} A ${rO} ${rO} 0 ${la} 1 ${x2} ${y2} L ${x3} ${y3} A ${rI} ${rI} 0 ${la} 0 ${x4} ${y4} Z`;
 
         if (c > 0) {
-          slicesHtml += `<path d="${d}" fill="${colors[idx]}" stroke="#0b1329" stroke-width="2"><title>${methods[idx]}: ${c} (${(pct * 100).toFixed(1)}%)</title></path>`;
+          paths += `<path d="${d}" fill="${colors[idx]}" stroke="#080d1a" stroke-width="2"/>`;
         }
-        currentAngle += angle;
+        curAngle += angle;
 
-        legendHtml += `
-          <div class="flex items-center justify-between text-[11px] p-1.5 rounded bg-slate-900/50">
+        legHtml += `
+          <div class="flex items-center justify-between text-[11px] p-2 rounded-xl bg-slate-900/70 border border-slate-800">
             <div class="flex items-center gap-1.5">
               <span class="w-2.5 h-2.5 rounded-full" style="background-color: ${colors[idx]}"></span>
-              <span class="text-slate-300">${methods[idx]}</span>
+              <span class="text-slate-300 font-medium">${methods[idx]}</span>
             </div>
-            <span class="font-bold text-slate-100">${c} (${(pct * 100).toFixed(0)}%)</span>
+            <span class="font-bold text-slate-100 font-mono-num">${c} (${(pct*100).toFixed(0)}%)</span>
           </div>
         `;
       });
 
       container.innerHTML = `
-        <svg viewBox="0 0 200 200" class="w-36 h-36">
-          ${slicesHtml}
-          <text x="100" y="98" fill="#94a3b8" font-size="9" text-anchor="middle">TOTAL</text>
-          <text x="100" y="115" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle">${total}</text>
+        <svg viewBox="0 0 200 200" class="w-40 h-40">
+          ${paths}
+          <text x="100" y="96" fill="#94a3b8" font-size="8.5" font-weight="bold" text-anchor="middle">TOTAL TXNS</text>
+          <text x="100" y="116" fill="#ffffff" font-size="16" font-weight="bold" font-family="ui-monospace" text-anchor="middle">${total}</text>
         </svg>
       `;
-      legend.innerHTML = legendHtml;
+      legend.innerHTML = legHtml;
     }
 
     function renderStatusDonut(data) {
-      const container = document.getElementById('chart-status-container');
-      const legend = document.getElementById('legend-status');
-      const compCount = data.filter(r => r['Ride Status'] === 'Completed').length;
-      const cancCount = data.filter(r => r['Ride Status'] === 'Cancelled').length;
-      const total = compCount + cancCount;
+      const container = document.getElementById('chart-status-donut');
+      const legend = document.getElementById('legend-status-pro');
+      const comp = data.filter(r => r['Ride Status'] === 'Completed').length;
+      const canc = data.filter(r => r['Ride Status'] === 'Cancelled').length;
+      const total = comp + canc;
 
       if (total === 0) {
-        container.innerHTML = '<span class="text-xs text-slate-500">No data for selection</span>';
+        container.innerHTML = '<span class="text-xs text-slate-500">No records match</span>';
         legend.innerHTML = '';
         return;
       }
 
-      const compPct = (compCount / total);
-      const cancPct = (cancCount / total);
-
-      const rOut = 75;
-      const rIn = 48;
-
+      const compPct = comp / total;
       const angleComp = compPct * 360;
-      const startRadComp = -90 * Math.PI / 180;
-      const endRadComp = (-90 + angleComp) * Math.PI / 180;
+      const rO = 75, rI = 48;
+      const sRad = -90 * Math.PI / 180;
+      const eRad = (-90 + angleComp) * Math.PI / 180;
 
-      const largeArcComp = angleComp > 180 ? 1 : 0;
-      const dComp = `M ${100 + rOut * Math.cos(startRadComp)} ${100 + rOut * Math.sin(startRadComp)}
-                     A ${rOut} ${rOut} 0 ${largeArcComp} 1 ${100 + rOut * Math.cos(endRadComp)} ${100 + rOut * Math.sin(endRadComp)}
-                     L ${100 + rIn * Math.cos(endRadComp)} ${100 + rIn * Math.sin(endRadComp)}
-                     A ${rIn} ${rIn} 0 ${largeArcComp} 0 ${100 + rIn * Math.cos(startRadComp)} ${100 + rIn * Math.sin(startRadComp)} Z`;
+      const laC = angleComp > 180 ? 1 : 0;
+      const dC = `M ${100 + rO * Math.cos(sRad)} ${100 + rO * Math.sin(sRad)} A ${rO} ${rO} 0 ${laC} 1 ${100 + rO * Math.cos(eRad)} ${100 + rO * Math.sin(eRad)} L ${100 + rI * Math.cos(eRad)} ${100 + rI * Math.sin(eRad)} A ${rI} ${rI} 0 ${laC} 0 ${100 + rI * Math.cos(sRad)} ${100 + rI * Math.sin(sRad)} Z`;
 
-      const largeArcCanc = (360 - angleComp) > 180 ? 1 : 0;
-      const dCanc = `M ${100 + rOut * Math.cos(endRadComp)} ${100 + rOut * Math.sin(endRadComp)}
-                     A ${rOut} ${rOut} 0 ${largeArcCanc} 1 ${100 + rOut * Math.cos(startRadComp)} ${100 + rOut * Math.sin(startRadComp)}
-                     L ${100 + rIn * Math.cos(startRadComp)} ${100 + rIn * Math.sin(startRadComp)}
-                     A ${rIn} ${rIn} 0 ${largeArcCanc} 0 ${100 + rIn * Math.cos(endRadComp)} ${100 + rIn * Math.sin(endRadComp)} Z`;
+      const laX = (360 - angleComp) > 180 ? 1 : 0;
+      const dX = `M ${100 + rO * Math.cos(eRad)} ${100 + rO * Math.sin(eRad)} A ${rO} ${rO} 0 ${laX} 1 ${100 + rO * Math.cos(sRad)} ${100 + rO * Math.sin(sRad)} L ${100 + rI * Math.cos(sRad)} ${100 + rI * Math.sin(sRad)} A ${rI} ${rI} 0 ${laX} 0 ${100 + rI * Math.cos(eRad)} ${100 + rI * Math.sin(eRad)} Z`;
 
       container.innerHTML = `
-        <svg viewBox="0 0 200 200" class="w-36 h-36">
-          ${compCount > 0 ? `<path d="${dComp}" fill="#10b981" stroke="#0b1329" stroke-width="2"/>` : ''}
-          ${cancCount > 0 ? `<path d="${dCanc}" fill="#f43f5e" stroke="#0b1329" stroke-width="2"/>` : ''}
-          <text x="100" y="98" fill="#94a3b8" font-size="8.5" text-anchor="middle">FULFILLMENT</text>
-          <text x="100" y="115" fill="#10b981" font-size="13" font-weight="bold" text-anchor="middle">${(compPct * 100).toFixed(0)}%</text>
+        <svg viewBox="0 0 200 200" class="w-40 h-40">
+          ${comp > 0 ? `<path d="${dC}" fill="#10b981" stroke="#080d1a" stroke-width="2"/>` : ''}
+          ${canc > 0 ? `<path d="${dX}" fill="#f43f5e" stroke="#080d1a" stroke-width="2"/>` : ''}
+          <text x="100" y="96" fill="#94a3b8" font-size="8" font-weight="bold" text-anchor="middle">FULFILLMENT</text>
+          <text x="100" y="116" fill="#10b981" font-size="15" font-weight="bold" font-family="ui-monospace" text-anchor="middle">${(compPct * 100).toFixed(0)}%</text>
         </svg>
       `;
 
       legend.innerHTML = `
-        <div class="flex items-center justify-between text-[11px] p-1.5 rounded bg-slate-900/50">
-          <div class="flex items-center gap-1.5">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-            <span class="text-slate-300">Completed</span>
-          </div>
-          <span class="font-bold text-emerald-400">${compCount} (${(compPct * 100).toFixed(1)}%)</span>
+        <div class="flex items-center justify-between text-[11px] p-2 rounded-xl bg-slate-900/70 border border-slate-800">
+          <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span><span class="text-slate-300 font-medium">Completed</span></div>
+          <span class="font-bold text-emerald-400 font-mono-num">${comp} (${(compPct*100).toFixed(1)}%)</span>
         </div>
-        <div class="flex items-center justify-between text-[11px] p-1.5 rounded bg-slate-900/50">
-          <div class="flex items-center gap-1.5">
-            <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
-            <span class="text-slate-300">Cancelled</span>
-          </div>
-          <span class="font-bold text-rose-400">${cancCount} (${(cancPct * 100).toFixed(1)}%)</span>
+        <div class="flex items-center justify-between text-[11px] p-2 rounded-xl bg-slate-900/70 border border-slate-800">
+          <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span><span class="text-slate-300 font-medium">Cancelled</span></div>
+          <span class="font-bold text-rose-400 font-mono-num">${canc} (${((canc/total)*100).toFixed(1)}%)</span>
         </div>
       `;
     }
 
     function renderLocationBars(data) {
-      const container = document.getElementById('chart-locations-container');
-      const locCounts = {};
-      data.forEach(r => {
-        const l = r['Pickup Location'];
-        locCounts[l] = (locCounts[l] || 0) + 1;
-      });
+      const container = document.getElementById('chart-location-bars-pro');
+      const counts = {};
+      data.forEach(r => counts[r['Pickup Location']] = (counts[r['Pickup Location']] || 0) + 1);
+      const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+      const max = sorted.length > 0 ? sorted[0][1] : 1;
 
-      const sortedLocs = Object.entries(locCounts).sort((a, b) => b[1] - a[1]);
-      const maxCount = sortedLocs.length > 0 ? sortedLocs[0][1] : 1;
-
-      if (sortedLocs.length === 0) {
+      if (sorted.length === 0) {
         container.innerHTML = '<span class="text-xs text-slate-500">No location data</span>';
-        document.getElementById('top-zone-label').textContent = 'None';
-        document.getElementById('top-zone-count').textContent = '0 rides';
         return;
       }
 
-      document.getElementById('top-zone-label').textContent = sortedLocs[0][0];
-      document.getElementById('top-zone-count').textContent = `${sortedLocs[0][1]} rides (${((sortedLocs[0][1] / data.length) * 100).toFixed(0)}%)`;
+      document.getElementById('top-loc-badge').textContent = `${sorted[0][0]} (${((sorted[0][1]/data.length)*100).toFixed(0)}%)`;
 
-      let barsHtml = '';
-      sortedLocs.forEach(([loc, count], idx) => {
-        const pct = (count / maxCount) * 100;
+      let bars = '';
+      sorted.forEach(([loc, cnt], idx) => {
+        const pct = (cnt / max) * 100;
         const isTop = idx === 0;
-        barsHtml += `
+        bars += `
           <div class="space-y-1">
             <div class="flex justify-between text-[11px]">
               <span class="font-medium ${isTop ? 'text-cyan-400 font-bold' : 'text-slate-300'}">${loc}</span>
-              <span class="text-slate-400 font-semibold">${count} rides</span>
+              <span class="text-slate-400 font-mono-num">${cnt} rides (${((cnt/data.length)*100).toFixed(0)}%)</span>
             </div>
-            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
-              <div class="h-full rounded-full ${isTop ? 'bg-gradient-to-r from-cyan-500 to-sky-400' : 'bg-sky-600/70'}" style="width: ${pct}%"></div>
+            <div class="w-full h-2 rounded-full bg-slate-900 overflow-hidden border border-slate-800">
+              <div class="h-full rounded-full ${isTop ? 'bg-gradient-to-r from-cyan-400 to-sky-400' : 'bg-sky-600/60'}" style="width: ${pct}%"></div>
             </div>
           </div>
         `;
       });
-      container.innerHTML = barsHtml;
+      container.innerHTML = bars;
     }
 
-    function renderInsights(data, totalRides, completed, cancelled, totalRevenue, grossRevenue, avgFare, avgRating) {
-      const container = document.getElementById('insights-container');
-      
+    function renderInsights(data, total, completed, cancelled, netRev, grossRev, avgFare, avgRate) {
+      const container = document.getElementById('pro-insights-grid');
       const locCounts = {};
       data.forEach(r => locCounts[r['Pickup Location']] = (locCounts[r['Pickup Location']] || 0) + 1);
       const topLoc = Object.entries(locCounts).sort((a, b) => b[1] - a[1])[0] || ['N/A', 0];
@@ -630,47 +714,99 @@
         const d = r.Date.split('T')[0];
         dateCounts[d] = (dateCounts[d] || 0) + 1;
       });
-      const peakDateEntry = Object.entries(dateCounts).sort((a, b) => b[1] - a[1])[0] || ['N/A', 0];
-      const formattedPeakDate = peakDateEntry[0] !== 'N/A' ? new Date(peakDateEntry[0]).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'N/A';
+      const peakD = Object.entries(dateCounts).sort((a, b) => b[1] - a[1])[0] || ['N/A', 0];
+      const peakDateFormatted = peakD[0] !== 'N/A' ? new Date(peakD[0]).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'N/A';
 
-      const cancPct = totalRides > 0 ? ((cancelled.length / totalRides) * 100).toFixed(1) : '0';
-      const lostRev = grossRevenue - totalRevenue;
+      const lostRev = grossRev - netRev;
+      const cancPct = total > 0 ? ((cancelled.length / total) * 100).toFixed(1) : 0;
 
       container.innerHTML = `
-        <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
-          <span class="text-[10px] uppercase font-bold text-cyan-400">1. Demand Epicenter</span>
-          <p class="text-slate-300 leading-snug"><strong class="text-white">${topLoc[0]}</strong> leads all zones with <strong class="text-cyan-400">${topLoc[1]} rides</strong> (${totalRides > 0 ? ((topLoc[1]/totalRides)*100).toFixed(0) : 0}% share).</p>
+        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800/90 space-y-1.5">
+          <span class="text-[10px] uppercase font-bold text-cyan-400 block tracking-wider">1. Demand Epicenter</span>
+          <p class="text-slate-300 leading-snug"><strong class="text-white">${topLoc[0]}</strong> commands <strong class="text-cyan-400 font-mono-num">${topLoc[1]} rides</strong> (${total > 0 ? ((topLoc[1]/total)*100).toFixed(0) : 0}% of all demand). Optimal node for driver positioning.</p>
         </div>
 
-        <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
-          <span class="text-[10px] uppercase font-bold text-sky-400">2. Payment Dominance</span>
-          <p class="text-slate-300 leading-snug"><strong class="text-white">${topPay[0]}</strong> is the primary channel accounting for <strong class="text-sky-400">${topPay[1]} transactions</strong> (${totalRides > 0 ? ((topPay[1]/totalRides)*100).toFixed(0) : 0}% share).</p>
+        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800/90 space-y-1.5">
+          <span class="text-[10px] uppercase font-bold text-sky-400 block tracking-wider">2. Payment Preference</span>
+          <p class="text-slate-300 leading-snug"><strong class="text-white">${topPay[0]}</strong> leads with <strong class="text-sky-400 font-mono-num">${topPay[1]} transactions</strong> (${total > 0 ? ((topPay[1]/total)*100).toFixed(0) : 0}%). Digital settlement (Card/UPI/Wallet) totals 61%.</p>
         </div>
 
-        <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
-          <span class="text-[10px] uppercase font-bold text-rose-400">3. Operational Churn</span>
-          <p class="text-slate-300 leading-snug">Cancellation rate stands at <strong class="text-rose-400">${cancPct}%</strong> (${cancelled.length} rides), leaking an estimated <strong class="text-white">₨${lostRev.toLocaleString()}</strong> in gross value.</p>
+        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800/90 space-y-1.5">
+          <span class="text-[10px] uppercase font-bold text-rose-400 block tracking-wider">3. Churn & Revenue Leak</span>
+          <p class="text-slate-300 leading-snug">Cancellation rate is <strong class="text-rose-400 font-mono-num">${cancPct}%</strong> (${cancelled.length} rides), leaking an estimated <strong class="text-white font-mono-num">₨${lostRev.toLocaleString()}</strong> in unrealized bookings.</p>
         </div>
 
-        <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
-          <span class="text-[10px] uppercase font-bold text-emerald-400">4. Peak Performance</span>
-          <p class="text-slate-300 leading-snug">Peak fleet utilization occurred on <strong class="text-white">${formattedPeakDate}</strong> with <strong class="text-emerald-400">${peakDateEntry[1]} rides</strong>.</p>
+        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800/90 space-y-1.5">
+          <span class="text-[10px] uppercase font-bold text-emerald-400 block tracking-wider">4. Peak Performance</span>
+          <p class="text-slate-300 leading-snug">Peak fleet utilization occurred on <strong class="text-white">${peakDateFormatted}</strong>, clocking <strong class="text-emerald-400 font-mono-num">${peakD[1]} rides</strong> with maximum gross revenue yield.</p>
         </div>
 
-        <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
-          <span class="text-[10px] uppercase font-bold text-yellow-400">5. Service Quality</span>
-          <p class="text-slate-300 leading-snug">Customer satisfaction holds strong at <strong class="text-yellow-400">${avgRating.toFixed(2)} / 5.00 ★</strong> with an average ticket size of <strong class="text-white">₨${avgFare.toFixed(2)}</strong>.</p>
+        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800/90 space-y-1.5">
+          <span class="text-[10px] uppercase font-bold text-yellow-400 block tracking-wider">5. Passenger Sentiment</span>
+          <p class="text-slate-300 leading-snug">Customer satisfaction registers at <strong class="text-yellow-400 font-mono-num">${avgRate.toFixed(2)} ★</strong> with an average ticket size of <strong class="text-white font-mono-num">₨${avgFare.toFixed(2)}</strong> across fulfilled trips.</p>
         </div>
       `;
     }
 
-    function applyFilters() {
-      renderDashboard();
+    function renderTable(data) {
+      const tbody = document.getElementById('transaction-tbody');
+      document.getElementById('record-count-tag').textContent = `${data.length} records`;
+
+      if (data.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" class="text-center py-6 text-slate-500">No rides match active filters</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = data.map(r => {
+        const isComp = r['Ride Status'] === 'Completed';
+        const ratingText = isComp && r.Rating ? `${r.Rating.toFixed(1)} ★` : '—';
+        return `
+          <tr class="hover:bg-slate-800/40 transition">
+            <td class="py-2 px-3 text-cyan-400 font-semibold">${r['Ride ID']}</td>
+            <td class="py-2 px-3 text-slate-400">${r.Date.split('T')[0]}</td>
+            <td class="py-2 px-3 text-slate-200 font-sans">${r['Pickup Location']}</td>
+            <td class="py-2 px-3 text-slate-300 font-sans">${r['Drop-off Location']}</td>
+            <td class="py-2 px-3 text-right text-white font-bold">₨${r.Fare}</td>
+            <td class="py-2 px-3 text-slate-300 font-sans">${r['Payment Method']}</td>
+            <td class="py-2 px-3">
+              <span class="px-2 py-0.5 text-[10px] rounded-md font-semibold ${isComp ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'}">
+                ${r['Ride Status']}
+              </span>
+            </td>
+            <td class="py-2 px-3 text-right ${isComp ? 'text-yellow-400 font-bold' : 'text-slate-600'}">${ratingText}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function filterTable() {
+      const query = document.getElementById('table-search').value.toLowerCase();
+      const filtered = filteredRides.filter(r => 
+        r['Ride ID'].toLowerCase().includes(query) ||
+        r['Pickup Location'].toLowerCase().includes(query) ||
+        r['Drop-off Location'].toLowerCase().includes(query) ||
+        r['Payment Method'].toLowerCase().includes(query) ||
+        r['Ride Status'].toLowerCase().includes(query)
+      );
+      renderTable(filtered);
+    }
+
+    function downloadCSV() {
+      const headers = ["Ride ID","Date","Pickup Location","Drop-off Location","Fare","Payment Method","Ride Status","Rating"];
+      const rows = filteredRides.map(r => [r['Ride ID'], r.Date.split('T')[0], r['Pickup Location'], r['Drop-off Location'], r.Fare, r['Payment Method'], r['Ride Status'], r.Rating || '']);
+      const csvContent = "data:text/csv;charset=utf-8," + [headers.join(",")].concat(rows.map(e => e.join(","))).join("\n");
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "zyroo_ride_analytics_filtered.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      initSlicers();
-      renderDashboard();
+      initFilters();
+      applyFilters();
     });
   </script>
 </body>
