@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZYROO • Ride Analytics & Revenue Intelligence Platform</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: #0b1329;
+      color: #f8fafc;
+    }
+    .card-glass {
+      background: linear-gradient(135deg, rgba(19, 31, 55, 0.95), rgba(15, 23, 42, 0.90));
+      border: 1px solid rgba(56, 189, 248, 0.18);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    }
+    .card-glass:hover {
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+    .slicer-select {
+      background-color: #1e293b;
+      border: 1px solid #334155;
+      color: #e2e8f0;
+    }
+    .slicer-select:focus {
+      border-color: #38bdf8;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+    }
+  </style>
+</head>
+<body class="min-h-screen p-4 md:p-8 antialiased">
+  <div class="max-w-7xl mx-auto space-y-6">
+
+    <!-- TOP HEADER -->
+    <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+      <div>
+        <div class="flex items-center gap-3">
+          <span class="px-2.5 py-1 text-xs font-extrabold rounded-md bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 uppercase tracking-wider">ZYROO Fleet OS</span>
+          <span class="text-xs font-medium text-slate-400">Week 2 • Data Analytics Internship</span>
+        </div>
+        <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight mt-1 text-white">
+          Ride Analytics & <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-sky-400">Revenue Intelligence</span>
+        </h1>
+        <p class="text-xs md:text-sm text-slate-400 mt-0.5">Executive Fleet Performance, Financial Yield & Operational Churn Platform</p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Live In-Memory Model (100 Rides)
+        </div>
+        <button onclick="resetFilters()" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
+          Reset Filters
+        </button>
+      </div>
+    </header>
+
+    <!-- INTERACTIVE SLICERS -->
+    <section class="card-glass rounded-2xl p-4">
+      <div class="flex items-center gap-2 mb-3">
+        <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-300">Dynamic Dashboard Slicers</h3>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div>
+          <label class="block text-[11px] font-medium text-slate-400 mb-1">📅 Date Window</label>
+          <select id="slicer-date" onchange="applyFilters()" class="w-full text-xs rounded-lg slicer-select px-3 py-2">
+            <option value="ALL">All Dates (01 Sep - 10 Sep)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[11px] font-medium text-slate-400 mb-1">📍 Pickup Location</label>
+          <select id="slicer-location" onchange="applyFilters()" class="w-full text-xs rounded-lg slicer-select px-3 py-2">
+            <option value="ALL">All Pickup Locations</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[11px] font-medium text-slate-400 mb-1">💳 Payment Method</label>
+          <select id="slicer-payment" onchange="applyFilters()" class="w-full text-xs rounded-lg slicer-select px-3 py-2">
+            <option value="ALL">All Payment Methods</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[11px] font-medium text-slate-400 mb-1">🚦 Ride Status</label>
+          <select id="slicer-status" onchange="applyFilters()" class="w-full text-xs rounded-lg slicer-select px-3 py-2">
+            <option value="ALL">All Ride Statuses</option>
+            <option value="Completed">Completed Only</option>
+            <option value="Cancelled">Cancelled Only</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOP KPI METRIC CARDS (6 CARDS) -->
+    <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5">
+      <!-- KPI 1 -->
+      <div class="card-glass rounded-xl p-3.5 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Total Rides</span>
+          <span class="p-1.5 rounded-md bg-sky-500/10 text-sky-400 text-xs">🚕</span>
+        </div>
+        <div class="my-2">
+          <span id="kpi-total-rides" class="text-2xl font-extrabold text-white">100</span>
+        </div>
+        <span class="text-[10px] text-slate-500">Gross demand volume</span>
+      </div>
+
+      <!-- KPI 2 -->
+      <div class="card-glass rounded-xl p-3.5 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Completed</span>
+          <span class="p-1.5 rounded-md bg-emerald-500/10 text-emerald-400 text-xs">✅</span>
+        </div>
+        <div class="my-2">
+          <span id="kpi-completed-rides" class="text-2xl font-extrabold text-emerald-400">85</span>
+        </div>
+        <span id="kpi-completion-rate" class="text-[10px] text-emerald-500 font-medium">85.0% completion rate</span>
+      </div>
+
+      <!-- KPI 3 -->
+      <div class="card-glass rounded-xl p-3.5 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Cancelled</span>
+          <span class="p-1.5 rounded-md bg-rose-500/10 text-rose-400 text-xs">❌</span>
+        </div>
+        <div class="my-2">
+          <span id="kpi-cancelled-rides" class="text-2xl font-extrabold text-rose-400">15</span>
+        </div>
+        <span id="kpi-cancellation-rate" class="text-[10px] text-rose-400/80 font-medium">15.0% cancellation churn</span>
+      </div>
+
+      <!-- KPI 4 -->
+      <div class="card-glass rounded-xl p-3.5 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Total Revenue</span>
+          <span class="p-1.5 rounded-md bg-cyan-500/10 text-cyan-400 text-xs">💰</span>
+        </div>
+        <div class="my-2">
+          <span id="kpi-total-revenue" class="text-xl lg:text-2xl font-extrabold text-cyan-400">₨36,466</span>
+        </div>
+        <span class="text-[10px] text-slate-500">Net realized sales</span>
+      </div>
+
+      <!-- KPI 5 -->
+      <div class="card-glass rounded-xl p-3.5 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Avg Fare</span>
+          <span class="p-1.5 rounded-md bg-amber-500/10 text-amber-400 text-xs">📊</span>
+        </div>
+        <div class="my-2">
+          <span id="kpi-avg-fare" class="text-2xl font-extrabold text-amber-400">₨429.01</span>
+        </div>
+        <span class="text-[10px] text-slate-500">Per completed trip</span>
+      </div>
+
+      <!-- KPI 6 -->
+      <div class="card-glass rounded-xl p-3.5 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Avg Rating</span>
+          <span class="p-1.5 rounded-md bg-yellow-500/10 text-yellow-400 text-xs">⭐</span>
+        </div>
+        <div class="my-2">
+          <span id="kpi-avg-rating" class="text-2xl font-extrabold text-yellow-400">4.27 ★</span>
+        </div>
+        <span class="text-[10px] text-slate-500">Customer score</span>
+      </div>
+    </section>
+
+    <!-- SECTION 2: 2 LARGE TREND CHARTS -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+      <!-- Chart 1: Rides by Date -->
+      <div class="card-glass rounded-2xl p-5">
+        <div class="flex items-center justify-between mb-3">
+          <div>
+            <h3 class="text-sm font-bold text-white tracking-wide">Rides Trend by Date</h3>
+            <p class="text-[11px] text-slate-400">Daily total bookings vs completed trips</p>
+          </div>
+          <span class="px-2 py-0.5 text-[10px] font-semibold rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Smooth Line</span>
+        </div>
+        <div class="h-60 relative flex items-center justify-center" id="chart-rides-container"></div>
+        <div class="flex items-center justify-center gap-6 mt-2 text-xs text-slate-400">
+          <div class="flex items-center gap-2"><span class="w-3 h-0.5 bg-cyan-400 rounded"></span> Total Rides</div>
+          <div class="flex items-center gap-2"><span class="w-3 h-0.5 bg-emerald-400 rounded"></span> Completed</div>
+        </div>
+      </div>
+
+      <!-- Chart 2: Revenue by Date -->
+      <div class="card-glass rounded-2xl p-5">
+        <div class="flex items-center justify-between mb-3">
+          <div>
+            <h3 class="text-sm font-bold text-white tracking-wide">Realized Revenue by Date (PKR)</h3>
+            <p class="text-[11px] text-slate-400">Daily financial yield curve</p>
+          </div>
+          <span class="px-2 py-0.5 text-[10px] font-semibold rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">Area Chart</span>
+        </div>
+        <div class="h-60 relative flex items-center justify-center" id="chart-revenue-container"></div>
+        <div class="flex items-center justify-center gap-6 mt-2 text-xs text-slate-400">
+          <div class="flex items-center gap-2"><span class="w-3 h-3 bg-sky-400/40 border border-sky-400 rounded-sm"></span> Realized Revenue (PKR)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: 3 LOWER VISUALS -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <!-- Visual 3: Payment Method -->
+      <div class="card-glass rounded-2xl p-5 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <h3 class="text-sm font-bold text-white">Payment Method Share</h3>
+            <span class="text-[10px] text-slate-400">Donut</span>
+          </div>
+          <p class="text-[11px] text-slate-400 mb-3">Volume by transaction type</p>
+          <div class="h-44 flex items-center justify-center" id="chart-payment-container"></div>
+        </div>
+        <div class="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-slate-800/80 text-xs" id="legend-payment"></div>
+      </div>
+
+      <!-- Visual 4: Ride Status -->
+      <div class="card-glass rounded-2xl p-5 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <h3 class="text-sm font-bold text-white">Ride Status & Churn</h3>
+            <span class="text-[10px] text-slate-400">Ratio Donut</span>
+          </div>
+          <p class="text-[11px] text-slate-400 mb-3">Completed vs Cancelled</p>
+          <div class="h-44 flex items-center justify-center" id="chart-status-container"></div>
+        </div>
+        <div class="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-slate-800/80 text-xs" id="legend-status"></div>
+      </div>
+
+      <!-- Visual 5: Top Pickup Locations -->
+      <div class="card-glass rounded-2xl p-5 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <h3 class="text-sm font-bold text-white">Top Pickup Locations</h3>
+            <span class="text-[10px] text-slate-400">Ranked Bar</span>
+          </div>
+          <p class="text-[11px] text-slate-400 mb-3">Geographic demand ranking</p>
+          <div class="h-44 flex flex-col justify-around" id="chart-locations-container"></div>
+        </div>
+        <div class="mt-3 pt-3 border-t border-slate-800/80 text-[11px] text-slate-400 flex items-center justify-between">
+          <span>Top Hub: <strong id="top-zone-label" class="text-cyan-400">DHA</strong></span>
+          <span id="top-zone-count" class="text-slate-300">38 rides</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: 5 AUTOMATICALLY CALCULATED BUSINESS INSIGHTS -->
+    <section class="card-glass rounded-2xl p-6">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="p-1.5 rounded-lg bg-cyan-500/10 text-cyan-400">💡</span>
+        <h3 class="text-sm font-bold text-white tracking-wide uppercase">Automated Executive Business Insights (Data-Driven)</h3>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3.5 text-xs" id="insights-container"></div>
+    </section>
+
+  </div>
+
+  <script>
+    const ALL_RIDES = [{"Ride ID": "R001", "Date": "2026-09-07", "Pickup Location": "Johar Town", "Drop-off Location": "Model Town", "Fare": 300.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 3.6}, {"Ride ID": "R002", "Date": "2026-09-05", "Pickup Location": "Model Town", "Drop-off Location": "Model Town", "Fare": 634.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 5.0}, {"Ride ID": "R003", "Date": "2026-09-06", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 444.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.1}, {"Ride ID": "R004", "Date": "2026-09-10", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 228.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.2}, {"Ride ID": "R005", "Date": "2026-09-03", "Pickup Location": "Gulberg", "Drop-off Location": "Johar Town", "Fare": 432.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.8}, {"Ride ID": "R006", "Date": "2026-09-04", "Pickup Location": "Bahria Town", "Drop-off Location": "Gulberg", "Fare": 368.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.5}, {"Ride ID": "R007", "Date": "2026-09-07", "Pickup Location": "Model Town", "Drop-off Location": "Model Town", "Fare": 502.0, "Payment Method": "Cash", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R008", "Date": "2026-09-06", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 297.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 5.0}, {"Ride ID": "R009", "Date": "2026-09-02", "Pickup Location": "Gulberg", "Drop-off Location": "Johar Town", "Fare": 319.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 3.9}, {"Ride ID": "R010", "Date": "2026-09-10", "Pickup Location": "Bahria Town", "Drop-off Location": "Johar Town", "Fare": 261.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 3.7}, {"Ride ID": "R011", "Date": "2026-09-01", "Pickup Location": "DHA", "Drop-off Location": "DHA", "Fare": 478.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.6}, {"Ride ID": "R012", "Date": "2026-09-05", "Pickup Location": "Bahria Town", "Drop-off Location": "Gulberg", "Fare": 508.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.8}, {"Ride ID": "R013", "Date": "2026-09-02", "Pickup Location": "DHA", "Drop-off Location": "Bahria Town", "Fare": 503.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.2}, {"Ride ID": "R014", "Date": "2026-09-03", "Pickup Location": "Johar Town", "Drop-off Location": "Gulberg", "Fare": 449.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.9}, {"Ride ID": "R015", "Date": "2026-09-10", "Pickup Location": "DHA", "Drop-off Location": "Bahria Town", "Fare": 414.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.3}, {"Ride ID": "R016", "Date": "2026-09-05", "Pickup Location": "DHA", "Drop-off Location": "Bahria Town", "Fare": 516.0, "Payment Method": "Wallet", "Ride Status": "Completed", "Rating": 3.8}, {"Ride ID": "R017", "Date": "2026-09-07", "Pickup Location": "Gulberg", "Drop-off Location": "Johar Town", "Fare": 470.0, "Payment Method": "Wallet", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R018", "Date": "2026-09-04", "Pickup Location": "Bahria Town", "Drop-off Location": "Model Town", "Fare": 535.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.7}, {"Ride ID": "R019", "Date": "2026-09-01", "Pickup Location": "DHA", "Drop-off Location": "Model Town", "Fare": 449.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 3.5}, {"Ride ID": "R020", "Date": "2026-09-09", "Pickup Location": "Gulberg", "Drop-off Location": "DHA", "Fare": 446.0, "Payment Method": "Wallet", "Ride Status": "Completed", "Rating": 4.0}, {"Ride ID": "R021", "Date": "2026-09-06", "Pickup Location": "DHA", "Drop-off Location": "DHA", "Fare": 418.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 3.9}, {"Ride ID": "R022", "Date": "2026-09-03", "Pickup Location": "Gulberg", "Drop-off Location": "DHA", "Fare": 417.0, "Payment Method": "Cash", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R023", "Date": "2026-09-02", "Pickup Location": "Gulberg", "Drop-off Location": "Bahria Town", "Fare": 563.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.3}, {"Ride ID": "R024", "Date": "2026-09-06", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 526.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.1}, {"Ride ID": "R025", "Date": "2026-09-06", "Pickup Location": "Gulberg", "Drop-off Location": "Johar Town", "Fare": 541.0, "Payment Method": "UPI", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R026", "Date": "2026-09-09", "Pickup Location": "Gulberg", "Drop-off Location": "Bahria Town", "Fare": 381.0, "Payment Method": "Cash", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R027", "Date": "2026-09-04", "Pickup Location": "DHA", "Drop-off Location": "Model Town", "Fare": 347.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.9}, {"Ride ID": "R028", "Date": "2026-09-07", "Pickup Location": "Bahria Town", "Drop-off Location": "DHA", "Fare": 393.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.6}, {"Ride ID": "R029", "Date": "2026-09-10", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 421.0, "Payment Method": "Wallet", "Ride Status": "Completed", "Rating": 3.9}, {"Ride ID": "R030", "Date": "2026-09-05", "Pickup Location": "Bahria Town", "Drop-off Location": "Model Town", "Fare": 457.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 3.9}, {"Ride ID": "R031", "Date": "2026-09-03", "Pickup Location": "Johar Town", "Drop-off Location": "DHA", "Fare": 442.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.5}, {"Ride ID": "R032", "Date": "2026-09-03", "Pickup Location": "Bahria Town", "Drop-off Location": "Gulberg", "Fare": 504.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.3}, {"Ride ID": "R033", "Date": "2026-09-09", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 535.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.5}, {"Ride ID": "R034", "Date": "2026-09-01", "Pickup Location": "Gulberg", "Drop-off Location": "Johar Town", "Fare": 337.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.5}, {"Ride ID": "R035", "Date": "2026-09-06", "Pickup Location": "Bahria Town", "Drop-off Location": "Model Town", "Fare": 540.0, "Payment Method": "Card", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R036", "Date": "2026-09-01", "Pickup Location": "DHA", "Drop-off Location": "Bahria Town", "Fare": 473.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.4}, {"Ride ID": "R037", "Date": "2026-09-01", "Pickup Location": "Bahria Town", "Drop-off Location": "Bahria Town", "Fare": 452.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.9}, {"Ride ID": "R038", "Date": "2026-09-05", "Pickup Location": "Model Town", "Drop-off Location": "Johar Town", "Fare": 470.0, "Payment Method": "Cash", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R039", "Date": "2026-09-05", "Pickup Location": "DHA", "Drop-off Location": "DHA", "Fare": 441.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.9}, {"Ride ID": "R040", "Date": "2026-09-08", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 295.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 5.0}, {"Ride ID": "R041", "Date": "2026-09-10", "Pickup Location": "Johar Town", "Drop-off Location": "DHA", "Fare": 461.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.3}, {"Ride ID": "R042", "Date": "2026-09-10", "Pickup Location": "Johar Town", "Drop-off Location": "DHA", "Fare": 347.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.6}, {"Ride ID": "R043", "Date": "2026-09-04", "Pickup Location": "Johar Town", "Drop-off Location": "DHA", "Fare": 364.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.8}, {"Ride ID": "R044", "Date": "2026-09-02", "Pickup Location": "DHA", "Drop-off Location": "Model Town", "Fare": 407.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.3}, {"Ride ID": "R045", "Date": "2026-09-10", "Pickup Location": "Johar Town", "Drop-off Location": "DHA", "Fare": 372.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 3.7}, {"Ride ID": "R046", "Date": "2026-09-05", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 528.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.6}, {"Ride ID": "R047", "Date": "2026-09-04", "Pickup Location": "Gulberg", "Drop-off Location": "Model Town", "Fare": 217.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.7}, {"Ride ID": "R048", "Date": "2026-09-10", "Pickup Location": "DHA", "Drop-off Location": "Bahria Town", "Fare": 438.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 3.6}, {"Ride ID": "R049", "Date": "2026-09-05", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 451.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.6}, {"Ride ID": "R050", "Date": "2026-09-05", "Pickup Location": "Model Town", "Drop-off Location": "Bahria Town", "Fare": 258.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.3}, {"Ride ID": "R051", "Date": "2026-09-07", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 396.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 3.6}, {"Ride ID": "R052", "Date": "2026-09-07", "Pickup Location": "Gulberg", "Drop-off Location": "Bahria Town", "Fare": 607.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.4}, {"Ride ID": "R053", "Date": "2026-09-02", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 536.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.5}, {"Ride ID": "R054", "Date": "2026-09-08", "Pickup Location": "Bahria Town", "Drop-off Location": "Gulberg", "Fare": 421.0, "Payment Method": "Wallet", "Ride Status": "Completed", "Rating": 4.4}, {"Ride ID": "R055", "Date": "2026-09-08", "Pickup Location": "Model Town", "Drop-off Location": "Model Town", "Fare": 633.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.9}, {"Ride ID": "R056", "Date": "2026-09-01", "Pickup Location": "Model Town", "Drop-off Location": "Model Town", "Fare": 224.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.6}, {"Ride ID": "R057", "Date": "2026-09-02", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 399.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.8}, {"Ride ID": "R058", "Date": "2026-09-02", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 370.0, "Payment Method": "Wallet", "Ride Status": "Completed", "Rating": 4.0}, {"Ride ID": "R059", "Date": "2026-09-08", "Pickup Location": "Johar Town", "Drop-off Location": "Bahria Town", "Fare": 198.0, "Payment Method": "Card", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R060", "Date": "2026-09-03", "Pickup Location": "Bahria Town", "Drop-off Location": "Johar Town", "Fare": 558.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.7}, {"Ride ID": "R061", "Date": "2026-09-05", "Pickup Location": "DHA", "Drop-off Location": "Bahria Town", "Fare": 357.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.3}, {"Ride ID": "R062", "Date": "2026-09-09", "Pickup Location": "Gulberg", "Drop-off Location": "Model Town", "Fare": 285.0, "Payment Method": "Wallet", "Ride Status": "Completed", "Rating": 3.6}, {"Ride ID": "R063", "Date": "2026-09-03", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 429.0, "Payment Method": "Card", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R064", "Date": "2026-09-05", "Pickup Location": "DHA", "Drop-off Location": "Johar Town", "Fare": 479.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.5}, {"Ride ID": "R065", "Date": "2026-09-07", "Pickup Location": "Johar Town", "Drop-off Location": "Bahria Town", "Fare": 601.0, "Payment Method": "Wallet", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R066", "Date": "2026-09-09", "Pickup Location": "Johar Town", "Drop-off Location": "Johar Town", "Fare": 460.0, "Payment Method": "UPI", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R067", "Date": "2026-09-08", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 424.0, "Payment Method": "Cash", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R068", "Date": "2026-09-08", "Pickup Location": "Gulberg", "Drop-off Location": "DHA", "Fare": 302.0, "Payment Method": "Cash", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R069", "Date": "2026-09-07", "Pickup Location": "Bahria Town", "Drop-off Location": "Johar Town", "Fare": 403.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.1}, {"Ride ID": "R070", "Date": "2026-09-10", "Pickup Location": "Bahria Town", "Drop-off Location": "Model Town", "Fare": 606.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.1}, {"Ride ID": "R071", "Date": "2026-09-04", "Pickup Location": "DHA", "Drop-off Location": "Bahria Town", "Fare": 504.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 3.9}, {"Ride ID": "R072", "Date": "2026-09-01", "Pickup Location": "DHA", "Drop-off Location": "DHA", "Fare": 533.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.9}, {"Ride ID": "R073", "Date": "2026-09-05", "Pickup Location": "DHA", "Drop-off Location": "Bahria Town", "Fare": 429.0, "Payment Method": "Wallet", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R074", "Date": "2026-09-02", "Pickup Location": "DHA", "Drop-off Location": "DHA", "Fare": 342.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.2}, {"Ride ID": "R075", "Date": "2026-09-06", "Pickup Location": "Gulberg", "Drop-off Location": "DHA", "Fare": 332.0, "Payment Method": "Cash", "Ride Status": "Cancelled", "Rating": NaN}, {"Ride ID": "R076", "Date": "2026-09-10", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 396.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.8}, {"Ride ID": "R077", "Date": "2026-09-05", "Pickup Location": "Bahria Town", "Drop-off Location": "Model Town", "Fare": 228.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.7}, {"Ride ID": "R078", "Date": "2026-09-03", "Pickup Location": "Johar Town", "Drop-off Location": "Gulberg", "Fare": 456.0, "Payment Method": "Wallet", "Ride Status": "Completed", "Rating": 4.4}, {"Ride ID": "R079", "Date": "2026-09-10", "Pickup Location": "Bahria Town", "Drop-off Location": "Gulberg", "Fare": 389.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.7}, {"Ride ID": "R080", "Date": "2026-09-01", "Pickup Location": "Gulberg", "Drop-off Location": "Gulberg", "Fare": 303.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 5.0}, {"Ride ID": "R081", "Date": "2026-09-01", "Pickup Location": "Gulberg", "Drop-off Location": "Model Town", "Fare": 454.0, "Payment Method": "Wallet", "Ride Status": "Completed", "Rating": 4.6}, {"Ride ID": "R082", "Date": "2026-09-07", "Pickup Location": "Johar Town", "Drop-off Location": "Bahria Town", "Fare": 611.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.1}, {"Ride ID": "R083", "Date": "2026-09-09", "Pickup Location": "DHA", "Drop-off Location": "Model Town", "Fare": 453.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.6}, {"Ride ID": "R084", "Date": "2026-09-08", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 394.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.7}, {"Ride ID": "R085", "Date": "2026-09-01", "Pickup Location": "Model Town", "Drop-off Location": "Bahria Town", "Fare": 461.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.2}, {"Ride ID": "R086", "Date": "2026-09-05", "Pickup Location": "Model Town", "Drop-off Location": "Gulberg", "Fare": 554.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.9}, {"Ride ID": "R087", "Date": "2026-09-02", "Pickup Location": "Gulberg", "Drop-off Location": "Gulberg", "Fare": 333.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.6}, {"Ride ID": "R088", "Date": "2026-09-01", "Pickup Location": "Johar Town", "Drop-off Location": "Johar Town", "Fare": 431.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 4.3}, {"Ride ID": "R089", "Date": "2026-09-04", "Pickup Location": "Gulberg", "Drop-off Location": "DHA", "Fare": 391.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 5.0}, {"Ride ID": "R090", "Date": "2026-09-03", "Pickup Location": "Model Town", "Drop-off Location": "Model Town", "Fare": 253.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.5}, {"Ride ID": "R091", "Date": "2026-09-08", "Pickup Location": "Gulberg", "Drop-off Location": "Model Town", "Fare": 427.0, "Payment Method": "UPI", "Ride Status": "Completed", "Rating": 3.8}, {"Ride ID": "R092", "Date": "2026-09-02", "Pickup Location": "DHA", "Drop-off Location": "Bahria Town", "Fare": 455.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.3}, {"Ride ID": "R093", "Date": "2026-09-10", "Pickup Location": "Bahria Town", "Drop-off Location": "DHA", "Fare": 409.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.7}, {"Ride ID": "R094", "Date": "2026-09-08", "Pickup Location": "Johar Town", "Drop-off Location": "Bahria Town", "Fare": 424.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.8}, {"Ride ID": "R095", "Date": "2026-09-03", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 598.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 3.6}, {"Ride ID": "R096", "Date": "2026-09-03", "Pickup Location": "Model Town", "Drop-off Location": "Model Town", "Fare": 445.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 3.7}, {"Ride ID": "R097", "Date": "2026-09-03", "Pickup Location": "Gulberg", "Drop-off Location": "DHA", "Fare": 445.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.8}, {"Ride ID": "R098", "Date": "2026-09-09", "Pickup Location": "Bahria Town", "Drop-off Location": "Johar Town", "Fare": 290.0, "Payment Method": "Card", "Ride Status": "Completed", "Rating": 4.0}, {"Ride ID": "R099", "Date": "2026-09-02", "Pickup Location": "DHA", "Drop-off Location": "Gulberg", "Fare": 567.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.1}, {"Ride ID": "R100", "Date": "2026-09-04", "Pickup Location": "Model Town", "Drop-off Location": "Gulberg", "Fare": 618.0, "Payment Method": "Cash", "Ride Status": "Completed", "Rating": 4.2}];
+
+    function initSlicers() {
+      const dates = Array.from(new Set(ALL_RIDES.map(r => r.Date.split('T')[0]))).sort();
+      const dateSelect = document.getElementById('slicer-date');
+      dates.forEach(d => {
+        const opt = document.createElement('option');
+        opt.value = d;
+        opt.textContent = new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        dateSelect.appendChild(opt);
+      });
+
+      const locs = Array.from(new Set(ALL_RIDES.map(r => r['Pickup Location']))).sort();
+      const locSelect = document.getElementById('slicer-location');
+      locs.forEach(l => {
+        const opt = document.createElement('option');
+        opt.value = l;
+        opt.textContent = l;
+        locSelect.appendChild(opt);
+      });
+
+      const payments = Array.from(new Set(ALL_RIDES.map(r => r['Payment Method']))).sort();
+      const paySelect = document.getElementById('slicer-payment');
+      payments.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p;
+        opt.textContent = p;
+        paySelect.appendChild(opt);
+      });
+    }
+
+    function resetFilters() {
+      document.getElementById('slicer-date').value = 'ALL';
+      document.getElementById('slicer-location').value = 'ALL';
+      document.getElementById('slicer-payment').value = 'ALL';
+      document.getElementById('slicer-status').value = 'ALL';
+      applyFilters();
+    }
+
+    function getFilteredData() {
+      const dVal = document.getElementById('slicer-date').value;
+      const lVal = document.getElementById('slicer-location').value;
+      const pVal = document.getElementById('slicer-payment').value;
+      const sVal = document.getElementById('slicer-status').value;
+
+      return ALL_RIDES.filter(r => {
+        const rDate = r.Date.split('T')[0];
+        if (dVal !== 'ALL' && rDate !== dVal) return false;
+        if (lVal !== 'ALL' && r['Pickup Location'] !== lVal) return false;
+        if (pVal !== 'ALL' && r['Payment Method'] !== pVal) return false;
+        if (sVal !== 'ALL' && r['Ride Status'] !== sVal) return false;
+        return true;
+      });
+    }
+
+    function renderDashboard() {
+      const data = getFilteredData();
+      const totalRides = data.length;
+      const completed = data.filter(r => r['Ride Status'] === 'Completed');
+      const cancelled = data.filter(r => r['Ride Status'] === 'Cancelled');
+      const totalRevenue = completed.reduce((acc, r) => acc + (r.Fare || 0), 0);
+      const grossRevenue = data.reduce((acc, r) => acc + (r.Fare || 0), 0);
+      const avgFare = completed.length > 0 ? (totalRevenue / completed.length) : 0;
+      
+      const ratedRides = completed.filter(r => r.Rating !== null && !isNaN(r.Rating));
+      const avgRating = ratedRides.length > 0 ? (ratedRides.reduce((acc, r) => acc + r.Rating, 0) / ratedRides.length) : 0;
+
+      document.getElementById('kpi-total-rides').textContent = totalRides.toLocaleString();
+      document.getElementById('kpi-completed-rides').textContent = completed.length.toLocaleString();
+      document.getElementById('kpi-cancelled-rides').textContent = cancelled.length.toLocaleString();
+      
+      const compRate = totalRides > 0 ? ((completed.length / totalRides) * 100).toFixed(1) : 0;
+      const cancRate = totalRides > 0 ? ((cancelled.length / totalRides) * 100).toFixed(1) : 0;
+      document.getElementById('kpi-completion-rate').textContent = `${compRate}% completion rate`;
+      document.getElementById('kpi-cancellation-rate').textContent = `${cancRate}% cancellation churn`;
+
+      document.getElementById('kpi-total-revenue').textContent = `₨${totalRevenue.toLocaleString()}`;
+      document.getElementById('kpi-avg-fare').textContent = `₨${avgFare.toFixed(2)}`;
+      document.getElementById('kpi-avg-rating').textContent = ratedRides.length > 0 ? `${avgRating.toFixed(2)} ★` : 'N/A';
+
+      renderRidesByDate(data);
+      renderRevenueByDate(data);
+      renderPaymentDonut(data);
+      renderStatusDonut(data);
+      renderLocationBars(data);
+      renderInsights(data, totalRides, completed, cancelled, totalRevenue, grossRevenue, avgFare, avgRating);
+    }
+
+    function renderRidesByDate(data) {
+      const container = document.getElementById('chart-rides-container');
+      const dates = Array.from(new Set(ALL_RIDES.map(r => r.Date.split('T')[0]))).sort();
+      const dailyTotal = dates.map(d => data.filter(r => r.Date.split('T')[0] === d).length);
+      const dailyComp = dates.map(d => data.filter(r => r.Date.split('T')[0] === d && r['Ride Status'] === 'Completed').length);
+
+      const maxVal = Math.max(...dailyTotal, 5);
+      const width = 500, height = 210, padLeft = 30, padBottom = 28, padTop = 20, padRight = 20;
+      const chartW = width - padLeft - padRight;
+      const chartH = height - padTop - padBottom;
+
+      const getX = (idx) => padLeft + (idx / (dates.length - 1)) * chartW;
+      const getY = (val) => padTop + chartH - (val / maxVal) * chartH;
+
+      let pathTotal = `M ${getX(0)} ${getY(dailyTotal[0])}`;
+      let pathComp = `M ${getX(0)} ${getY(dailyComp[0])}`;
+      let pathArea = `M ${getX(0)} ${getY(dailyTotal[0])}`;
+
+      for (let i = 1; i < dates.length; i++) {
+        pathTotal += ` L ${getX(i)} ${getY(dailyTotal[i])}`;
+        pathComp += ` L ${getX(i)} ${getY(dailyComp[i])}`;
+        pathArea += ` L ${getX(i)} ${getY(dailyTotal[i])}`;
+      }
+      pathArea += ` L ${getX(dates.length - 1)} ${padTop + chartH} L ${getX(0)} ${padTop + chartH} Z`;
+
+      let dotsHtml = '';
+      dates.forEach((d, i) => {
+        dotsHtml += `<circle cx="${getX(i)}" cy="${getY(dailyTotal[i])}" r="3.5" fill="#00e5ff" stroke="#0b1329" stroke-width="2"/>`;
+        dotsHtml += `<circle cx="${getX(i)}" cy="${getY(dailyComp[i])}" r="3" fill="#10b981" stroke="#0b1329" stroke-width="2"/>`;
+        dotsHtml += `<text x="${getX(i)}" y="${getY(dailyTotal[i]) - 7}" fill="#00e5ff" font-size="9" font-weight="bold" text-anchor="middle">${dailyTotal[i]}</text>`;
+        const dateLabel = new Date(d).toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
+        dotsHtml += `<text x="${getX(i)}" y="${height - 8}" fill="#64748b" font-size="8.5" text-anchor="middle">${dateLabel}</text>`;
+      });
+
+      container.innerHTML = `
+        <svg viewBox="0 0 ${width} ${height}" class="w-full h-full">
+          <defs>
+            <linearGradient id="cyanGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#00e5ff" stop-opacity="0.0"/>
+            </linearGradient>
+          </defs>
+          <path d="${pathArea}" fill="url(#cyanGrad)"/>
+          <path d="${pathTotal}" fill="none" stroke="#00e5ff" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="${pathComp}" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="3,3" stroke-linecap="round"/>
+          ${dotsHtml}
+        </svg>
+      `;
+    }
+
+    function renderRevenueByDate(data) {
+      const container = document.getElementById('chart-revenue-container');
+      const dates = Array.from(new Set(ALL_RIDES.map(r => r.Date.split('T')[0]))).sort();
+      const dailyRev = dates.map(d => data.filter(r => r.Date.split('T')[0] === d && r['Ride Status'] === 'Completed').reduce((s, r) => s + (r.Fare || 0), 0));
+
+      const maxVal = Math.max(...dailyRev, 1000);
+      const width = 500, height = 210, padLeft = 30, padBottom = 28, padTop = 20, padRight = 20;
+      const chartW = width - padLeft - padRight;
+      const chartH = height - padTop - padBottom;
+
+      const getX = (idx) => padLeft + (idx / (dates.length - 1)) * chartW;
+      const getY = (val) => padTop + chartH - (val / maxVal) * chartH;
+
+      let pathRev = `M ${getX(0)} ${getY(dailyRev[0])}`;
+      let pathArea = `M ${getX(0)} ${getY(dailyRev[0])}`;
+
+      for (let i = 1; i < dates.length; i++) {
+        pathRev += ` L ${getX(i)} ${getY(dailyRev[i])}`;
+        pathArea += ` L ${getX(i)} ${getY(dailyRev[i])}`;
+      }
+      pathArea += ` L ${getX(dates.length - 1)} ${padTop + chartH} L ${getX(0)} ${padTop + chartH} Z`;
+
+      let dotsHtml = '';
+      dates.forEach((d, i) => {
+        dotsHtml += `<circle cx="${getX(i)}" cy="${getY(dailyRev[i])}" r="3.5" fill="#38bdf8" stroke="#0b1329" stroke-width="2"/>`;
+        if (dailyRev[i] > 0) {
+          dotsHtml += `<text x="${getX(i)}" y="${getY(dailyRev[i]) - 8}" fill="#ffffff" font-size="8" font-weight="600" text-anchor="middle">₨${dailyRev[i]}</text>`;
+        }
+        const dateLabel = new Date(d).toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
+        dotsHtml += `<text x="${getX(i)}" y="${height - 8}" fill="#64748b" font-size="8.5" text-anchor="middle">${dateLabel}</text>`;
+      });
+
+      container.innerHTML = `
+        <svg viewBox="0 0 ${width} ${height}" class="w-full h-full">
+          <defs>
+            <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.02"/>
+            </linearGradient>
+          </defs>
+          <path d="${pathArea}" fill="url(#skyGrad)"/>
+          <path d="${pathRev}" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/>
+          ${dotsHtml}
+        </svg>
+      `;
+    }
+
+    function renderPaymentDonut(data) {
+      const container = document.getElementById('chart-payment-container');
+      const legend = document.getElementById('legend-payment');
+      const methods = ['Cash', 'Card', 'UPI', 'Wallet'];
+      const colors = ['#38bdf8', '#818cf8', '#34d399', '#f59e0b'];
+
+      const counts = methods.map(m => data.filter(r => r['Payment Method'] === m).length);
+      const total = counts.reduce((a, b) => a + b, 0);
+
+      if (total === 0) {
+        container.innerHTML = '<span class="text-xs text-slate-500">No data for selection</span>';
+        legend.innerHTML = '';
+        return;
+      }
+
+      let currentAngle = 0;
+      let slicesHtml = '';
+      let legendHtml = '';
+
+      counts.forEach((c, idx) => {
+        const pct = total > 0 ? (c / total) : 0;
+        const angle = pct * 360;
+        
+        const rOut = 75;
+        const rIn = 48;
+        const startRad = (currentAngle - 90) * Math.PI / 180;
+        const endRad = (currentAngle + angle - 90) * Math.PI / 180;
+
+        const x1 = 100 + rOut * Math.cos(startRad);
+        const y1 = 100 + rOut * Math.sin(startRad);
+        const x2 = 100 + rOut * Math.cos(endRad);
+        const y2 = 100 + rOut * Math.sin(endRad);
+
+        const x3 = 100 + rIn * Math.cos(endRad);
+        const y3 = 100 + rIn * Math.sin(endRad);
+        const x4 = 100 + rIn * Math.cos(startRad);
+        const y4 = 100 + rIn * Math.sin(startRad);
+
+        const largeArc = angle > 180 ? 1 : 0;
+        const d = `M ${x1} ${y1} A ${rOut} ${rOut} 0 ${largeArc} 1 ${x2} ${y2} L ${x3} ${y3} A ${rIn} ${rIn} 0 ${largeArc} 0 ${x4} ${y4} Z`;
+
+        if (c > 0) {
+          slicesHtml += `<path d="${d}" fill="${colors[idx]}" stroke="#0b1329" stroke-width="2"><title>${methods[idx]}: ${c} (${(pct * 100).toFixed(1)}%)</title></path>`;
+        }
+        currentAngle += angle;
+
+        legendHtml += `
+          <div class="flex items-center justify-between text-[11px] p-1.5 rounded bg-slate-900/50">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full" style="background-color: ${colors[idx]}"></span>
+              <span class="text-slate-300">${methods[idx]}</span>
+            </div>
+            <span class="font-bold text-slate-100">${c} (${(pct * 100).toFixed(0)}%)</span>
+          </div>
+        `;
+      });
+
+      container.innerHTML = `
+        <svg viewBox="0 0 200 200" class="w-36 h-36">
+          ${slicesHtml}
+          <text x="100" y="98" fill="#94a3b8" font-size="9" text-anchor="middle">TOTAL</text>
+          <text x="100" y="115" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle">${total}</text>
+        </svg>
+      `;
+      legend.innerHTML = legendHtml;
+    }
+
+    function renderStatusDonut(data) {
+      const container = document.getElementById('chart-status-container');
+      const legend = document.getElementById('legend-status');
+      const compCount = data.filter(r => r['Ride Status'] === 'Completed').length;
+      const cancCount = data.filter(r => r['Ride Status'] === 'Cancelled').length;
+      const total = compCount + cancCount;
+
+      if (total === 0) {
+        container.innerHTML = '<span class="text-xs text-slate-500">No data for selection</span>';
+        legend.innerHTML = '';
+        return;
+      }
+
+      const compPct = (compCount / total);
+      const cancPct = (cancCount / total);
+
+      const rOut = 75;
+      const rIn = 48;
+
+      const angleComp = compPct * 360;
+      const startRadComp = -90 * Math.PI / 180;
+      const endRadComp = (-90 + angleComp) * Math.PI / 180;
+
+      const largeArcComp = angleComp > 180 ? 1 : 0;
+      const dComp = `M ${100 + rOut * Math.cos(startRadComp)} ${100 + rOut * Math.sin(startRadComp)}
+                     A ${rOut} ${rOut} 0 ${largeArcComp} 1 ${100 + rOut * Math.cos(endRadComp)} ${100 + rOut * Math.sin(endRadComp)}
+                     L ${100 + rIn * Math.cos(endRadComp)} ${100 + rIn * Math.sin(endRadComp)}
+                     A ${rIn} ${rIn} 0 ${largeArcComp} 0 ${100 + rIn * Math.cos(startRadComp)} ${100 + rIn * Math.sin(startRadComp)} Z`;
+
+      const largeArcCanc = (360 - angleComp) > 180 ? 1 : 0;
+      const dCanc = `M ${100 + rOut * Math.cos(endRadComp)} ${100 + rOut * Math.sin(endRadComp)}
+                     A ${rOut} ${rOut} 0 ${largeArcCanc} 1 ${100 + rOut * Math.cos(startRadComp)} ${100 + rOut * Math.sin(startRadComp)}
+                     L ${100 + rIn * Math.cos(startRadComp)} ${100 + rIn * Math.sin(startRadComp)}
+                     A ${rIn} ${rIn} 0 ${largeArcCanc} 0 ${100 + rIn * Math.cos(endRadComp)} ${100 + rIn * Math.sin(endRadComp)} Z`;
+
+      container.innerHTML = `
+        <svg viewBox="0 0 200 200" class="w-36 h-36">
+          ${compCount > 0 ? `<path d="${dComp}" fill="#10b981" stroke="#0b1329" stroke-width="2"/>` : ''}
+          ${cancCount > 0 ? `<path d="${dCanc}" fill="#f43f5e" stroke="#0b1329" stroke-width="2"/>` : ''}
+          <text x="100" y="98" fill="#94a3b8" font-size="8.5" text-anchor="middle">FULFILLMENT</text>
+          <text x="100" y="115" fill="#10b981" font-size="13" font-weight="bold" text-anchor="middle">${(compPct * 100).toFixed(0)}%</text>
+        </svg>
+      `;
+
+      legend.innerHTML = `
+        <div class="flex items-center justify-between text-[11px] p-1.5 rounded bg-slate-900/50">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            <span class="text-slate-300">Completed</span>
+          </div>
+          <span class="font-bold text-emerald-400">${compCount} (${(compPct * 100).toFixed(1)}%)</span>
+        </div>
+        <div class="flex items-center justify-between text-[11px] p-1.5 rounded bg-slate-900/50">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+            <span class="text-slate-300">Cancelled</span>
+          </div>
+          <span class="font-bold text-rose-400">${cancCount} (${(cancPct * 100).toFixed(1)}%)</span>
+        </div>
+      `;
+    }
+
+    function renderLocationBars(data) {
+      const container = document.getElementById('chart-locations-container');
+      const locCounts = {};
+      data.forEach(r => {
+        const l = r['Pickup Location'];
+        locCounts[l] = (locCounts[l] || 0) + 1;
+      });
+
+      const sortedLocs = Object.entries(locCounts).sort((a, b) => b[1] - a[1]);
+      const maxCount = sortedLocs.length > 0 ? sortedLocs[0][1] : 1;
+
+      if (sortedLocs.length === 0) {
+        container.innerHTML = '<span class="text-xs text-slate-500">No location data</span>';
+        document.getElementById('top-zone-label').textContent = 'None';
+        document.getElementById('top-zone-count').textContent = '0 rides';
+        return;
+      }
+
+      document.getElementById('top-zone-label').textContent = sortedLocs[0][0];
+      document.getElementById('top-zone-count').textContent = `${sortedLocs[0][1]} rides (${((sortedLocs[0][1] / data.length) * 100).toFixed(0)}%)`;
+
+      let barsHtml = '';
+      sortedLocs.forEach(([loc, count], idx) => {
+        const pct = (count / maxCount) * 100;
+        const isTop = idx === 0;
+        barsHtml += `
+          <div class="space-y-1">
+            <div class="flex justify-between text-[11px]">
+              <span class="font-medium ${isTop ? 'text-cyan-400 font-bold' : 'text-slate-300'}">${loc}</span>
+              <span class="text-slate-400 font-semibold">${count} rides</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full rounded-full ${isTop ? 'bg-gradient-to-r from-cyan-500 to-sky-400' : 'bg-sky-600/70'}" style="width: ${pct}%"></div>
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = barsHtml;
+    }
+
+    function renderInsights(data, totalRides, completed, cancelled, totalRevenue, grossRevenue, avgFare, avgRating) {
+      const container = document.getElementById('insights-container');
+      
+      const locCounts = {};
+      data.forEach(r => locCounts[r['Pickup Location']] = (locCounts[r['Pickup Location']] || 0) + 1);
+      const topLoc = Object.entries(locCounts).sort((a, b) => b[1] - a[1])[0] || ['N/A', 0];
+
+      const payCounts = {};
+      data.forEach(r => payCounts[r['Payment Method']] = (payCounts[r['Payment Method']] || 0) + 1);
+      const topPay = Object.entries(payCounts).sort((a, b) => b[1] - a[1])[0] || ['N/A', 0];
+
+      const dateCounts = {};
+      data.forEach(r => {
+        const d = r.Date.split('T')[0];
+        dateCounts[d] = (dateCounts[d] || 0) + 1;
+      });
+      const peakDateEntry = Object.entries(dateCounts).sort((a, b) => b[1] - a[1])[0] || ['N/A', 0];
+      const formattedPeakDate = peakDateEntry[0] !== 'N/A' ? new Date(peakDateEntry[0]).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'N/A';
+
+      const cancPct = totalRides > 0 ? ((cancelled.length / totalRides) * 100).toFixed(1) : '0';
+      const lostRev = grossRevenue - totalRevenue;
+
+      container.innerHTML = `
+        <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
+          <span class="text-[10px] uppercase font-bold text-cyan-400">1. Demand Epicenter</span>
+          <p class="text-slate-300 leading-snug"><strong class="text-white">${topLoc[0]}</strong> leads all zones with <strong class="text-cyan-400">${topLoc[1]} rides</strong> (${totalRides > 0 ? ((topLoc[1]/totalRides)*100).toFixed(0) : 0}% share).</p>
+        </div>
+
+        <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
+          <span class="text-[10px] uppercase font-bold text-sky-400">2. Payment Dominance</span>
+          <p class="text-slate-300 leading-snug"><strong class="text-white">${topPay[0]}</strong> is the primary channel accounting for <strong class="text-sky-400">${topPay[1]} transactions</strong> (${totalRides > 0 ? ((topPay[1]/totalRides)*100).toFixed(0) : 0}% share).</p>
+        </div>
+
+        <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
+          <span class="text-[10px] uppercase font-bold text-rose-400">3. Operational Churn</span>
+          <p class="text-slate-300 leading-snug">Cancellation rate stands at <strong class="text-rose-400">${cancPct}%</strong> (${cancelled.length} rides), leaking an estimated <strong class="text-white">₨${lostRev.toLocaleString()}</strong> in gross value.</p>
+        </div>
+
+        <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
+          <span class="text-[10px] uppercase font-bold text-emerald-400">4. Peak Performance</span>
+          <p class="text-slate-300 leading-snug">Peak fleet utilization occurred on <strong class="text-white">${formattedPeakDate}</strong> with <strong class="text-emerald-400">${peakDateEntry[1]} rides</strong>.</p>
+        </div>
+
+        <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
+          <span class="text-[10px] uppercase font-bold text-yellow-400">5. Service Quality</span>
+          <p class="text-slate-300 leading-snug">Customer satisfaction holds strong at <strong class="text-yellow-400">${avgRating.toFixed(2)} / 5.00 ★</strong> with an average ticket size of <strong class="text-white">₨${avgFare.toFixed(2)}</strong>.</p>
+        </div>
+      `;
+    }
+
+    function applyFilters() {
+      renderDashboard();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initSlicers();
+      renderDashboard();
+    });
+  </script>
+</body>
+</html>

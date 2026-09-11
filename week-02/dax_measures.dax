@@ -1,0 +1,101 @@
+// ==========================================================
+// ZYROO DATA ANALYST INTERNSHIP — WEEK 2
+// Power BI DAX Measures Dictionary
+// Project: Ride Analytics & Revenue Intelligence Platform
+// Table Name: 'Rides' (or 'rides_data_cleaned')
+// ==========================================================
+
+// ----------------------------------------------------------
+// 1. Total Rides
+// Count of all ride booking requests received in the platform
+// ----------------------------------------------------------
+Total Rides = 
+COUNT('Rides'[Ride ID])
+
+
+// ----------------------------------------------------------
+// 2. Completed Rides
+// Rides successfully fulfilled where passengers reached destination
+// ----------------------------------------------------------
+Completed Rides = 
+CALCULATE(
+    COUNTROWS('Rides'),
+    'Rides'[Ride Status] = "Completed"
+)
+
+
+// ----------------------------------------------------------
+// 3. Cancelled Rides
+// Rides cancelled prior to or during dispatch
+// ----------------------------------------------------------
+Cancelled Rides = 
+CALCULATE(
+    COUNTROWS('Rides'),
+    'Rides'[Ride Status] = "Cancelled"
+)
+
+
+// ----------------------------------------------------------
+// 4. Cancellation Rate (%)
+// Percentage of rides that were cancelled out of total bookings
+// ----------------------------------------------------------
+Cancellation Rate = 
+DIVIDE([Cancelled Rides], [Total Rides], 0)
+
+
+// ----------------------------------------------------------
+// 5. Completion Rate (%)
+// Proportion of rides successfully executed
+// ----------------------------------------------------------
+Completion Rate = 
+DIVIDE([Completed Rides], [Total Rides], 0)
+
+
+// ----------------------------------------------------------
+// 6. Total Realized Revenue (Net Revenue)
+// Sum of fares collected strictly on successfully completed trips
+// ----------------------------------------------------------
+Total Revenue = 
+CALCULATE(
+    SUM('Rides'[Fare]),
+    'Rides'[Ride Status] = "Completed"
+)
+
+
+// ----------------------------------------------------------
+// 7. Gross Booking Value (GBV)
+// Total theoretical booking value including cancellations
+// ----------------------------------------------------------
+Gross Booking Value = 
+SUM('Rides'[Fare])
+
+
+// ----------------------------------------------------------
+// 8. Unrealized / Lost Revenue from Cancellations
+// Fares lost due to rider or driver cancellations
+// ----------------------------------------------------------
+Lost Revenue = 
+[Gross Booking Value] - [Total Revenue]
+
+
+// ----------------------------------------------------------
+// 9. Average Fare
+// Mean fare generated per completed trip
+// ----------------------------------------------------------
+Average Fare = 
+CALCULATE(
+    AVERAGE('Rides'[Fare]),
+    'Rides'[Ride Status] = "Completed"
+)
+
+
+// ----------------------------------------------------------
+// 10. Average Rating
+// Mean customer star rating across completed journeys (ignoring nulls)
+// ----------------------------------------------------------
+Average Rating = 
+CALCULATE(
+    AVERAGE('Rides'[Rating]),
+    NOT(ISBLANK('Rides'[Rating])),
+    'Rides'[Ride Status] = "Completed"
+)

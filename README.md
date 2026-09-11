@@ -1,58 +1,80 @@
-# 🚀 Zyroo Data Analyst Internship
+# 🚀 Zyroo Data Analyst Internship Portfolio
 
-Welcome to my official portfolio repository for the **Zyroo Data Analyst Internship**. This repository serves as a centralized hub documenting all weekly technical tasks, exploratory data analyses, SQL pipelines, business intelligence dashboards, and project deliverables throughout the internship program.
+Welcome to my official portfolio repository for the **Zyroo Data Analyst Internship**. This repository serves as a centralized hub documenting weekly technical deliverables, automated data pipelines, exploratory data analyses, SQL pipelines, and executive Business Intelligence dashboards.
 
 ---
 
-## 📋 Overview
+## 📋 Table of Contents
+* [Week 2 — Ride Analytics & Revenue Intelligence Platform (Power BI)](#-week-2--ride-analytics--revenue-intelligence-platform)
+* [Week 1 — Onboarding & Environment Setup](#-week-1--onboarding--environment-setup)
+* [Repository Structure](#-repository-structure)
+* [Technical Environment](#-technical-environment)
 
-The primary goal of this internship program is to build industry-ready, end-to-end data analytics competency. Over the coming weeks, tasks will span across exploratory data analysis (EDA), data cleaning and wrangling, advanced relational querying (SQL), statistical modeling, and interactive executive reporting with Excel and Power BI.
+---
+
+## 🚕 Week 2 — Ride Analytics & Revenue Intelligence Platform
+
+**Project Title**: Ride Analytics & Revenue Intelligence Platform  
+**Program**: ZYROO Data Analytics Internship • Week 2  
+**Level**: Industry Portfolio Grade (Executive Dashboard)  
+**Deliverables**: Cleaned Dataset, Data Pipeline Script, DAX Measure Catalog, Interactive Dashboard, and Power BI Report Specification
+
+![Week 2 Dashboard Preview](week-02/assets/dashboard_preview.png)
+
+### 🎯 Objective
+Design and implement an executive-level, visually stunning Power BI dashboard monitoring fleet performance, passenger demand patterns, payment preferences, operational churn (cancellations), and realized financial yield.
+
+### 🧹 Data Cleaning Pipeline (`week-02/clean_and_analyze.py`)
+The raw dataset was rigorously audited and cleaned following data engineering best practices:
+1. **Deduplication**: Audited unique identifiers and removed duplicate `Ride ID` entries.
+2. **Invalid Rows**: Filtered out completely empty records.
+3. **Type Consistency**: Coerced and validated ISO `Date` timestamps and numerical `Fare` types.
+4. **Range Validation**: Removed corrupt negative fare records (`Fare >= 0`).
+5. **Domain Null Handling**: Validated missing customer ratings; in ride-hailing domain logic, cancelled trips do not capture passenger reviews. Structural nulls were verified and preserved accurately.
+
+### 📊 Top Executive KPI Metrics
+Calculated directly from the 100-ride production dataset:
+* **Total Bookings**: `100 rides` (Gross platform demand)
+* **Completed Rides**: `85 rides` (85.0% fulfillment rate)
+* **Cancelled Rides**: `15 rides` (15.0% cancellation churn)
+* **Total Realized Revenue**: `PKR 36,466.00` (Gross Booked: `PKR 42,962.00`)
+* **Average Ticket Size**: `PKR 429.01` (Per completed trip)
+* **Customer Satisfaction**: `4.27 / 5.00 ★` (Strong driver rating)
+
+### 📐 Power BI DAX Measures Dictionary (`week-02/dax_measures.dax`)
+```dax
+Total Rides = COUNT('Rides'[Ride ID])
+
+Completed Rides = CALCULATE(COUNTROWS('Rides'), 'Rides'[Ride Status] = "Completed")
+
+Cancelled Rides = CALCULATE(COUNTROWS('Rides'), 'Rides'[Ride Status] = "Cancelled")
+
+Total Revenue = CALCULATE(SUM('Rides'[Fare]), 'Rides'[Ride Status] = "Completed")
+
+Average Fare = CALCULATE(AVERAGE('Rides'[Fare]), 'Rides'[Ride Status] = "Completed")
+
+Average Rating = CALCULATE(AVERAGE('Rides'[Rating]), NOT(ISBLANK('Rides'[Rating])), 'Rides'[Ride Status] = "Completed")
+
+Cancellation Rate = DIVIDE([Cancelled Rides], [Total Rides], 0)
+```
+
+### 💡 Automatically Calculated Business Insights
+1. **Demand Epicenter**: **DHA** is the highest-volume pickup hub, commanding **38 rides (38.0% market share)**, outperforming Gulberg (20 rides) and Bahria Town (17 rides).
+2. **Payment Channel Dominance**: **Cash** remains the primary transaction medium (**39.0%**), followed by Card (28.0%), UPI (22.0%), and Mobile Wallets (11.0%).
+3. **Operational Churn & Revenue Leakage**: The fleet operates at a **15.0% cancellation rate**, resulting in **PKR 6,496.00** in unrealized gross booking value.
+4. **Peak Performance Window**: Peak fleet utilization and daily realized revenue occurred on **Sep 05, 2026** (**14 rides**, yielding **PKR 5,411.00**).
+5. **Service Quality**: Completed journeys average a healthy **4.27 ★ rating**, reflecting solid customer retention and service satisfaction.
 
 ---
 
 ## 🛠️ Week 1 — Onboarding & Environment Setup
 
-The objective of **Task 01** is to establish an enterprise-grade analytics workstation, verify Python, SQL, Excel, and Power BI environments, perform benchmark testing on structured datasets, and enforce version control standards using Git and GitHub.
+The objective of **Task 01** was establishing an isolated analytics environment, verifying Python, SQL, Excel, and Power BI environments, benchmark testing on structured datasets, and publishing to GitHub.
 
-### Tools Used
-* **Programming & Runtimes**: Python 3.13.15
-* **Core Data Science Stack**: 
-  * `pandas` (Data manipulation, profiling, and aggregation)
-  * `numpy` (Numerical computing and array operations)
-  * `matplotlib` (Foundational data visualization)
-  * `seaborn` (Statistical visualization and theming)
-* **Notebook Environment**: Jupyter Notebook / JupyterLab
-* **Relational Database**: SQLite 3.50
-* **Spreadsheet Analytics**: Microsoft Excel
-* **Business Intelligence & Dashboards**: Power BI Desktop
-* **Version Control & Collaboration**: Git 2.55 & GitHub
-
----
-
-## 🔬 Week 1 Work Breakdown
-
-### 1. Environment Verification & Python Setup
-* Configured an isolated Python virtual environment (`.venv`) to guarantee reproducible package dependency management.
-* Pinned core dependencies inside `requirements.txt`.
-* Successfully verified library imports and runtime compatibility.
-
-### 2. CSV Data Analysis Test (`week-01/environment_test.ipynb`)
-* Ingested a sample retail transaction dataset (`sales_data.csv`).
-* Inspected dataset dimensionality, column types, and confirmed zero null/missing values.
-* Computed statistical distributions using `describe()` and computed total category revenues via `groupby`.
-
-### 3. Data Visualization
-* Rendered a customized, publication-style categorical bar chart depicting total sales revenue by product category using Seaborn and Matplotlib.
-* Added currency data labels above each bar and exported the figure to `week-01/evidence/jupyter_analysis.png`.
-
-### 4. Relational SQL Pipeline Test (`week-01/sql_test.sql`)
-* Implemented SQLite DDL to model the relational `sales` table schema with data validation constraints.
-* Populated realistic transaction records.
-* Authored queries demonstrating `SELECT`, `WHERE` conditional filtering, mandatory `GROUP BY` counts, multi-metric aggregations (`SUM`, `AVG`, `MIN`, `MAX`), and `HAVING` filters.
-
-### 5. Spreadsheet & BI Verification
-* Modeled formatted sales transaction workbook with dynamic formula aggregations (`=SUM()`) in **Microsoft Excel**.
-* Launched and validated **Power BI Desktop** environment for dashboard development.
+* **Jupyter Analysis**: Ingested `sales_data.csv`, validated nulls, evaluated statistical metrics, and rendered Seaborn distribution plots (`week-01/environment_test.ipynb`).
+* **Relational SQL Pipeline**: Implemented SQLite schema, populated transactions, and authored aggregation queries with `GROUP BY` and `HAVING` (`week-01/sql_test.sql`).
+* **Spreadsheet & BI**: Verified dynamic `=SUM()` formulas in Excel (`sales_test.xlsx`) and launched Power BI Desktop.
+* **Evidence Management**: Cataloged 7 verification screenshots inside `week-01/evidence/`.
 
 ---
 
@@ -61,47 +83,38 @@ The objective of **Task 01** is to establish an enterprise-grade analytics works
 ```text
 zyro-data-analyst-internship/
 │
-├── week-01/
-│   ├── environment_test.ipynb     # Executed Jupyter notebook with CSV analysis & charts
-│   ├── sql_test.sql               # SQLite DDL, DML and analytical benchmark queries
-│   ├── sales_data.csv             # Structured retail transactions dataset
-│   ├── sales_test.xlsx            # Formatted Microsoft Excel workbook with formulas
-│   │
-│   └── evidence/
-│       ├── python_version.png     # Python runtime verification
-│       ├── git_version.png        # Git CLI verification
-│       ├── powerbi_setup.png      # Power BI Desktop interface launch proof
-│       ├── excel_setup.png        # Microsoft Excel setup & formula test
-│       ├── sql_test.png           # SQLite execution and query output proof
-│       ├── jupyter_analysis.png   # Jupyter data analysis & Seaborn chart proof
-│       └── zyroo_community.png    # Zyroo community onboarding confirmation
+├── week-02/                                # Week 2: Power BI Ride Analytics Platform
+│   ├── rides_data_cleaned.csv             # Cleaned production dataset (100 rows)
+│   ├── rides_raw_data.csv                 # Raw dataset with anomalies for cleaning tests
+│   ├── clean_and_analyze.py               # Automated cleaning & metric calculation engine
+│   ├── dax_measures.dax                   # Power BI DAX measures reference catalog
+│   ├── dashboard_interactive.html         # Interactive web-based dashboard emulator
+│   └── assets/
+│       └── dashboard_preview.png          # High-resolution executive dashboard render
 │
-├── README.md                      # Internship repository documentation
-├── requirements.txt               # Pinned Python package dependencies
-└── .gitignore                     # Git exclusion rules for environments and temporary files
+├── week-01/                                # Week 1: Environment & Tooling Verification
+│   ├── environment_test.ipynb             # Executed Jupyter notebook with CSV analysis
+│   ├── sql_test.sql                       # SQLite DDL, DML and analytical queries
+│   ├── sales_data.csv                     # Structured retail transactions dataset
+│   ├── sales_test.xlsx                    # Formatted Microsoft Excel workbook
+│   └── evidence/                          # System verification screenshots
+│       ├── python_version.png
+│       ├── git_version.png
+│       ├── powerbi_setup.png
+│       ├── excel_setup.png
+│       ├── sql_test.png
+│       ├── jupyter_analysis.png
+│       └── zyroo_community.png
+│
+├── README.md                              # Portfolio master documentation
+├── requirements.txt                       # Pinned Python package dependencies
+└── .gitignore                             # Git exclusion rules
 ```
 
 ---
 
-## ✅ Completion Status Checklist
-
-### Zyroo Onboarding
-- [x] Reviewed internship guidelines & objectives
-- [x] Set up professional GitHub repository
-- [ ] Joined official Zyroo community / communication channels (`zyroo_community.png`)
-
-### Analytics Stack & Environment
-- [x] Python 3.13 installed & verified
-- [x] Virtual environment (`.venv`) configured
-- [x] Pandas, NumPy, Matplotlib, Seaborn, and Jupyter installed & verified
-- [x] Microsoft Excel verified with formulas (`sales_test.xlsx`)
-- [x] Power BI Desktop installed & launched
-- [x] SQLite relational database tested
-
-### Week 1 Deliverables
-- [x] Jupyter Notebook created, executed, and documented (`environment_test.ipynb`)
-- [x] SQL script created, documented, and tested (`sql_test.sql`)
-- [x] Project `requirements.txt` generated
-- [x] Professional `.gitignore` configured
-- [x] Evidence collected in `week-01/evidence/`
-- [ ] Week 1 changes committed and pushed to GitHub
+## 💻 Technical Environment
+* **Platform**: Windows 11 / PowerShell 5.1 / Python 3.13.15
+* **Analytics Stack**: Pandas, NumPy, Matplotlib, Seaborn, OpenPyXL, SQLite3
+* **Business Intelligence**: Power BI Desktop, Microsoft Excel 2016/365
+* **Version Control**: Git 2.55 & GitHub CLI
