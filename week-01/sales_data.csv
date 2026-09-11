@@ -1,0 +1,11 @@
+order_id,date,category,product,quantity,unit_price,total_sales
+1001,2026-01-05,Electronics,Wireless Mouse,2,25.00,50.00
+1002,2026-01-06,Electronics,Mechanical Keyboard,1,85.00,85.00
+1003,2026-01-07,Office Supplies,Ergonomic Chair,1,150.00,150.00
+1004,2026-01-08,Electronics,USB-C Hub,3,30.00,90.00
+1005,2026-01-09,Office Supplies,Desk Organizer,2,20.00,40.00
+1006,2026-01-10,Accessories,Laptop Sleeve,2,35.00,70.00
+1007,2026-01-11,Electronics,Webcam HD,1,60.00,60.00
+1008,2026-01-12,Accessories,Mousepad XL,4,15.00,60.00
+1009,2026-01-13,Office Supplies,Whiteboard,1,45.00,45.00
+1010,2026-01-14,Electronics,Noise-Canceling Headphones,1,120.00,120.00
