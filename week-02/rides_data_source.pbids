@@ -1,0 +1,11 @@
+{
+  "version": "0.1",
+  "connections": [
+    {
+      "details": {
+        "path": "C:\\Users\\Sakthibalan\\.gemini\\antigravity\\scratch\\zyro-data-analyst-internship\\week-02\\rides_data_cleaned.csv"
+      },
+      "connectionType": "File"
+    }
+  ]
+}
