@@ -21,6 +21,10 @@ Welcome to my official portfolio repository for the **Zyroo Data Analyst Interns
 
 ![Week 2 Dashboard Preview](week-02/assets/dashboard_preview.png)
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/evilswordboy-bot/zyro-data-analyst-internship/blob/main/week-02/ride_analytics_google_colab.ipynb)
+[![Google Sheets Ready](https://img.shields.io/badge/Google%20Sheets-Compatible-34A853?logo=googlesheets&logoColor=white)](week-02/rides_data_google_sheets.xlsx)
+[![Google Looker Studio](https://img.shields.io/badge/Google%20Looker%20Studio-Integrated-4285F4?logo=google&logoColor=white)](week-02/google_looker_studio_guide.md)
+
 ### 🎯 Objective
 Design and implement an executive-level, visually stunning Power BI dashboard monitoring fleet performance, passenger demand patterns, payment preferences, operational churn (cancellations), and realized financial yield.
 
