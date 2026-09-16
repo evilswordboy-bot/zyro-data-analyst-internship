@@ -1,0 +1,101 @@
+ride_id,date,pickup_location,dropoff_location,distance_km,fare,payment_method,driver_id,ride_type,ride_status,rating
+R001,2026-09-07,Johar Town,Model Town,7.8,300.0,Card,DRV-001,Economy,Completed,3.6
+R002,2026-09-05,Model Town,Model Town,23.4,634.0,UPI,DRV-002,Premium,Completed,5.0
+R003,2026-09-06,DHA,Johar Town,14.7,444.0,Cash,DRV-003,Standard,Completed,4.1
+R004,2026-09-10,DHA,Johar Town,5.0,228.0,UPI,DRV-004,Economy,Completed,4.2
+R005,2026-09-03,Gulberg,Johar Town,13.5,432.0,Cash,DRV-005,Standard,Completed,3.8
+R006,2026-09-04,Bahria Town,Gulberg,10.6,368.0,Cash,DRV-006,Economy,Completed,3.5
+R007,2026-09-07,Model Town,Model Town,16.4,502.0,Cash,DRV-007,Premium,Cancelled,
+R008,2026-09-06,DHA,Johar Town,8.3,297.0,UPI,DRV-008,Economy,Completed,5.0
+R009,2026-09-02,Gulberg,Johar Town,9.0,319.0,UPI,DRV-009,Economy,Completed,3.9
+R010,2026-09-10,Bahria Town,Johar Town,6.5,261.0,UPI,DRV-010,Economy,Completed,3.7
+R011,2026-09-01,DHA,DHA,15.3,478.0,UPI,DRV-001,Standard,Completed,4.6
+R012,2026-09-05,Bahria Town,Gulberg,17.8,508.0,Card,DRV-002,Premium,Completed,4.8
+R013,2026-09-02,DHA,Bahria Town,17.4,503.0,Cash,DRV-003,Premium,Completed,4.2
+R014,2026-09-03,Johar Town,Gulberg,14.3,449.0,Cash,DRV-004,Standard,Completed,3.9
+R015,2026-09-10,DHA,Bahria Town,12.7,414.0,UPI,DRV-005,Standard,Completed,4.3
+R016,2026-09-05,DHA,Bahria Town,17.2,516.0,Wallet,DRV-006,Premium,Completed,3.8
+R017,2026-09-07,Gulberg,Johar Town,15.3,470.0,Wallet,DRV-007,Standard,Cancelled,
+R018,2026-09-04,Bahria Town,Model Town,18.5,535.0,Cash,DRV-008,Premium,Completed,3.7
+R019,2026-09-01,DHA,Model Town,14.5,449.0,Card,DRV-009,Standard,Completed,3.5
+R020,2026-09-09,Gulberg,DHA,14.2,446.0,Wallet,DRV-010,Standard,Completed,4.0
+R021,2026-09-06,DHA,DHA,13.4,418.0,UPI,DRV-001,Standard,Completed,3.9
+R022,2026-09-03,Gulberg,DHA,12.8,417.0,Cash,DRV-002,Standard,Cancelled,
+R023,2026-09-02,Gulberg,Bahria Town,19.4,563.0,Card,DRV-003,Premium,Completed,4.3
+R024,2026-09-06,DHA,Johar Town,17.9,526.0,Cash,DRV-004,Premium,Completed,4.1
+R025,2026-09-06,Gulberg,Johar Town,18.7,541.0,UPI,DRV-005,Premium,Cancelled,
+R026,2026-09-09,Gulberg,Bahria Town,11.9,381.0,Cash,DRV-006,Economy,Cancelled,
+R027,2026-09-04,DHA,Model Town,9.7,347.0,Card,DRV-007,Economy,Completed,4.9
+R028,2026-09-07,Bahria Town,DHA,12.2,393.0,Cash,DRV-008,Economy,Completed,4.6
+R029,2026-09-10,DHA,Johar Town,13.5,421.0,Wallet,DRV-009,Standard,Completed,3.9
+R030,2026-09-05,Bahria Town,Model Town,14.4,457.0,UPI,DRV-010,Standard,Completed,3.9
+R031,2026-09-03,Johar Town,DHA,14.4,442.0,Cash,DRV-001,Standard,Completed,3.5
+R032,2026-09-03,Bahria Town,Gulberg,16.7,504.0,UPI,DRV-002,Premium,Completed,4.3
+R033,2026-09-09,DHA,Johar Town,17.9,535.0,UPI,DRV-003,Premium,Completed,4.5
+R034,2026-09-01,Gulberg,Johar Town,10.2,337.0,Cash,DRV-004,Economy,Completed,4.5
+R035,2026-09-06,Bahria Town,Model Town,19.2,540.0,Card,DRV-005,Premium,Cancelled,
+R036,2026-09-01,DHA,Bahria Town,16.1,473.0,UPI,DRV-006,Standard,Completed,4.4
+R037,2026-09-01,Bahria Town,Bahria Town,14.5,452.0,Cash,DRV-007,Standard,Completed,4.9
+R038,2026-09-05,Model Town,Johar Town,15.1,470.0,Cash,DRV-008,Standard,Cancelled,
+R039,2026-09-05,DHA,DHA,14.5,441.0,UPI,DRV-009,Standard,Completed,4.9
+R040,2026-09-08,DHA,Gulberg,7.7,295.0,Cash,DRV-010,Economy,Completed,5.0
+R041,2026-09-10,Johar Town,DHA,14.7,461.0,Cash,DRV-001,Standard,Completed,4.3
+R042,2026-09-10,Johar Town,DHA,10.1,347.0,Cash,DRV-002,Economy,Completed,3.6
+R043,2026-09-04,Johar Town,DHA,10.3,364.0,Cash,DRV-003,Economy,Completed,4.8
+R044,2026-09-02,DHA,Model Town,13.2,407.0,Cash,DRV-004,Standard,Completed,4.3
+R045,2026-09-10,Johar Town,DHA,10.9,372.0,Card,DRV-005,Economy,Completed,3.7
+R046,2026-09-05,DHA,Johar Town,18.3,528.0,Cash,DRV-006,Premium,Completed,3.6
+R047,2026-09-04,Gulberg,Model Town,5.0,217.0,Cash,DRV-007,Economy,Completed,4.7
+R048,2026-09-10,DHA,Bahria Town,14.2,438.0,Card,DRV-008,Standard,Completed,3.6
+R049,2026-09-05,DHA,Gulberg,14.8,451.0,UPI,DRV-009,Standard,Completed,4.6
+R050,2026-09-05,Model Town,Bahria Town,5.8,258.0,Card,DRV-010,Economy,Completed,4.3
+R051,2026-09-07,DHA,Gulberg,12.8,396.0,Card,DRV-001,Economy,Completed,3.6
+R052,2026-09-07,Gulberg,Bahria Town,22.0,607.0,Card,DRV-002,Premium,Completed,4.4
+R053,2026-09-02,DHA,Gulberg,19.0,536.0,Cash,DRV-003,Premium,Completed,4.5
+R054,2026-09-08,Bahria Town,Gulberg,13.9,421.0,Wallet,DRV-004,Standard,Completed,4.4
+R055,2026-09-08,Model Town,Model Town,22.9,633.0,Card,DRV-005,Premium,Completed,4.9
+R056,2026-09-01,Model Town,Model Town,5.1,224.0,Cash,DRV-006,Economy,Completed,3.6
+R057,2026-09-02,DHA,Gulberg,11.9,399.0,Cash,DRV-007,Economy,Completed,4.8
+R058,2026-09-02,DHA,Johar Town,10.7,370.0,Wallet,DRV-008,Economy,Completed,4.0
+R059,2026-09-08,Johar Town,Bahria Town,5.0,198.0,Card,DRV-009,Economy,Cancelled,
+R060,2026-09-03,Bahria Town,Johar Town,19.3,558.0,Cash,DRV-010,Premium,Completed,4.7
+R061,2026-09-05,DHA,Bahria Town,10.4,357.0,Card,DRV-001,Economy,Completed,4.3
+R062,2026-09-09,Gulberg,Model Town,7.1,285.0,Wallet,DRV-002,Economy,Completed,3.6
+R063,2026-09-03,DHA,Johar Town,14.1,429.0,Card,DRV-003,Standard,Cancelled,
+R064,2026-09-05,DHA,Johar Town,15.8,479.0,UPI,DRV-004,Standard,Completed,4.5
+R065,2026-09-07,Johar Town,Bahria Town,21.1,601.0,Wallet,DRV-005,Premium,Cancelled,
+R066,2026-09-09,Johar Town,Johar Town,15.2,460.0,UPI,DRV-006,Standard,Cancelled,
+R067,2026-09-08,DHA,Gulberg,13.1,424.0,Cash,DRV-007,Standard,Cancelled,
+R068,2026-09-08,Gulberg,DHA,8.5,302.0,Cash,DRV-008,Economy,Cancelled,
+R069,2026-09-07,Bahria Town,Johar Town,12.1,403.0,UPI,DRV-009,Standard,Completed,4.1
+R070,2026-09-10,Bahria Town,Model Town,22.2,606.0,Card,DRV-010,Premium,Completed,4.1
+R071,2026-09-04,DHA,Bahria Town,17.4,504.0,Card,DRV-001,Premium,Completed,3.9
+R072,2026-09-01,DHA,DHA,18.0,533.0,Cash,DRV-002,Premium,Completed,4.9
+R073,2026-09-05,DHA,Bahria Town,13.1,429.0,Wallet,DRV-003,Standard,Cancelled,
+R074,2026-09-02,DHA,DHA,10.2,342.0,Card,DRV-004,Economy,Completed,4.2
+R075,2026-09-06,Gulberg,DHA,9.7,332.0,Cash,DRV-005,Economy,Cancelled,
+R076,2026-09-10,DHA,Gulberg,12.5,396.0,Cash,DRV-006,Economy,Completed,3.8
+R077,2026-09-05,Bahria Town,Model Town,5.1,228.0,UPI,DRV-007,Economy,Completed,4.7
+R078,2026-09-03,Johar Town,Gulberg,14.4,456.0,Wallet,DRV-008,Standard,Completed,4.4
+R079,2026-09-10,Bahria Town,Gulberg,11.8,389.0,Card,DRV-009,Economy,Completed,4.7
+R080,2026-09-01,Gulberg,Gulberg,7.7,303.0,UPI,DRV-010,Economy,Completed,5.0
+R081,2026-09-01,Gulberg,Model Town,15.3,454.0,Wallet,DRV-001,Standard,Completed,4.6
+R082,2026-09-07,Johar Town,Bahria Town,22.0,611.0,Cash,DRV-002,Premium,Completed,4.1
+R083,2026-09-09,DHA,Model Town,14.6,453.0,Cash,DRV-003,Standard,Completed,4.6
+R084,2026-09-08,DHA,Gulberg,11.7,394.0,Card,DRV-004,Economy,Completed,4.7
+R085,2026-09-01,Model Town,Bahria Town,14.9,461.0,Card,DRV-005,Standard,Completed,4.2
+R086,2026-09-05,Model Town,Gulberg,19.1,554.0,Card,DRV-006,Premium,Completed,4.9
+R087,2026-09-02,Gulberg,Gulberg,9.7,333.0,Card,DRV-007,Economy,Completed,4.6
+R088,2026-09-01,Johar Town,Johar Town,14.0,431.0,UPI,DRV-008,Standard,Completed,4.3
+R089,2026-09-04,Gulberg,DHA,12.5,391.0,Card,DRV-009,Economy,Completed,5.0
+R090,2026-09-03,Model Town,Model Town,5.9,253.0,Cash,DRV-010,Economy,Completed,4.5
+R091,2026-09-08,Gulberg,Model Town,13.2,427.0,UPI,DRV-001,Standard,Completed,3.8
+R092,2026-09-02,DHA,Bahria Town,15.1,455.0,Card,DRV-002,Standard,Completed,4.3
+R093,2026-09-10,Bahria Town,DHA,13.2,409.0,Card,DRV-003,Standard,Completed,4.7
+R094,2026-09-08,Johar Town,Bahria Town,13.6,424.0,Cash,DRV-004,Standard,Completed,4.8
+R095,2026-09-03,DHA,Gulberg,21.6,598.0,Cash,DRV-005,Premium,Completed,3.6
+R096,2026-09-03,Model Town,Model Town,14.4,445.0,Card,DRV-006,Standard,Completed,3.7
+R097,2026-09-03,Gulberg,DHA,14.5,445.0,Cash,DRV-007,Standard,Completed,4.8
+R098,2026-09-09,Bahria Town,Johar Town,7.5,290.0,Card,DRV-008,Economy,Completed,4.0
+R099,2026-09-02,DHA,Gulberg,19.3,567.0,Cash,DRV-009,Premium,Completed,4.1
+R100,2026-09-04,Model Town,Gulberg,21.7,618.0,Cash,DRV-010,Premium,Completed,4.2
