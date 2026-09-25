@@ -1,0 +1,122 @@
+
+=== PAGE 1 ===
+ZYROO INTERNSHIP PROGRAM  WEEK 2  Page 1
+ ZYROO INTERNSHIP PROGRAM
+ DATA ANALYTICS INTERNSHIP
+WEEK 2
+Ride Analytics & Revenue Intelligence Platform
+Task 01: Build a Simple Ride Analytics Dashboard
+Difficulty: Beginner    Estimated Time: 4–6 hours
+Objective: Use a small ride dataset to clean the data, calculate a few simple numbers, and make an easy Power BI
+dashboard.
+1. Real-World Problem
+ Ride companies have data about rides, fares, locations, and payments.
+ Your job is to turn this raw data into a simple dashboard that answers basic business questions.
+2. Week 2 Requirements
+ Get a small ride-hailing dataset.
+ Open and understand the data.
+ Remove obvious duplicate or empty rows.
+ Calculate a few basic KPIs.
+ Create a simple Power BI dashboard.
+ Show rides and revenue using easy charts.
+ Write a short summary of what you learned.
+3. Data Collection & Understanding
+ Use a ride dataset with simple columns such as:
+ Ride ID, Date, Pickup Location, Drop-off Location, Fare, Payment Method, Ride Status, Rating.
+ For this beginner task, you do not need a large dataset. A small sample is enough to learn the process.
+ Example row: R001 | 02-09-2026 | Lahore | DHA | 450 | Cash | Completed | 5
+4. Data Cleaning
+ Check for empty values.
+ Remove duplicate ride IDs.
+ Make sure Fare contains numbers.
+ Make sure Date is in a correct date format.
+ Remove clearly invalid rows, such as a negative fare.
+ Keep the cleaning simple. Do not spend time on advanced data processing.
+5. Basic KPI Analysis
+ Calculate only these easy KPIs:
+ Total Rides
+ Completed Rides
+ Cancelled Rides
+ Total Revenue
+ Average Fare
+ Average Rating (if available)
+
+=== PAGE 2 ===
+ZYROO INTERNSHIP PROGRAM  WEEK 2  Page 2
+6. Build a Simple Dashboard
+ Use Power BI.
+ Create 4–5 KPI cards at the top.
+ Add simple charts:
+  Rides by Date
+  Revenue by Date
+  Rides by Payment Method
+  Rides by Status
+  Top Pickup Locations
+7. Simple Dashboard Example
+ Total Rides: 100
+ Completed Rides: 85
+ Cancelled Rides: 15
+ Total Revenue: PKR 42,000
+ Average Fare: PKR 420
+ The numbers above are only an example. Your dashboard should use the numbers from your dataset.
+8. Simple Questions to Answer
+ How many rides are there?
+ How much revenue was made?
+ Which payment method is used most?
+ Which pickup location has the most rides?
+ How many rides were cancelled?
+ What is the average fare?
+9. Recommended Beginner Tools
+ Excel — to look at and clean the data.
+ Power BI — to create the dashboard.
+ Python/Pandas — optional if you already know Python.
+ Git + GitHub — to submit your work.
+10. Simple Project Structure
+ ride-analytics/
+ ■■■ data/
+ ■■■ powerbi/
+ ■■■ screenshots/
+ ■■■ README.md
+11. Basic Flow
+ Dataset → Clean Data → Calculate KPIs → Power BI → Dashboard → Simple Insights
+12. Required Deliverables
+ Cleaned dataset.
+ Power BI dashboard.
+
+=== PAGE 3 ===
+ZYROO INTERNSHIP PROGRAM  WEEK 2  Page 3
+ 4–5 simple KPIs.
+ Basic charts.
+ 2–5 short business insights.
+ GitHub repository.
+ README with dataset, steps, and dashboard screenshots.
+13. GitHub Submission
+ Create a GitHub repository.
+ Upload the dataset or provide its source link, Power BI file, screenshots, and README.
+ Never upload passwords, API keys, or other secrets.
+14. Week 2 Success Criteria
+ The task is complete when you can show:
+ Collect → Clean → Calculate → Dashboard → Explain
+ You should be able to explain your dashboard in a few simple sentences.
+
+=== PAGE 4 ===
+ZYROO INTERNSHIP PROGRAM  WEEK 2  Page 4
+ Beginner Checklist
+■ I have a ride dataset.
+■ I checked the columns and data.
+■ I removed obvious duplicates/invalid rows.
+■ I calculated the basic KPIs.
+■ I created a Power BI dashboard.
+■ I added simple charts.
+■ I wrote a few insights.
+■ I uploaded my work to GitHub.
+■ I added a simple README.
+■ I can explain my dashboard.
+Official Zyroo Links
+Website: https://zyroo.org
+Browse Internships: https://zyroo.org/internships
+LinkedIn: https://www.linkedin.com/company/zyr0-co/
+WhatsApp Community: https://chat.whatsapp.com/EfivEcFI4cJ8pWnbW9OmWh
+WhatsApp Channel: https://whatsapp.com/channel/0029Vb8m3OK5Ui2W8xNLgy0F
+Contact: https://zyroo.org/contact
+Help Center: https://zyroo.org/help

@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+import pandas as pd
+import json
+
+df = pd.read_csv('data/rides_data_week3.csv')
+df['rating'] = df['rating'].where(pd.notnull(df['rating']), None)
+records = df.to_dict(orient='records')
+
+html_content = f"""<!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
@@ -6,18 +13,18 @@
   <title>ZYROO • Power BI Ride Analytics & Revenue Intelligence Command Center</title>
   <script src="tailwindcss.min.js"></script>
   <script>
-    if (!window.tailwind) {
-      document.write('<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"><\/script>');
-    }
+    if (!window.tailwind) {{
+      document.write('<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"><\\/script>');
+    }}
   </script>
   <style>
-    :root {
+    :root {{
       --bg-primary: #080d1a;
       --surface-1: #0f172a;
       --border-subtle: rgba(56, 189, 248, 0.12);
       --border-accent: rgba(0, 229, 255, 0.35);
-    }
-    body {
+    }}
+    body {{
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: var(--bg-primary);
       color: #f1f5f9;
@@ -25,33 +32,33 @@
         radial-gradient(at 10% 10%, rgba(14, 165, 233, 0.08) 0px, transparent 50%),
         radial-gradient(at 90% 90%, rgba(99, 102, 241, 0.06) 0px, transparent 50%);
       background-attachment: fixed;
-    }
-    .font-mono-num {
+    }}
+    .font-mono-num {{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       font-variant-numeric: tabular-nums;
-    }
-    .acrylic-card {
+    }}
+    .acrylic-card {{
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.75));
       backdrop-filter: blur(12px);
       border: 1px solid var(--border-subtle);
       box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
       transition: all 0.25s ease;
-    }
-    .acrylic-card:hover {
+    }}
+    .acrylic-card:hover {{
       border-color: var(--border-accent);
       box-shadow: 0 12px 35px -8px rgba(0, 229, 255, 0.14);
-    }
-    .custom-scrollbar::-webkit-scrollbar {
+    }}
+    .custom-scrollbar::-webkit-scrollbar {{
       width: 6px;
       height: 6px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-track {
+    }}
+    .custom-scrollbar::-webkit-scrollbar-track {{
       background: #0f172a;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
+    }}
+    .custom-scrollbar::-webkit-scrollbar-thumb {{
       background: #334155;
       border-radius: 9999px;
-    }
+    }}
   </style>
 </head>
 <body class="min-h-screen p-4 sm:p-6 lg:p-8 antialiased">
@@ -379,57 +386,57 @@
   </div>
 
   <script>
-    const RAW_RIDES = [{"ride_id": "R001", "date": "2026-09-07", "pickup_location": "Johar Town", "dropoff_location": "Model Town", "distance_km": 7.8, "fare": 300.0, "payment_method": "Card", "driver_id": "DRV-001", "ride_type": "Economy", "ride_status": "Completed", "rating": 3.6}, {"ride_id": "R002", "date": "2026-09-05", "pickup_location": "Model Town", "dropoff_location": "Model Town", "distance_km": 23.4, "fare": 634.0, "payment_method": "UPI", "driver_id": "DRV-002", "ride_type": "Premium", "ride_status": "Completed", "rating": 5.0}, {"ride_id": "R003", "date": "2026-09-06", "pickup_location": "DHA", "dropoff_location": "Johar Town", "distance_km": 14.7, "fare": 444.0, "payment_method": "Cash", "driver_id": "DRV-003", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.1}, {"ride_id": "R004", "date": "2026-09-10", "pickup_location": "DHA", "dropoff_location": "Johar Town", "distance_km": 5.0, "fare": 228.0, "payment_method": "UPI", "driver_id": "DRV-004", "ride_type": "Economy", "ride_status": "Completed", "rating": 4.2}, {"ride_id": "R005", "date": "2026-09-03", "pickup_location": "Gulberg", "dropoff_location": "Johar Town", "distance_km": 13.5, "fare": 432.0, "payment_method": "Cash", "driver_id": "DRV-005", "ride_type": "Standard", "ride_status": "Completed", "rating": 3.8}, {"ride_id": "R006", "date": "2026-09-04", "pickup_location": "Bahria Town", "dropoff_location": "Gulberg", "distance_km": 10.6, "fare": 368.0, "payment_method": "Cash", "driver_id": "DRV-006", "ride_type": "Economy", "ride_status": "Completed", "rating": 3.5}, {"ride_id": "R007", "date": "2026-09-07", "pickup_location": "Model Town", "dropoff_location": "Model Town", "distance_km": 16.4, "fare": 502.0, "payment_method": "Cash", "driver_id": "DRV-007", "ride_type": "Premium", "ride_status": "Cancelled", "rating": NaN}, {"ride_id": "R008", "date": "2026-09-06", "pickup_location": "DHA", "dropoff_location": "Johar Town", "distance_km": 8.3, "fare": 297.0, "payment_method": "UPI", "driver_id": "DRV-008", "ride_type": "Economy", "ride_status": "Completed", "rating": 5.0}, {"ride_id": "R009", "date": "2026-09-02", "pickup_location": "Gulberg", "dropoff_location": "Johar Town", "distance_km": 9.0, "fare": 319.0, "payment_method": "UPI", "driver_id": "DRV-009", "ride_type": "Economy", "ride_status": "Completed", "rating": 3.9}, {"ride_id": "R010", "date": "2026-09-10", "pickup_location": "Bahria Town", "dropoff_location": "Johar Town", "distance_km": 6.5, "fare": 261.0, "payment_method": "UPI", "driver_id": "DRV-010", "ride_type": "Economy", "ride_status": "Completed", "rating": 3.7}, {"ride_id": "R011", "date": "2026-09-01", "pickup_location": "DHA", "dropoff_location": "DHA", "distance_km": 15.3, "fare": 478.0, "payment_method": "UPI", "driver_id": "DRV-001", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.6}, {"ride_id": "R012", "date": "2026-09-05", "pickup_location": "Bahria Town", "dropoff_location": "Gulberg", "distance_km": 17.8, "fare": 508.0, "payment_method": "Card", "driver_id": "DRV-002", "ride_type": "Premium", "ride_status": "Completed", "rating": 4.8}, {"ride_id": "R013", "date": "2026-09-02", "pickup_location": "DHA", "dropoff_location": "Bahria Town", "distance_km": 17.4, "fare": 503.0, "payment_method": "Cash", "driver_id": "DRV-003", "ride_type": "Premium", "ride_status": "Completed", "rating": 4.2}, {"ride_id": "R014", "date": "2026-09-03", "pickup_location": "Johar Town", "dropoff_location": "Gulberg", "distance_km": 14.3, "fare": 449.0, "payment_method": "Cash", "driver_id": "DRV-004", "ride_type": "Standard", "ride_status": "Completed", "rating": 3.9}, {"ride_id": "R015", "date": "2026-09-10", "pickup_location": "DHA", "dropoff_location": "Bahria Town", "distance_km": 12.7, "fare": 414.0, "payment_method": "UPI", "driver_id": "DRV-005", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.3}, {"ride_id": "R016", "date": "2026-09-05", "pickup_location": "DHA", "dropoff_location": "Bahria Town", "distance_km": 17.2, "fare": 516.0, "payment_method": "Wallet", "driver_id": "DRV-006", "ride_type": "Premium", "ride_status": "Completed", "rating": 3.8}, {"ride_id": "R017", "date": "2026-09-07", "pickup_location": "Gulberg", "dropoff_location": "Johar Town", "distance_km": 15.3, "fare": 470.0, "payment_method": "Wallet", "driver_id": "DRV-007", "ride_type": "Standard", "ride_status": "Cancelled", "rating": NaN}, {"ride_id": "R018", "date": "2026-09-04", "pickup_location": "Bahria Town", "dropoff_location": "Model Town", "distance_km": 18.5, "fare": 535.0, "payment_method": "Cash", "driver_id": "DRV-008", "ride_type": "Premium", "ride_status": "Completed", "rating": 3.7}, {"ride_id": "R019", "date": "2026-09-01", "pickup_location": "DHA", "dropoff_location": "Model Town", "distance_km": 14.5, "fare": 449.0, "payment_method": "Card", "driver_id": "DRV-009", "ride_type": "Standard", "ride_status": "Completed", "rating": 3.5}, {"ride_id": "R020", "date": "2026-09-09", "pickup_location": "Gulberg", "dropoff_location": "DHA", "distance_km": 14.2, "fare": 446.0, "payment_method": "Wallet", "driver_id": "DRV-010", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.0}, {"ride_id": "R021", "date": "2026-09-06", "pickup_location": "DHA", "dropoff_location": "DHA", "distance_km": 13.4, "fare": 418.0, "payment_method": "UPI", "driver_id": "DRV-001", "ride_type": "Standard", "ride_status": "Completed", "rating": 3.9}, {"ride_id": "R022", "date": "2026-09-03", "pickup_location": "Gulberg", "dropoff_location": "DHA", "distance_km": 12.8, "fare": 417.0, "payment_method": "Cash", "driver_id": "DRV-002", "ride_type": "Standard", "ride_status": "Cancelled", "rating": NaN}, {"ride_id": "R023", "date": "2026-09-02", "pickup_location": "Gulberg", "dropoff_location": "Bahria Town", "distance_km": 19.4, "fare": 563.0, "payment_method": "Card", "driver_id": "DRV-003", "ride_type": "Premium", "ride_status": "Completed", "rating": 4.3}, {"ride_id": "R024", "date": "2026-09-06", "pickup_location": "DHA", "dropoff_location": "Johar Town", "distance_km": 17.9, "fare": 526.0, "payment_method": "Cash", "driver_id": "DRV-004", "ride_type": "Premium", "ride_status": "Completed", "rating": 4.1}, {"ride_id": "R025", "date": "2026-09-06", "pickup_location": "Gulberg", "dropoff_location": "Johar Town", "distance_km": 18.7, "fare": 541.0, "payment_method": "UPI", "driver_id": "DRV-005", "ride_type": "Premium", "ride_status": "Cancelled", "rating": NaN}, {"ride_id": "R026", "date": "2026-09-09", "pickup_location": "Gulberg", "dropoff_location": "Bahria Town", "distance_km": 11.9, "fare": 381.0, "payment_method": "Cash", "driver_id": "DRV-006", "ride_type": "Economy", "ride_status": "Cancelled", "rating": NaN}, {"ride_id": "R027", "date": "2026-09-04", "pickup_location": "DHA", "dropoff_location": "Model Town", "distance_km": 9.7, "fare": 347.0, "payment_method": "Card", "driver_id": "DRV-007", "ride_type": "Economy", "ride_status": "Completed", "rating": 4.9}, {"ride_id": "R028", "date": "2026-09-07", "pickup_location": "Bahria Town", "dropoff_location": "DHA", "distance_km": 12.2, "fare": 393.0, "payment_method": "Cash", "driver_id": "DRV-008", "ride_type": "Economy", "ride_status": "Completed", "rating": 4.6}, {"ride_id": "R029", "date": "2026-09-10", "pickup_location": "DHA", "dropoff_location": "Johar Town", "distance_km": 13.5, "fare": 421.0, "payment_method": "Wallet", "driver_id": "DRV-009", "ride_type": "Standard", "ride_status": "Completed", "rating": 3.9}, {"ride_id": "R030", "date": "2026-09-05", "pickup_location": "Bahria Town", "dropoff_location": "Model Town", "distance_km": 14.4, "fare": 457.0, "payment_method": "UPI", "driver_id": "DRV-010", "ride_type": "Standard", "ride_status": "Completed", "rating": 3.9}, {"ride_id": "R031", "date": "2026-09-03", "pickup_location": "Johar Town", "dropoff_location": "DHA", "distance_km": 14.4, "fare": 442.0, "payment_method": "Cash", "driver_id": "DRV-001", "ride_type": "Standard", "ride_status": "Completed", "rating": 3.5}, {"ride_id": "R032", "date": "2026-09-03", "pickup_location": "Bahria Town", "dropoff_location": "Gulberg", "distance_km": 16.7, "fare": 504.0, "payment_method": "UPI", "driver_id": "DRV-002", "ride_type": "Premium", "ride_status": "Completed", "rating": 4.3}, {"ride_id": "R033", "date": "2026-09-09", "pickup_location": "DHA", "dropoff_location": "Johar Town", "distance_km": 17.9, "fare": 535.0, "payment_method": "UPI", "driver_id": "DRV-003", "ride_type": "Premium", "ride_status": "Completed", "rating": 4.5}, {"ride_id": "R034", "date": "2026-09-01", "pickup_location": "Gulberg", "dropoff_location": "Johar Town", "distance_km": 10.2, "fare": 337.0, "payment_method": "Cash", "driver_id": "DRV-004", "ride_type": "Economy", "ride_status": "Completed", "rating": 4.5}, {"ride_id": "R035", "date": "2026-09-06", "pickup_location": "Bahria Town", "dropoff_location": "Model Town", "distance_km": 19.2, "fare": 540.0, "payment_method": "Card", "driver_id": "DRV-005", "ride_type": "Premium", "ride_status": "Cancelled", "rating": NaN}, {"ride_id": "R036", "date": "2026-09-01", "pickup_location": "DHA", "dropoff_location": "Bahria Town", "distance_km": 16.1, "fare": 473.0, "payment_method": "UPI", "driver_id": "DRV-006", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.4}, {"ride_id": "R037", "date": "2026-09-01", "pickup_location": "Bahria Town", "dropoff_location": "Bahria Town", "distance_km": 14.5, "fare": 452.0, "payment_method": "Cash", "driver_id": "DRV-007", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.9}, {"ride_id": "R038", "date": "2026-09-05", "pickup_location": "Model Town", "dropoff_location": "Johar Town", "distance_km": 15.1, "fare": 470.0, "payment_method": "Cash", "driver_id": "DRV-008", "ride_type": "Standard", "ride_status": "Cancelled", "rating": NaN}, {"ride_id": "R039", "date": "2026-09-05", "pickup_location": "DHA", "dropoff_location": "DHA", "distance_km": 14.5, "fare": 441.0, "payment_method": "UPI", "driver_id": "DRV-009", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.9}, {"ride_id": "R040", "date": "2026-09-08", "pickup_location": "DHA", "dropoff_location": "Gulberg", "distance_km": 7.7, "fare": 295.0, "payment_method": "Cash", "driver_id": "DRV-010", "ride_type": "Economy", "ride_status": "Completed", "rating": 5.0}, {"ride_id": "R041", "date": "2026-09-10", "pickup_location": "Johar Town", "dropoff_location": "DHA", "distance_km": 14.7, "fare": 461.0, "payment_method": "Cash", "driver_id": "DRV-001", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.3}, {"ride_id": "R042", "date": "2026-09-10", "pickup_location": "Johar Town", "dropoff_location": "DHA", "distance_km": 10.1, "fare": 347.0, "payment_method": "Cash", "driver_id": "DRV-002", "ride_type": "Economy", "ride_status": "Completed", "rating": 3.6}, {"ride_id": "R043", "date": "2026-09-04", "pickup_location": "Johar Town", "dropoff_location": "DHA", "distance_km": 10.3, "fare": 364.0, "payment_method": "Cash", "driver_id": "DRV-003", "ride_type": "Economy", "ride_status": "Completed", "rating": 4.8}, {"ride_id": "R044", "date": "2026-09-02", "pickup_location": "DHA", "dropoff_location": "Model Town", "distance_km": 13.2, "fare": 407.0, "payment_method": "Cash", "driver_id": "DRV-004", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.3}, {"ride_id": "R045", "date": "2026-09-10", "pickup_location": "Johar Town", "dropoff_location": "DHA", "distance_km": 10.9, "fare": 372.0, "payment_method": "Card", "driver_id": "DRV-005", "ride_type": "Economy", "ride_status": "Completed", "rating": 3.7}, {"ride_id": "R046", "date": "2026-09-05", "pickup_location": "DHA", "dropoff_location": "Johar Town", "distance_km": 18.3, "fare": 528.0, "payment_method": "Cash", "driver_id": "DRV-006", "ride_type": "Premium", "ride_status": "Completed", "rating": 3.6}, {"ride_id": "R047", "date": "2026-09-04", "pickup_location": "Gulberg", "dropoff_location": "Model Town", "distance_km": 5.0, "fare": 217.0, "payment_method": "Cash", "driver_id": "DRV-007", "ride_type": "Economy", "ride_status": "Completed", "rating": 4.7}, {"ride_id": "R048", "date": "2026-09-10", "pickup_location": "DHA", "dropoff_location": "Bahria Town", "distance_km": 14.2, "fare": 438.0, "payment_method": "Card", "driver_id": "DRV-008", "ride_type": "Standard", "ride_status": "Completed", "rating": 3.6}, {"ride_id": "R049", "date": "2026-09-05", "pickup_location": "DHA", "dropoff_location": "Gulberg", "distance_km": 14.8, "fare": 451.0, "payment_method": "UPI", "driver_id": "DRV-009", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.6}, {"ride_id": "R050", "date": "2026-09-05", "pickup_location": "Model Town", "dropoff_location": "Bahria Town", "distance_km": 5.8, "fare": 258.0, "payment_method": "Card", "driver_id": "DRV-010", "ride_type": "Economy", "ride_status": "Completed", "rating": 4.3}, {"ride_id": "R051", "date": "2026-09-07", "pickup_location": "DHA", "dropoff_location": "Gulberg", "distance_km": 12.8, "fare": 396.0, "payment_method": "Card", "driver_id": "DRV-001", "ride_type": "Economy", "ride_status": "Completed", "rating": 3.6}, {"ride_id": "R052", "date": "2026-09-07", "pickup_location": "Gulberg", "dropoff_location": "Bahria Town", "distance_km": 22.0, "fare": 607.0, "payment_method": "Card", "driver_id": "DRV-002", "ride_type": "Premium", "ride_status": "Completed", "rating": 4.4}, {"ride_id": "R053", "date": "2026-09-02", "pickup_location": "DHA", "dropoff_location": "Gulberg", "distance_km": 19.0, "fare": 536.0, "payment_method": "Cash", "driver_id": "DRV-003", "ride_type": "Premium", "ride_status": "Completed", "rating": 4.5}, {"ride_id": "R054", "date": "2026-09-08", "pickup_location": "Bahria Town", "dropoff_location": "Gulberg", "distance_km": 13.9, "fare": 421.0, "payment_method": "Wallet", "driver_id": "DRV-004", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.4}, {"ride_id": "R055", "date": "2026-09-08", "pickup_location": "Model Town", "dropoff_location": "Model Town", "distance_km": 22.9, "fare": 633.0, "payment_method": "Card", "driver_id": "DRV-005", "ride_type": "Premium", "ride_status": "Completed", "rating": 4.9}, {"ride_id": "R056", "date": "2026-09-01", "pickup_location": "Model Town", "dropoff_location": "Model Town", "distance_km": 5.1, "fare": 224.0, "payment_method": "Cash", "driver_id": "DRV-006", "ride_type": "Economy", "ride_status": "Completed", "rating": 3.6}, {"ride_id": "R057", "date": "2026-09-02", "pickup_location": "DHA", "dropoff_location": "Gulberg", "distance_km": 11.9, "fare": 399.0, "payment_method": "Cash", "driver_id": "DRV-007", "ride_type": "Economy", "ride_status": "Completed", "rating": 4.8}, {"ride_id": "R058", "date": "2026-09-02", "pickup_location": "DHA", "dropoff_location": "Johar Town", "distance_km": 10.7, "fare": 370.0, "payment_method": "Wallet", "driver_id": "DRV-008", "ride_type": "Economy", "ride_status": "Completed", "rating": 4.0}, {"ride_id": "R059", "date": "2026-09-08", "pickup_location": "Johar Town", "dropoff_location": "Bahria Town", "distance_km": 5.0, "fare": 198.0, "payment_method": "Card", "driver_id": "DRV-009", "ride_type": "Economy", "ride_status": "Cancelled", "rating": NaN}, {"ride_id": "R060", "date": "2026-09-03", "pickup_location": "Bahria Town", "dropoff_location": "Johar Town", "distance_km": 19.3, "fare": 558.0, "payment_method": "Cash", "driver_id": "DRV-010", "ride_type": "Premium", "ride_status": "Completed", "rating": 4.7}, {"ride_id": "R061", "date": "2026-09-05", "pickup_location": "DHA", "dropoff_location": "Bahria Town", "distance_km": 10.4, "fare": 357.0, "payment_method": "Card", "driver_id": "DRV-001", "ride_type": "Economy", "ride_status": "Completed", "rating": 4.3}, {"ride_id": "R062", "date": "2026-09-09", "pickup_location": "Gulberg", "dropoff_location": "Model Town", "distance_km": 7.1, "fare": 285.0, "payment_method": "Wallet", "driver_id": "DRV-002", "ride_type": "Economy", "ride_status": "Completed", "rating": 3.6}, {"ride_id": "R063", "date": "2026-09-03", "pickup_location": "DHA", "dropoff_location": "Johar Town", "distance_km": 14.1, "fare": 429.0, "payment_method": "Card", "driver_id": "DRV-003", "ride_type": "Standard", "ride_status": "Cancelled", "rating": NaN}, {"ride_id": "R064", "date": "2026-09-05", "pickup_location": "DHA", "dropoff_location": "Johar Town", "distance_km": 15.8, "fare": 479.0, "payment_method": "UPI", "driver_id": "DRV-004", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.5}, {"ride_id": "R065", "date": "2026-09-07", "pickup_location": "Johar Town", "dropoff_location": "Bahria Town", "distance_km": 21.1, "fare": 601.0, "payment_method": "Wallet", "driver_id": "DRV-005", "ride_type": "Premium", "ride_status": "Cancelled", "rating": NaN}, {"ride_id": "R066", "date": "2026-09-09", "pickup_location": "Johar Town", "dropoff_location": "Johar Town", "distance_km": 15.2, "fare": 460.0, "payment_method": "UPI", "driver_id": "DRV-006", "ride_type": "Standard", "ride_status": "Cancelled", "rating": NaN}, {"ride_id": "R067", "date": "2026-09-08", "pickup_location": "DHA", "dropoff_location": "Gulberg", "distance_km": 13.1, "fare": 424.0, "payment_method": "Cash", "driver_id": "DRV-007", "ride_type": "Standard", "ride_status": "Cancelled", "rating": NaN}, {"ride_id": "R068", "date": "2026-09-08", "pickup_location": "Gulberg", "dropoff_location": "DHA", "distance_km": 8.5, "fare": 302.0, "payment_method": "Cash", "driver_id": "DRV-008", "ride_type": "Economy", "ride_status": "Cancelled", "rating": NaN}, {"ride_id": "R069", "date": "2026-09-07", "pickup_location": "Bahria Town", "dropoff_location": "Johar Town", "distance_km": 12.1, "fare": 403.0, "payment_method": "UPI", "driver_id": "DRV-009", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.1}, {"ride_id": "R070", "date": "2026-09-10", "pickup_location": "Bahria Town", "dropoff_location": "Model Town", "distance_km": 22.2, "fare": 606.0, "payment_method": "Card", "driver_id": "DRV-010", "ride_type": "Premium", "ride_status": "Completed", "rating": 4.1}, {"ride_id": "R071", "date": "2026-09-04", "pickup_location": "DHA", "dropoff_location": "Bahria Town", "distance_km": 17.4, "fare": 504.0, "payment_method": "Card", "driver_id": "DRV-001", "ride_type": "Premium", "ride_status": "Completed", "rating": 3.9}, {"ride_id": "R072", "date": "2026-09-01", "pickup_location": "DHA", "dropoff_location": "DHA", "distance_km": 18.0, "fare": 533.0, "payment_method": "Cash", "driver_id": "DRV-002", "ride_type": "Premium", "ride_status": "Completed", "rating": 4.9}, {"ride_id": "R073", "date": "2026-09-05", "pickup_location": "DHA", "dropoff_location": "Bahria Town", "distance_km": 13.1, "fare": 429.0, "payment_method": "Wallet", "driver_id": "DRV-003", "ride_type": "Standard", "ride_status": "Cancelled", "rating": NaN}, {"ride_id": "R074", "date": "2026-09-02", "pickup_location": "DHA", "dropoff_location": "DHA", "distance_km": 10.2, "fare": 342.0, "payment_method": "Card", "driver_id": "DRV-004", "ride_type": "Economy", "ride_status": "Completed", "rating": 4.2}, {"ride_id": "R075", "date": "2026-09-06", "pickup_location": "Gulberg", "dropoff_location": "DHA", "distance_km": 9.7, "fare": 332.0, "payment_method": "Cash", "driver_id": "DRV-005", "ride_type": "Economy", "ride_status": "Cancelled", "rating": NaN}, {"ride_id": "R076", "date": "2026-09-10", "pickup_location": "DHA", "dropoff_location": "Gulberg", "distance_km": 12.5, "fare": 396.0, "payment_method": "Cash", "driver_id": "DRV-006", "ride_type": "Economy", "ride_status": "Completed", "rating": 3.8}, {"ride_id": "R077", "date": "2026-09-05", "pickup_location": "Bahria Town", "dropoff_location": "Model Town", "distance_km": 5.1, "fare": 228.0, "payment_method": "UPI", "driver_id": "DRV-007", "ride_type": "Economy", "ride_status": "Completed", "rating": 4.7}, {"ride_id": "R078", "date": "2026-09-03", "pickup_location": "Johar Town", "dropoff_location": "Gulberg", "distance_km": 14.4, "fare": 456.0, "payment_method": "Wallet", "driver_id": "DRV-008", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.4}, {"ride_id": "R079", "date": "2026-09-10", "pickup_location": "Bahria Town", "dropoff_location": "Gulberg", "distance_km": 11.8, "fare": 389.0, "payment_method": "Card", "driver_id": "DRV-009", "ride_type": "Economy", "ride_status": "Completed", "rating": 4.7}, {"ride_id": "R080", "date": "2026-09-01", "pickup_location": "Gulberg", "dropoff_location": "Gulberg", "distance_km": 7.7, "fare": 303.0, "payment_method": "UPI", "driver_id": "DRV-010", "ride_type": "Economy", "ride_status": "Completed", "rating": 5.0}, {"ride_id": "R081", "date": "2026-09-01", "pickup_location": "Gulberg", "dropoff_location": "Model Town", "distance_km": 15.3, "fare": 454.0, "payment_method": "Wallet", "driver_id": "DRV-001", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.6}, {"ride_id": "R082", "date": "2026-09-07", "pickup_location": "Johar Town", "dropoff_location": "Bahria Town", "distance_km": 22.0, "fare": 611.0, "payment_method": "Cash", "driver_id": "DRV-002", "ride_type": "Premium", "ride_status": "Completed", "rating": 4.1}, {"ride_id": "R083", "date": "2026-09-09", "pickup_location": "DHA", "dropoff_location": "Model Town", "distance_km": 14.6, "fare": 453.0, "payment_method": "Cash", "driver_id": "DRV-003", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.6}, {"ride_id": "R084", "date": "2026-09-08", "pickup_location": "DHA", "dropoff_location": "Gulberg", "distance_km": 11.7, "fare": 394.0, "payment_method": "Card", "driver_id": "DRV-004", "ride_type": "Economy", "ride_status": "Completed", "rating": 4.7}, {"ride_id": "R085", "date": "2026-09-01", "pickup_location": "Model Town", "dropoff_location": "Bahria Town", "distance_km": 14.9, "fare": 461.0, "payment_method": "Card", "driver_id": "DRV-005", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.2}, {"ride_id": "R086", "date": "2026-09-05", "pickup_location": "Model Town", "dropoff_location": "Gulberg", "distance_km": 19.1, "fare": 554.0, "payment_method": "Card", "driver_id": "DRV-006", "ride_type": "Premium", "ride_status": "Completed", "rating": 4.9}, {"ride_id": "R087", "date": "2026-09-02", "pickup_location": "Gulberg", "dropoff_location": "Gulberg", "distance_km": 9.7, "fare": 333.0, "payment_method": "Card", "driver_id": "DRV-007", "ride_type": "Economy", "ride_status": "Completed", "rating": 4.6}, {"ride_id": "R088", "date": "2026-09-01", "pickup_location": "Johar Town", "dropoff_location": "Johar Town", "distance_km": 14.0, "fare": 431.0, "payment_method": "UPI", "driver_id": "DRV-008", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.3}, {"ride_id": "R089", "date": "2026-09-04", "pickup_location": "Gulberg", "dropoff_location": "DHA", "distance_km": 12.5, "fare": 391.0, "payment_method": "Card", "driver_id": "DRV-009", "ride_type": "Economy", "ride_status": "Completed", "rating": 5.0}, {"ride_id": "R090", "date": "2026-09-03", "pickup_location": "Model Town", "dropoff_location": "Model Town", "distance_km": 5.9, "fare": 253.0, "payment_method": "Cash", "driver_id": "DRV-010", "ride_type": "Economy", "ride_status": "Completed", "rating": 4.5}, {"ride_id": "R091", "date": "2026-09-08", "pickup_location": "Gulberg", "dropoff_location": "Model Town", "distance_km": 13.2, "fare": 427.0, "payment_method": "UPI", "driver_id": "DRV-001", "ride_type": "Standard", "ride_status": "Completed", "rating": 3.8}, {"ride_id": "R092", "date": "2026-09-02", "pickup_location": "DHA", "dropoff_location": "Bahria Town", "distance_km": 15.1, "fare": 455.0, "payment_method": "Card", "driver_id": "DRV-002", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.3}, {"ride_id": "R093", "date": "2026-09-10", "pickup_location": "Bahria Town", "dropoff_location": "DHA", "distance_km": 13.2, "fare": 409.0, "payment_method": "Card", "driver_id": "DRV-003", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.7}, {"ride_id": "R094", "date": "2026-09-08", "pickup_location": "Johar Town", "dropoff_location": "Bahria Town", "distance_km": 13.6, "fare": 424.0, "payment_method": "Cash", "driver_id": "DRV-004", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.8}, {"ride_id": "R095", "date": "2026-09-03", "pickup_location": "DHA", "dropoff_location": "Gulberg", "distance_km": 21.6, "fare": 598.0, "payment_method": "Cash", "driver_id": "DRV-005", "ride_type": "Premium", "ride_status": "Completed", "rating": 3.6}, {"ride_id": "R096", "date": "2026-09-03", "pickup_location": "Model Town", "dropoff_location": "Model Town", "distance_km": 14.4, "fare": 445.0, "payment_method": "Card", "driver_id": "DRV-006", "ride_type": "Standard", "ride_status": "Completed", "rating": 3.7}, {"ride_id": "R097", "date": "2026-09-03", "pickup_location": "Gulberg", "dropoff_location": "DHA", "distance_km": 14.5, "fare": 445.0, "payment_method": "Cash", "driver_id": "DRV-007", "ride_type": "Standard", "ride_status": "Completed", "rating": 4.8}, {"ride_id": "R098", "date": "2026-09-09", "pickup_location": "Bahria Town", "dropoff_location": "Johar Town", "distance_km": 7.5, "fare": 290.0, "payment_method": "Card", "driver_id": "DRV-008", "ride_type": "Economy", "ride_status": "Completed", "rating": 4.0}, {"ride_id": "R099", "date": "2026-09-02", "pickup_location": "DHA", "dropoff_location": "Gulberg", "distance_km": 19.3, "fare": 567.0, "payment_method": "Cash", "driver_id": "DRV-009", "ride_type": "Premium", "ride_status": "Completed", "rating": 4.1}, {"ride_id": "R100", "date": "2026-09-04", "pickup_location": "Model Town", "dropoff_location": "Gulberg", "distance_km": 21.7, "fare": 618.0, "payment_method": "Cash", "driver_id": "DRV-010", "ride_type": "Premium", "ride_status": "Completed", "rating": 4.2}];
+    const RAW_RIDES = {json.dumps(records)};
     let filteredRides = [...RAW_RIDES];
 
-    function initFilters() {
+    function initFilters() {{
       const dates = [...new Set(RAW_RIDES.map(r => r.date))].sort();
       const dateSelect = document.getElementById('filter-date');
-      dates.forEach(d => {
+      dates.forEach(d => {{
         const opt = document.createElement('option');
         opt.value = d;
         opt.textContent = d;
         dateSelect.appendChild(opt);
-      });
+      }});
 
       const locations = [...new Set(RAW_RIDES.map(r => r.pickup_location))].sort();
       const locSelect = document.getElementById('filter-location');
-      locations.forEach(l => {
+      locations.forEach(l => {{
         const opt = document.createElement('option');
         opt.value = l;
         opt.textContent = l;
         locSelect.appendChild(opt);
-      });
+      }});
 
       const rideTypes = [...new Set(RAW_RIDES.map(r => r.ride_type))].sort();
       const rtSelect = document.getElementById('filter-ride-type');
-      rideTypes.forEach(rt => {
+      rideTypes.forEach(rt => {{
         const opt = document.createElement('option');
         opt.value = rt;
         opt.textContent = rt;
         rtSelect.appendChild(opt);
-      });
+      }});
 
       const payments = [...new Set(RAW_RIDES.map(r => r.payment_method))].sort();
       const paySelect = document.getElementById('filter-payment');
-      payments.forEach(p => {
+      payments.forEach(p => {{
         const opt = document.createElement('option');
         opt.value = p;
         opt.textContent = p;
         paySelect.appendChild(opt);
-      });
+      }});
 
       const drivers = [...new Set(RAW_RIDES.map(r => r.driver_id))].sort();
       const drvSelect = document.getElementById('filter-driver');
-      drivers.forEach(drv => {
+      drivers.forEach(drv => {{
         const opt = document.createElement('option');
         opt.value = drv;
         opt.textContent = drv;
         drvSelect.appendChild(opt);
-      });
-    }
+      }});
+    }}
 
-    function applyFilters() {
+    function applyFilters() {{
       const dVal = document.getElementById('filter-date').value;
       const sVal = document.getElementById('filter-status').value;
       const lVal = document.getElementById('filter-location').value;
@@ -437,7 +444,7 @@
       const pVal = document.getElementById('filter-payment').value;
       const drvVal = document.getElementById('filter-driver').value;
 
-      filteredRides = RAW_RIDES.filter(r => {
+      filteredRides = RAW_RIDES.filter(r => {{
         if (dVal !== 'ALL' && r.date !== dVal) return false;
         if (sVal !== 'ALL' && r.ride_status !== sVal) return false;
         if (lVal !== 'ALL' && r.pickup_location !== lVal) return false;
@@ -445,9 +452,9 @@
         if (pVal !== 'ALL' && r.payment_method !== pVal) return false;
         if (drvVal !== 'ALL' && r.driver_id !== drvVal) return false;
         return true;
-      });
+      }});
 
-      document.getElementById('slicer-count').textContent = `${filteredRides.length} / ${RAW_RIDES.length}`;
+      document.getElementById('slicer-count').textContent = `${{filteredRides.length}} / ${{RAW_RIDES.length}}`;
       updateKPIs(filteredRides);
       renderRidesByDate(filteredRides);
       renderRidesByWeekday(filteredRides);
@@ -456,9 +463,9 @@
       renderRideTypeRev(filteredRides);
       renderLocationRev(filteredRides);
       renderDriverTable();
-    }
+    }}
 
-    function resetAllFilters() {
+    function resetAllFilters() {{
       document.getElementById('filter-date').value = 'ALL';
       document.getElementById('filter-status').value = 'ALL';
       document.getElementById('filter-location').value = 'ALL';
@@ -466,9 +473,9 @@
       document.getElementById('filter-payment').value = 'ALL';
       document.getElementById('filter-driver').value = 'ALL';
       applyFilters();
-    }
+    }}
 
-    function updateKPIs(data) {
+    function updateKPIs(data) {{
       const total = data.length;
       const comp = data.filter(r => r.ride_status === 'Completed');
       const canc = data.filter(r => r.ride_status === 'Cancelled');
@@ -488,17 +495,17 @@
 
       document.getElementById('kpi-rides').textContent = total;
       document.getElementById('kpi-completed').textContent = compCount;
-      document.getElementById('kpi-completed-pct').textContent = `${crate.toFixed(1)}% Fulfill`;
+      document.getElementById('kpi-completed-pct').textContent = `${{crate.toFixed(1)}}% Fulfill`;
       document.getElementById('kpi-cancelled').textContent = cancCount;
-      document.getElementById('kpi-cancelled-pct').textContent = `${cancRate.toFixed(1)}% Churn`;
-      document.getElementById('kpi-revenue').textContent = `₨${rev.toLocaleString('en-US', {maximumFractionDigits:0})}`;
-      document.getElementById('kpi-avg-fare').textContent = `₨${avgFare.toFixed(2)}`;
-      document.getElementById('kpi-crate').textContent = `${crate.toFixed(1)}%`;
-      document.getElementById('kpi-rating').textContent = avgRating > 0 ? `${avgRating.toFixed(2)} ★` : '—';
-      document.getElementById('kpi-distance').textContent = `${avgDist.toFixed(1)} km`;
-    }
+      document.getElementById('kpi-cancelled-pct').textContent = `${{cancRate.toFixed(1)}}% Churn`;
+      document.getElementById('kpi-revenue').textContent = `₨${{rev.toLocaleString('en-US', {{maximumFractionDigits:0}})}}`;
+      document.getElementById('kpi-avg-fare').textContent = `₨${{avgFare.toFixed(2)}}`;
+      document.getElementById('kpi-crate').textContent = `${{crate.toFixed(1)}}%`;
+      document.getElementById('kpi-rating').textContent = avgRating > 0 ? `${{avgRating.toFixed(2)}} ★` : '—';
+      document.getElementById('kpi-distance').textContent = `${{avgDist.toFixed(1)}} km`;
+    }}
 
-    function renderRidesByDate(data) {
+    function renderRidesByDate(data) {{
       const box = document.getElementById('chart-rides-by-date');
       const dates = [...new Set(RAW_RIDES.map(r => r.date))].sort();
       const counts = dates.map(d => data.filter(r => r.date === d).length);
@@ -514,46 +521,46 @@
 
       let pathTot = '';
       let pathComp = '';
-      counts.forEach((c, i) => {
+      counts.forEach((c, i) => {{
         const x = getX(i), y = getY(c);
-        pathTot += (i === 0 ? `M ${x} ${y}` : ` L ${x} ${y}`);
-      });
-      compCounts.forEach((c, i) => {
+        pathTot += (i === 0 ? `M ${{x}} ${{y}}` : ` L ${{x}} ${{y}}`);
+      }});
+      compCounts.forEach((c, i) => {{
         const x = getX(i), y = getY(c);
-        pathComp += (i === 0 ? `M ${x} ${y}` : ` L ${x} ${y}`);
-      });
+        pathComp += (i === 0 ? `M ${{x}} ${{y}}` : ` L ${{x}} ${{y}}`);
+      }});
 
       let dots = '';
-      counts.forEach((c, i) => {
+      counts.forEach((c, i) => {{
         const x = getX(i), y = getY(c);
         const dStr = dates[i].split('-')[2];
-        dots += `<circle cx="${x}" cy="${y}" r="3.5" fill="#38bdf8"/>`;
-        dots += `<text x="${x}" y="${h - 10}" fill="#94a3b8" font-size="9" text-anchor="middle">Sep ${dStr}</text>`;
-      });
+        dots += `<circle cx="${{x}}" cy="${{y}}" r="3.5" fill="#38bdf8"/>`;
+        dots += `<text x="${{x}}" y="${{h - 10}}" fill="#94a3b8" font-size="9" text-anchor="middle">Sep ${{dStr}}</text>`;
+      }});
 
       box.innerHTML = `
-        <svg viewBox="0 0 ${w} ${h}" class="w-full h-full">
-          <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT + innerH}" stroke="#1e293b" stroke-width="1"/>
-          <line x1="${padL}" y1="${padT + innerH}" x2="${w - padR}" y2="${padT + innerH}" stroke="#1e293b" stroke-width="1"/>
-          <path d="${pathTot}" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="${pathComp}" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="3,3"/>
-          ${dots}
+        <svg viewBox="0 0 ${{w}} ${{h}}" class="w-full h-full">
+          <line x1="${{padL}}" y1="${{padT}}" x2="${{padL}}" y2="${{padT + innerH}}" stroke="#1e293b" stroke-width="1"/>
+          <line x1="${{padL}}" y1="${{padT + innerH}}" x2="${{w - padR}}" y2="${{padT + innerH}}" stroke="#1e293b" stroke-width="1"/>
+          <path d="${{pathTot}}" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="${{pathComp}}" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="3,3"/>
+          ${{dots}}
         </svg>
       `;
-    }
+    }}
 
-    function renderRidesByWeekday(data) {
+    function renderRidesByWeekday(data) {{
       const box = document.getElementById('chart-rides-by-weekday');
       const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
       const dayFull = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
       
-      const counts = dayFull.map(df => {
-        return data.filter(r => {
+      const counts = dayFull.map(df => {{
+        return data.filter(r => {{
           const dt = new Date(r.date);
-          const dayName = dt.toLocaleDateString('en-US', { weekday: 'long' });
+          const dayName = dt.toLocaleDateString('en-US', {{ weekday: 'long' }});
           return dayName === df;
-        }).length;
-      });
+        }}).length;
+      }});
 
       const maxVal = Math.max(...counts, 5);
       const w = 450, h = 180, padL = 30, padR = 20, padT = 20, padB = 30;
@@ -562,27 +569,27 @@
       const barW = innerW / days.length - 12;
 
       let bars = '';
-      days.forEach((d, i) => {
+      days.forEach((d, i) => {{
         const val = counts[i];
         const barH = (val / maxVal) * innerH;
         const x = padL + i * (innerW / days.length) + 6;
         const y = padT + innerH - barH;
         bars += `
-          <rect x="${x}" y="${y}" width="${barW}" height="${barH}" rx="4" fill="#818cf8" opacity="0.85"/>
-          <text x="${x + barW/2}" y="${y - 4}" fill="#38bdf8" font-size="9" font-weight="bold" text-anchor="middle">${val}</text>
-          <text x="${x + barW/2}" y="${h - 10}" fill="#94a3b8" font-size="9" text-anchor="middle">${d}</text>
+          <rect x="${{x}}" y="${{y}}" width="${{barW}}" height="${{barH}}" rx="4" fill="#818cf8" opacity="0.85"/>
+          <text x="${{x + barW/2}}" y="${{y - 4}}" fill="#38bdf8" font-size="9" font-weight="bold" text-anchor="middle">${{val}}</text>
+          <text x="${{x + barW/2}}" y="${{h - 10}}" fill="#94a3b8" font-size="9" text-anchor="middle">${{d}}</text>
         `;
-      });
+      }});
 
       box.innerHTML = `
-        <svg viewBox="0 0 ${w} ${h}" class="w-full h-full">
-          <line x1="${padL}" y1="${padT + innerH}" x2="${w - padR}" y2="${padT + innerH}" stroke="#1e293b" stroke-width="1"/>
-          ${bars}
+        <svg viewBox="0 0 ${{w}} ${{h}}" class="w-full h-full">
+          <line x1="${{padL}}" y1="${{padT + innerH}}" x2="${{w - padR}}" y2="${{padT + innerH}}" stroke="#1e293b" stroke-width="1"/>
+          ${{bars}}
         </svg>
       `;
-    }
+    }}
 
-    function renderPickupLocations(data) {
+    function renderPickupLocations(data) {{
       const box = document.getElementById('chart-pickup-locations');
       const locs = ['DHA', 'Gulberg', 'Bahria Town', 'Johar Town', 'Model Town'];
       const counts = locs.map(l => data.filter(r => r.pickup_location === l).length);
@@ -594,25 +601,25 @@
       const barH = innerH / locs.length - 8;
 
       let bars = '';
-      locs.forEach((l, i) => {
+      locs.forEach((l, i) => {{
         const val = counts[i];
         const bW = (val / maxVal) * innerW;
         const y = padT + i * (innerH / locs.length) + 4;
         bars += `
-          <text x="${padL - 8}" y="${y + barH/2 + 3}" fill="#cbd5e1" font-size="10" text-anchor="end">${l}</text>
-          <rect x="${padL}" y="${y}" width="${bW}" height="${barH}" rx="3" fill="#38bdf8" opacity="0.9"/>
-          <text x="${padL + bW + 6}" y="${y + barH/2 + 3}" fill="#34d399" font-size="9" font-weight="bold">${val}</text>
+          <text x="${{padL - 8}}" y="${{y + barH/2 + 3}}" fill="#cbd5e1" font-size="10" text-anchor="end">${{l}}</text>
+          <rect x="${{padL}}" y="${{y}}" width="${{bW}}" height="${{barH}}" rx="3" fill="#38bdf8" opacity="0.9"/>
+          <text x="${{padL + bW + 6}}" y="${{y + barH/2 + 3}}" fill="#34d399" font-size="9" font-weight="bold">${{val}}</text>
         `;
-      });
+      }});
 
       box.innerHTML = `
-        <svg viewBox="0 0 ${w} ${h}" class="w-full h-full">
-          ${bars}
+        <svg viewBox="0 0 ${{w}} ${{h}}" class="w-full h-full">
+          ${{bars}}
         </svg>
       `;
-    }
+    }}
 
-    function renderPaymentRev(data) {
+    function renderPaymentRev(data) {{
       const box = document.getElementById('chart-payment-rev');
       const comp = data.filter(r => r.ride_status === 'Completed');
       const methods = ['Cash', 'Card', 'UPI', 'Wallet'];
@@ -621,16 +628,16 @@
       const sums = methods.map(m => comp.filter(r => r.payment_method === m).reduce((acc, r) => acc + r.fare, 0));
       const total = sums.reduce((a, b) => a + b, 0);
 
-      if (total === 0) {
+      if (total === 0) {{
         box.innerHTML = '<span class="text-xs text-slate-500">No completed rides</span>';
         return;
-      }
+      }}
 
       let curAngle = 0;
       let paths = '';
       let legend = '';
 
-      sums.forEach((s, idx) => {
+      sums.forEach((s, idx) => {{
         const pct = s / total;
         const angle = pct * 360;
         const rO = 70, rI = 45;
@@ -643,43 +650,43 @@
         const x4 = 90 + rI * Math.cos(sRad), y4 = 90 + rI * Math.sin(sRad);
 
         const la = angle > 180 ? 1 : 0;
-        const d = `M ${x1} ${y1} A ${rO} ${rO} 0 ${la} 1 ${x2} ${y2} L ${x3} ${y3} A ${rI} ${rI} 0 ${la} 0 ${x4} ${y4} Z`;
+        const d = `M ${{x1}} ${{y1}} A ${{rO}} ${{rO}} 0 ${{la}} 1 ${{x2}} ${{y2}} L ${{x3}} ${{y3}} A ${{rI}} ${{rI}} 0 ${{la}} 0 ${{x4}} ${{y4}} Z`;
 
-        if (s > 0) {
-          paths += `<path d="${d}" fill="${colors[idx]}" stroke="#080d1a" stroke-width="2"/>`;
-        }
+        if (s > 0) {{
+          paths += `<path d="${{d}}" fill="${{colors[idx]}}" stroke="#080d1a" stroke-width="2"/>`;
+        }}
         legend += `
           <div class="flex items-center justify-between text-[11px]">
             <span class="flex items-center gap-1.5 text-slate-300">
-              <span class="w-2.5 h-2.5 rounded-full" style="background-color:${colors[idx]}"></span> ${methods[idx]}
+              <span class="w-2.5 h-2.5 rounded-full" style="background-color:${{colors[idx]}}"></span> ${{methods[idx]}}
             </span>
-            <span class="font-bold font-mono-num text-white">₨${s.toLocaleString()} (${(pct*100).toFixed(1)}%)</span>
+            <span class="font-bold font-mono-num text-white">₨${{s.toLocaleString()}} (${{(pct*100).toFixed(1)}}%)</span>
           </div>
         `;
         curAngle += angle;
-      });
+      }});
 
       box.innerHTML = `
         <div class="flex items-center gap-4 w-full justify-center">
           <svg viewBox="0 0 180 180" class="w-36 h-36">
-            ${paths}
+            ${{paths}}
           </svg>
           <div class="space-y-1.5 flex-1 max-w-[200px]">
-            ${legend}
+            ${{legend}}
           </div>
         </div>
       `;
-    }
+    }}
 
-    function renderRideTypeRev(data) {
+    function renderRideTypeRev(data) {{
       const box = document.getElementById('chart-ridetype-rev');
       const comp = data.filter(r => r.ride_status === 'Completed');
       const tiers = ['Economy', 'Standard', 'Premium'];
       const sums = tiers.map(t => comp.filter(r => r.ride_type === t).reduce((acc, r) => acc + r.fare, 0));
-      const avgs = tiers.map(t => {
+      const avgs = tiers.map(t => {{
         const c = comp.filter(r => r.ride_type === t);
         return c.length > 0 ? (c.reduce((acc, r) => acc + r.fare, 0) / c.length) : 0;
-      });
+      }});
 
       const maxVal = Math.max(...sums, 5000);
       const w = 450, h = 180, padL = 40, padR = 30, padT = 20, padB = 30;
@@ -688,28 +695,28 @@
       const barW = innerW / tiers.length - 30;
 
       let bars = '';
-      tiers.forEach((t, i) => {
+      tiers.forEach((t, i) => {{
         const val = sums[i];
         const barH = (val / maxVal) * innerH;
         const x = padL + i * (innerW / tiers.length) + 15;
         const y = padT + innerH - barH;
         bars += `
-          <rect x="${x}" y="${y}" width="${barW}" height="${barH}" rx="4" fill="#38bdf8" opacity="0.85"/>
-          <text x="${x + barW/2}" y="${y - 12}" fill="#38bdf8" font-size="9" font-weight="bold" text-anchor="middle">₨${val.toLocaleString()}</text>
-          <text x="${x + barW/2}" y="${y - 2}" fill="#fbbf24" font-size="8" text-anchor="middle">Avg: ₨${avgs[i].toFixed(0)}</text>
-          <text x="${x + barW/2}" y="${h - 10}" fill="#94a3b8" font-size="10" text-anchor="middle">${t}</text>
+          <rect x="${{x}}" y="${{y}}" width="${{barW}}" height="${{barH}}" rx="4" fill="#38bdf8" opacity="0.85"/>
+          <text x="${{x + barW/2}}" y="${{y - 12}}" fill="#38bdf8" font-size="9" font-weight="bold" text-anchor="middle">₨${{val.toLocaleString()}}</text>
+          <text x="${{x + barW/2}}" y="${{y - 2}}" fill="#fbbf24" font-size="8" text-anchor="middle">Avg: ₨${{avgs[i].toFixed(0)}}</text>
+          <text x="${{x + barW/2}}" y="${{h - 10}}" fill="#94a3b8" font-size="10" text-anchor="middle">${{t}}</text>
         `;
-      });
+      }});
 
       box.innerHTML = `
-        <svg viewBox="0 0 ${w} ${h}" class="w-full h-full">
-          <line x1="${padL}" y1="${padT + innerH}" x2="${w - padR}" y2="${padT + innerH}" stroke="#1e293b" stroke-width="1"/>
-          ${bars}
+        <svg viewBox="0 0 ${{w}} ${{h}}" class="w-full h-full">
+          <line x1="${{padL}}" y1="${{padT + innerH}}" x2="${{w - padR}}" y2="${{padT + innerH}}" stroke="#1e293b" stroke-width="1"/>
+          ${{bars}}
         </svg>
       `;
-    }
+    }}
 
-    function renderLocationRev(data) {
+    function renderLocationRev(data) {{
       const box = document.getElementById('chart-location-rev');
       const comp = data.filter(r => r.ride_status === 'Completed');
       const locs = ['DHA', 'Bahria Town', 'Gulberg', 'Johar Town', 'Model Town'];
@@ -722,29 +729,29 @@
       const barH = innerH / locs.length - 8;
 
       let bars = '';
-      locs.forEach((l, i) => {
+      locs.forEach((l, i) => {{
         const val = revs[i];
         const bW = (val / maxVal) * innerW;
         const y = padT + i * (innerH / locs.length) + 4;
         bars += `
-          <text x="${padL - 8}" y="${y + barH/2 + 3}" fill="#cbd5e1" font-size="10" text-anchor="end">${l}</text>
-          <rect x="${padL}" y="${y}" width="${bW}" height="${barH}" rx="3" fill="#34d399" opacity="0.9"/>
-          <text x="${padL + bW + 6}" y="${y + barH/2 + 3}" fill="#38bdf8" font-size="9" font-weight="bold">₨${val.toLocaleString()}</text>
+          <text x="${{padL - 8}}" y="${{y + barH/2 + 3}}" fill="#cbd5e1" font-size="10" text-anchor="end">${{l}}</text>
+          <rect x="${{padL}}" y="${{y}}" width="${{bW}}" height="${{barH}}" rx="3" fill="#34d399" opacity="0.9"/>
+          <text x="${{padL + bW + 6}}" y="${{y + barH/2 + 3}}" fill="#38bdf8" font-size="9" font-weight="bold">₨${{val.toLocaleString()}}</text>
         `;
-      });
+      }});
 
       box.innerHTML = `
-        <svg viewBox="0 0 ${w} ${h}" class="w-full h-full">
-          ${bars}
+        <svg viewBox="0 0 ${{w}} ${{h}}" class="w-full h-full">
+          ${{bars}}
         </svg>
       `;
-    }
+    }}
 
-    function renderDriverTable() {
+    function renderDriverTable() {{
       const sortBy = document.getElementById('driver-sort-by').value;
       const drivers = [...new Set(RAW_RIDES.map(r => r.driver_id))].sort();
 
-      const stats = drivers.map(d => {
+      const stats = drivers.map(d => {{
         const allD = filteredRides.filter(r => r.driver_id === d);
         const compD = allD.filter(r => r.ride_status === 'Completed');
         const cancD = allD.filter(r => r.ride_status === 'Cancelled');
@@ -754,7 +761,7 @@
         const crate = allD.length > 0 ? ((compD.length / allD.length) * 100) : 0;
         const avgDist = compD.length > 0 ? (compD.reduce((acc, r) => acc + (r.distance_km || 0), 0) / compD.length) : 0;
 
-        return {
+        return {{
           id: d,
           total: allD.length,
           completed: compD.length,
@@ -763,19 +770,19 @@
           rating: avgR,
           distance: avgDist,
           crate: crate
-        };
-      });
+        }};
+      }});
 
-      stats.sort((a, b) => {
+      stats.sort((a, b) => {{
         if (sortBy === 'revenue') return b.revenue - a.revenue;
         if (sortBy === 'completed') return b.completed - a.completed;
         if (sortBy === 'rating') return b.rating - a.rating;
         if (sortBy === 'crate') return b.crate - a.crate;
         return 0;
-      });
+      }});
 
       const tbody = document.getElementById('driver-tbody');
-      tbody.innerHTML = stats.map(s => {
+      tbody.innerHTML = stats.map(s => {{
         const tierBadge = s.crate === 100 
           ? '<span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">🌟 100% Star</span>'
           : s.crate >= 80
@@ -784,24 +791,24 @@
 
         return `
           <tr class="hover:bg-slate-800/40 transition">
-            <td class="py-2.5 px-3.5 font-bold text-cyan-400">${s.id}</td>
-            <td class="py-2.5 px-3.5 text-center text-white">${s.total}</td>
-            <td class="py-2.5 px-3.5 text-center text-emerald-400 font-bold">${s.completed}</td>
-            <td class="py-2.5 px-3.5 text-center ${s.cancelled > 0 ? 'text-rose-400 font-bold' : 'text-slate-500'}">${s.cancelled}</td>
-            <td class="py-2.5 px-3.5 text-right font-bold text-white">₨${s.revenue.toLocaleString()}</td>
-            <td class="py-2.5 px-3.5 text-right text-yellow-400 font-bold">${s.rating > 0 ? s.rating.toFixed(2) + ' ★' : '—'}</td>
-            <td class="py-2.5 px-3.5 text-right text-slate-300">${s.distance.toFixed(1)} km</td>
-            <td class="py-2.5 px-3.5 text-center font-bold ${s.crate === 100 ? 'text-emerald-400' : s.crate >= 80 ? 'text-cyan-400' : 'text-rose-400'}">${s.crate.toFixed(0)}%</td>
-            <td class="py-2.5 px-3.5 text-center">${tierBadge}</td>
+            <td class="py-2.5 px-3.5 font-bold text-cyan-400">${{s.id}}</td>
+            <td class="py-2.5 px-3.5 text-center text-white">${{s.total}}</td>
+            <td class="py-2.5 px-3.5 text-center text-emerald-400 font-bold">${{s.completed}}</td>
+            <td class="py-2.5 px-3.5 text-center ${{s.cancelled > 0 ? 'text-rose-400 font-bold' : 'text-slate-500'}}">${{s.cancelled}}</td>
+            <td class="py-2.5 px-3.5 text-right font-bold text-white">₨${{s.revenue.toLocaleString()}}</td>
+            <td class="py-2.5 px-3.5 text-right text-yellow-400 font-bold">${{s.rating > 0 ? s.rating.toFixed(2) + ' ★' : '—'}}</td>
+            <td class="py-2.5 px-3.5 text-right text-slate-300">${{s.distance.toFixed(1)}} km</td>
+            <td class="py-2.5 px-3.5 text-center font-bold ${{s.crate === 100 ? 'text-emerald-400' : s.crate >= 80 ? 'text-cyan-400' : 'text-rose-400'}}">${{s.crate.toFixed(0)}}%</td>
+            <td class="py-2.5 px-3.5 text-center">${{tierBadge}}</td>
           </tr>
         `;
-      }).join('');
-    }
+      }}).join('');
+    }}
 
-    function downloadCSV() {
+    function downloadCSV() {{
       const headers = ["ride_id","date","pickup_location","dropoff_location","distance_km","fare","payment_method","driver_id","ride_type","ride_status","rating"];
       const rows = filteredRides.map(r => [r.ride_id, r.date, r.pickup_location, r.dropoff_location, r.distance_km, r.fare, r.payment_method, r.driver_id, r.ride_type, r.ride_status, r.rating || '']);
-      const csvContent = "data:text/csv;charset=utf-8," + [headers.join(",")].concat(rows.map(e => e.join(","))).join("\n");
+      const csvContent = "data:text/csv;charset=utf-8," + [headers.join(",")].concat(rows.map(e => e.join(","))).join("\\n");
       const encodedUri = encodeURI(csvContent);
       const link = document.createElement("a");
       link.setAttribute("href", encodedUri);
@@ -809,12 +816,24 @@
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-    }
+    }}
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {{
       initFilters();
       applyFilters();
-    });
+    }});
   </script>
 </body>
 </html>
+"""
+
+with open('powerbi/ride-analytics-dashboard/index.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+with open('index.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+with open('week-04/index.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print("Generated HTML dashboards across root, powerbi, and week-04 successfully!")
