@@ -1,10 +1,11 @@
 # 🚀 Zyroo Data Analyst Internship Portfolio
 
-Welcome to my official portfolio repository for the **Zyroo Data Analyst Internship**. This repository serves as a centralized hub documenting weekly technical deliverables, automated data pipelines, exploratory data analyses, production SQL pipelines, executive Business Intelligence dashboards, and multi-criteria operational rankings.
+Welcome to my official portfolio repository for the **Zyroo Data Analyst Internship**. This repository serves as a centralized hub documenting weekly technical deliverables, automated data pipelines, exploratory data analyses, production SQL pipelines, executive Business Intelligence dashboards, multi-criteria operational rankings, customer behavioral segmentation, and What-If financial simulations.
 
 ---
 
 ## 📋 Table of Contents
+* [Week 5 — Advanced Business Intelligence & Decision Analytics](#-week-5--advanced-business-intelligence--decision-analytics)
 * [Week 4 — Power BI Dashboard Development](#-week-4--power-bi-dashboard-development)
 * [Week 3 — Revenue & Driver Performance Analysis (Python, SQL & BI)](#-week-3--revenue--driver-performance-analysis)
 * [Week 2 — Ride Analytics & Revenue Intelligence Platform (Power BI)](#-week-2--ride-analytics--revenue-intelligence-platform)
@@ -14,78 +15,128 @@ Welcome to my official portfolio repository for the **Zyroo Data Analyst Interns
 
 ---
 
+## 🔮 Week 5 — Advanced Business Intelligence & Decision Analytics
+
+**Project Title**: Ride Analytics & Revenue Intelligence Platform  
+**Sub-Topic**: Week 5 — Advanced Business Intelligence & Decision Analytics  
+**Program**: ZYROO Data Analytics Internship • Week 5  
+**Level**: Senior Data Analyst, BI Specialist & Decision Modeler  
+**Deliverables**: Cleaned Production Dataset, Advanced DAX Measures Dictionary (`powerbi/week-05-advanced-analytics/dax_measures_week5.dax`), SQL Validation Pipeline (`sql/week_05_decision_analytics.sql`), Interactive Multi-Page Decision Dashboard (`powerbi/week-05-advanced-analytics/index.html`), 8 High-Resolution Analytical Charts (`screenshots/week-05/`), and Comprehensive Executive Report (`reports/week-05-advanced-bi/week_05_decision_analytics_report.md`).
+
+[![Live Decision Dashboard](https://img.shields.io/badge/Power%20BI-Multi--Page%20Decision%20System-yellow?logo=powerbi&logoColor=black)](powerbi/week-05-advanced-analytics/index.html)
+[![Advanced DAX Catalog](https://img.shields.io/badge/DAX-20%2B%20Measures-blue?logo=microsoft&logoColor=white)](powerbi/week-05-advanced-analytics/dax_measures_week5.dax)
+[![SQL Validation Pipeline](https://img.shields.io/badge/SQL-Decision%20Audit-00758F?logo=sqlite&logoColor=white)](sql/week_05_decision_analytics.sql)
+[![Executive BI Report](https://img.shields.io/badge/Report-Executive%20BI%20Audit-success?logo=markdown&logoColor=white)](reports/week-05-advanced-bi/week_05_decision_analytics_report.md)
+
+---
+
+### 🎯 Business Intelligence & Analytical Framework
+Week 5 upgrades the descriptive dashboard into an evidence-based **Decision Analytics & Management Decision Support System**:
+$$\textbf{WHAT happened} \longrightarrow \textbf{WHY the pattern matters} \longrightarrow \textbf{WHAT should be investigated next}$$
+
+1. **Advanced Star-Schema Model**: Separates `Fact_Rides` (100 rows) with a dedicated `Dim_Date` dimension table, isolating source data, calculated dimensions, and DAX aggregation layers.
+2. **Behavioral Customer Segmentation**: Formulates 3 distinct passenger profiles (Standard Daily Commuters, Premium Executive Riders, and Economy Short-Hop Riders) to model price elasticity and journey purpose.
+3. **Driver Benchmark Variance**: Compares all 10 fleet operators against cohort baseline benchmarks (Revenue: PKR 3,646.60 | Completion: 85.0% | Rating: 4.27 ★), uncovering cherry-picking behaviors vs true dependability.
+4. **Cancellation Analytics & Causal Rigor**: Identifies geographic churn concentration in Gulberg (30.0% cancellation rate), strictly differentiating correlation from causation.
+5. **What-If Financial Simulation Engine**: Models dynamic scenarios evaluating volume expansion (+10% rides $\rightarrow$ +PKR 3,646.60), pricing shifts (+5% fare $\rightarrow$ +PKR 1,823.30), and churn recovery (50% recovered $\rightarrow$ +PKR 3,248.00).
+
+---
+
+### 📊 Verified Executive Baseline KPIs (100% Validated)
+
+| KPI Metric Card | Verified Baseline Value | SQL / DAX Status | Business Meaning |
+| :--- | :--- | :---: | :--- |
+| **Total Demand** | **100 rides** | 100% Match | Gross ride requests dispatched over the 10-day period |
+| **Fulfilled Rides** | **85 rides** | 100% Match | Successful completed journeys delivered |
+| **Operational Churn** | **15 rides** | 100% Match | Dispatched rides aborted or unfulfilled |
+| **Realized Revenue** | **PKR 36,466.00** | 100% Match | Net recognized cash & digital revenue from completed journeys |
+| **Gross Booking Value** | **PKR 42,962.00** | 100% Match | Total commercial booking demand placed on platform |
+| **Lost to Cancellations**| **PKR 6,496.00** | 100% Match | Unrealized gross commercial bookings from 15 cancelled rides |
+| **Average Ticket Size** | **PKR 429.01** | 100% Match | Mean ticket size per completed trip |
+| **Completion Rate** | **85.0%** | 100% Match | Platform fulfillment efficiency benchmark ($\ge 85\%$) |
+| **Cancellation Rate** | **15.0%** | 100% Match | Operational churn percentage ($\le 10\%$ target) |
+| **Customer CSAT** | **4.27 ★** | 100% Match | Weighted customer satisfaction rating on fulfilled trips |
+| **Mean Route Distance**| **13.72 km** | 100% Match | Mean travel distance per completed trip |
+
+---
+
+### 👥 Customer Behavioral Segmentation Matrix
+
+| Customer Segment | Total Rides | Completed | Churn % | Realized Revenue | Revenue Share | Avg Ticket Size | Avg Distance | Top Channel |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Standard Daily Commuters** | 39 | 32 | 17.9% | PKR 14,136.00 | **38.76%** | PKR 441.75 | 14.25 km | UPI / Cash |
+| **Premium Executive Riders** | 26 | 22 | 15.4% | PKR 12,277.00 | **33.67%** | **PKR 558.05** | 19.50 km | Cash / Card |
+| **Economy Short-Hop Riders** | 35 | 31 | 11.4% | PKR 10,053.00 | **27.57%** | PKR 324.29 | 9.09 km | Card / UPI |
+
+---
+
+### 🏎️ Driver Performance & Benchmark Variance League Table
+
+| Rank | Driver ID | Completed | Cancelled | Realized Revenue | Rev vs Benchmark | Completion Rate | C-Rate vs Benchmark | Rating | Composite Score | Operational Status |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **1** | **DRV-010** | 10 | 0 | PKR 4,055.00 | +PKR 408.40 | **100.0%** | +15.0% | 4.34 ★ | **80.16** | 🌟 Star Partner (Zero Churn) |
+| **2** | **DRV-004** | 10 | 0 | PKR 4,007.00 | +PKR 360.40 | **100.0%** | +15.0% | 4.36 ★ | **79.93** | 🌟 Star Partner (Zero Churn) |
+| **3** | **DRV-002** | 9 | 1 | **PKR 4,484.00** | **+PKR 837.40** | 90.0% | +5.0% | 4.33 ★ | **77.25** | 🚀 Top Earner / Mild Churn |
+| **4** | **DRV-001** | 10 | 0 | PKR 4,237.00 | +PKR 590.40 | **100.0%** | +15.0% | 4.01 ★ | **73.65** | 🌟 Star Partner (Zero Churn) |
+| **5** | **DRV-009** | 9 | 1 | PKR 3,831.00 | +PKR 184.40 | 90.0% | +5.0% | 4.30 ★ | **65.20** | 🟢 Consistent Partner |
+| **6** | **DRV-003** | 8 | 2 | PKR 3,807.00 | +PKR 160.40 | 80.0% | -5.0% | 4.46 ★ | **59.52** | 🟢 High Rating / Churn Alert |
+| **7** | **DRV-008** | 8 | 2 | PKR 3,210.00 | -PKR 436.60 | 80.0% | -5.0% | 4.20 ★ | **41.75** | 🟡 Below Benchmark |
+| **8** | **DRV-006** | 8 | 2 | PKR 3,504.00 | -PKR 142.60 | 80.0% | -5.0% | 3.91 ★ | **38.37** | 🟡 Low Rating Alert |
+| **9** | **DRV-007** | 7 | 3 | PKR 2,421.00 | -PKR 1,225.60 | **70.0%** | -15.0% | **4.77 ★** | **35.00** | 🔴 High Quality Cherry-Picker |
+| **10**| **DRV-005** | 6 | 4 | PKR 2,910.00 | -PKR 736.60 | **60.0%** | -25.0% | 4.08 ★ | **13.27** | ⛔ Severe Operational Risk |
+
+---
+
+### 🔮 What-If Financial Simulation Matrix
+
+| Simulation Model | Key Assumption | Baseline Actual | Simulated Outcome | Revenue Delta (PKR) | Delta % |
+| :--- | :--- | :--- | :--- | :--- | :---: |
+| **Scenario A (+10% Volume)** | Fulfilled trips rise from 85 to 93.5 | PKR 36,466.00 | PKR 40,112.60 | **+PKR 3,646.60** | **+10.0%** |
+| **Scenario B (+5% Price Yield)**| Average completed fare rises to PKR 450.46| PKR 36,466.00 | PKR 38,289.30 | **+PKR 1,823.30** | **+5.0%** |
+| **Scenario C (50% Churn Recovery)**| Reclaim 7.5 cancelled rides (PKR 3,248) | PKR 36,466.00 | PKR 39,714.00 | **+PKR 3,248.00** | **+8.91%** |
+
+---
+
+### 📈 Week 5 Decision Visuals Gallery (300 DPI)
+All 8 decision charts are rendered inside `screenshots/week-05/` and `reports/week-05-advanced-bi/charts/`:
+
+* [x] **`01_location_demand_vs_cancellation.png`** — Location Demand vs Cancellation Matrix (Gulberg Churn Focus).
+* [x] **`02_revenue_vs_avg_fare_by_tier.png`** — Revenue Contribution vs Average Fare by Vehicle Tier.
+* [x] **`03_driver_revenue_vs_benchmark.png`** — Driver Performance Variance vs Cohort Revenue Benchmark.
+* [x] **`04_what_if_scenario_modeling.png`** — What-If Financial Projections (Volume, Fare, Churn Recovery).
+* [x] **`05_customer_behavioral_segments.png`** — Customer Behavioral Segmentation Revenue Share.
+* [x] **`06_payment_ecosystem_contribution.png`** — Payment Ecosystem Breakdown (Digital 61.3% vs Cash 38.7%).
+* [x] **`07_weekday_demand_and_churn_risk.png`** — Weekday Demand & Churn Volatility Analysis.
+* [x] **`08_time_intelligence_revenue_runrate.png`** — 10-Day Revenue Run-Rate Trajectory.
+
+---
+
+### 💡 8 Evidence-Based Business Insights Summary
+1. **DHA Geographic Revenue Dominance:** Generates 35 completed rides and **42.20% (PKR 15,388.00)** of total realized revenue with an above-average ticket size of PKR 439.66 and low 7.89% churn.
+2. **Gulberg Operational Churn Anomaly:** Commanded 20 ride requests (20.0% of demand) but experienced a **30.0% cancellation rate (6 cancelled rides)** and the lowest completed average fare (PKR 397.07).
+3. **Revenue Mirage vs Dependability:** DRV-002 achieved top gross revenue (PKR 4,484.00) but cancelled 10% of trips. DRV-010, 004, and 001 achieved **100% completion (0 cancellations)** while earning >PKR 4,000.00.
+4. **Premium Tier Ticket Yield Density:** Premium rides average **PKR 558.05 per journey (+30.3% over Standard)** across comparable distances (19.5 km vs 14.2 km), contributing 33.67% of revenue from only 22 trips.
+5. **Concentration of Platform Churn:** Two drivers (DRV-005 with 4 cancellations and DRV-007 with 3 cancellations) caused **46.7% of all platform churn (7 of 15 cancellations)**.
+6. **Digital Payment Ecosystem:** Digital payment channels collectively account for **61.29% of revenue (PKR 22,351.00)** across Card (29.6%), UPI (22.4%), and Wallet (9.2%), while Cash accounts for 38.71%.
+7. **Temporal Demand & Weekday Peaks:** **Thursday (24 bookings)** and **Tuesday (20 bookings)** drive 44.0% of total weekly volume. Friday experienced the highest weekday cancellation rate (25.0%).
+8. **Cross-City Transit Equilibrium:** Drop-off destinations are uniformly distributed across Johar Town (22%), Gulberg (21%), Model Town (20%), Bahria Town (19%), and DHA (18%).
+
+---
+
+### 🚀 5 Actionable Business Recommendations Summary
+1. **Geofenced Fulfillment Bonus for Gulberg:** Deploy a dynamic PKR 50 - PKR 75 pickup bonus for drivers accepting dispatches originating in Gulberg to drop churn below 12%.
+2. **Star Partner Priority Dispatch Protocol:** Implement dispatch routing giving 100% completion drivers priority assignment to high-yield Premium trips.
+3. **Strategic Expansion of Premium Tier Fleet:** Recruit and onboard vehicles meeting executive comfort standards to capitalize on high pricing tolerance.
+4. **Targeted Driver Retraining & Churn Warnings:** Issue automated operational alerts and schedule mandatory route compliance retraining for DRV-005 and DRV-007.
+5. **Digital Payment Cashback Acceleration:** Offer 5% instant cashback on Card, UPI, and Wallet settlements to compress cash share below 20%.
+
+---
+
 ## 📊 Week 4 — Power BI Dashboard Development
 
 **Project Title**: Ride Analytics & Revenue Intelligence Platform  
-**Sub-Topic**: Week 4 — Power BI Dashboard Development  
 **Program**: ZYROO Data Analytics Internship • Week 4  
-**Level**: Professional Data Analyst & Power BI Developer  
-**Deliverables**: Cleaned Production Dataset, Power BI DAX Measures Dictionary (`powerbi/ride-analytics-dashboard/dax_measures_week4.dax`), Interactive Power BI Dashboard (`powerbi/ride-analytics-dashboard/index.html`), 10 High-Resolution Analytical Charts (`screenshots/week-04/`), and Comprehensive Executive Report (`reports/week-04-powerbi-dashboard/week_04_powerbi_report.md`).
-
-[![Interactive Power BI Dashboard](https://img.shields.io/badge/Power%20BI-Interactive%20Dashboard-yellow?logo=powerbi&logoColor=black)](powerbi/ride-analytics-dashboard/index.html)
-[![DAX Measures Catalog](https://img.shields.io/badge/DAX-Measures%20Catalog-blue?logo=microsoft&logoColor=white)](powerbi/ride-analytics-dashboard/dax_measures_week4.dax)
-[![Week 4 Executive Report](https://img.shields.io/badge/Report-Executive%20BI%20Audit-success?logo=markdown&logoColor=white)](reports/week-04-powerbi-dashboard/week_04_powerbi_report.md)
-
----
-
-### 🎯 Dashboard Purpose & Business Capabilities
-The Week 4 Power BI Dashboard converts the multi-dimensional analytical findings from Week 2 (Demand & Passenger behavior) and Week 3 (Revenue intelligence & Driver productivity) into an executive-grade operational command center.
-
-1. **Executive KPI Section**: Real-time evaluation of Total Demand (100 rides), Completed Trips (85), Operational Churn (15 cancellations), Realized Inflow (PKR 36,466.00), Average Ticket Size (PKR 429.01), Fulfillment Efficiency (85.0%), and Customer Satisfaction (4.27 ★).
-2. **Ride Demand Dynamics**: Analyzes booking volume trends over time (Sep 01 - 10) and weekday distributions, pinpointing peak operational days (Thursday & Tuesday).
-3. **Geographic Origin-Destination Matrix**: Evaluates top passenger origin hubs (DHA commanding 38% volume) versus cross-city drop-off flows.
-4. **Financial Settlement & Vehicle Tier Intelligence**: Quantifies cash dependency (38.7%) versus the digital payment ecosystem (61.3%), alongside Premium tier yield superiority (PKR 558.05 avg fare).
-5. **Driver League Table**: Multi-metric evaluation of all 10 fleet operators across completed rides, revenue, passenger ratings, and completion percentages.
-6. **Six Interactive Executive Slicers**: Multi-dimensional filtering across Date, Ride Status, Pickup Location, Vehicle Tier, Payment Method, and Driver ID.
-
----
-
-### 📊 Implemented Power BI KPI Metrics
-
-| KPI Metric Card | Verified Value | Benchmark / Target | Operational Interpretation |
-| :--- | :--- | :--- | :--- |
-| **Total Rides** | **100 rides** | Baseline demand | Gross platform bookings dispatched over 10-day period |
-| **Completed Rides** | **85 rides** | $\ge 85\%$ | Successful billable fulfillment count |
-| **Cancelled Rides** | **15 rides** | $\le 10\%$ | Operational churn count |
-| **Total Revenue** | **PKR 36,466.00** | Net recognized inflow | Net realized cash & digital revenue from completed journeys |
-| **Average Fare** | **PKR 429.01** | PKR 400.00 | Average transaction ticket size per fulfilled trip |
-| **Completion Rate** | **85.0%** | $\ge 85\%$ | Platform fulfillment efficiency |
-| **Average Rating** | **4.27 ★** | $\ge 4.20 \text{ ★}$ | Weighted customer review rating on completed journeys |
-| **Average Distance** | **13.8 km** | $12.0 - 15.0 \text{ km}$| Mean completed route length |
-
----
-
-### 📈 Dashboard Visuals & Evidence Gallery
-All 10 charts are rendered at high resolution (300 DPI) inside `screenshots/week-04/` and `reports/week-04-powerbi-dashboard/charts/`:
-
-| Chart # | Visual Type | Title & Business Focus |
-| :---: | :--- | :--- |
-| **01** | Line Chart | **Rides by Date**: Ride Demand & Fulfillment Trends Over Time (Peak: Sep 05) |
-| **02** | Bar Chart | **Rides by Weekday**: Fleet Demand Comparison (Thursday 24, Tuesday 20) |
-| **03** | Horizontal Bar | **Top Pickup Locations**: Passenger Origin Volume Share (DHA 38.0%) |
-| **04** | Horizontal Bar | **Top Drop-off Locations**: Passenger Destination Distribution |
-| **05** | Horizontal Bar | **Revenue by Location**: Realized Earnings by Pickup Hub (DHA PKR 15.4k) |
-| **06** | Donut Chart | **Revenue by Payment Method**: Cash (38.7%) vs. Digital Channels (61.3%) |
-| **07** | Dual-Axis Bar | **Revenue & Avg Fare by Ride Type**: Standard volume vs. Premium ticket yield |
-| **08** | Table / Matrix | **Driver Performance Table**: Sortable Multi-Metric Operational League Table |
-| **09** | Column Chart | **Customer Ride Frequency**: Daily booking velocity and habituation proxy |
-| **10** | Architecture Card | **Technical Schema Audit**: Schema verification and telemetry documentation |
-
----
-
-### 💡 Top 5 Data-Driven Business Insights
-1. **The DHA Revenue Engine**: DHA drives **38.0% of total bookings** and **42.2% of total platform revenue (PKR 15,388.00)** with a low 7.9% cancellation rate, serving as the business's core financial engine.
-2. **The "Revenue Mirage" vs. Fleet Dependability**: While `DRV-002` achieved top raw revenue (PKR 4,484.00), they incurred cancellations. `DRV-001`, `DRV-004`, and `DRV-010` delivered **100% fulfillment** with zero cancellations while each earning over PKR 4,000.00.
-3. **Severe Operational Friction in Gulberg**: Gulberg represents the second largest origin hub (20 requests) but suffers an alarming **30.0% cancellation rate** and lowest average fare (PKR 397.07), leading to PKR 2,367.00 in leaked gross bookings.
-4. **Premium Tier Profit Density**: Premium rides command an average fare of **PKR 558.05** (+30.3% over Standard) across similar travel distances (13.5 km vs 12.5 km), proving high passenger willingness-to-pay.
-5. **Concentrated Cancellation Leakage**: Two drivers (`DRV-005` with 40% churn and `DRV-007` with 30% churn) caused **46.7% of all platform cancellations**, confirming that service friction is localized to specific drivers.
-
----
-
-### 🚀 Top 3 Practical Business Recommendations
-1. **Geofenced Surge / Fulfillment Bonus for Gulberg**: Deploy an automated **PKR 50 - PKR 75 incentive** for drivers accepting dispatches in Gulberg during peak afternoon windows to drop churn below 12%.
-2. **Multi-Factor Driver Priority Allocation**: Reserve high-ticket Premium dispatches for drivers maintaining $\ge 90\%$ completion and $\ge 4.3 \text{ ★}$ ratings (`DRV-001`, `DRV-004`, `DRV-010`).
-3. **5% Instant Digital Settlement Discount**: Partner with digital payment providers to offer 5% instant cashback on Card, UPI, and Wallet payments to drive cash dependency below 20%.
+**Deliverables**: Cleaned Production Dataset, Power BI DAX Measures Dictionary, Interactive Power BI Dashboard (`powerbi/week-04-dashboard/index.html`), 10 High-Resolution Analytical Charts (`screenshots/week-04/`), and Comprehensive Executive Report (`reports/week-04-powerbi-dashboard/week_04_powerbi_report.md`).
 
 ---
 
@@ -93,16 +144,14 @@ All 10 charts are rendered at high resolution (300 DPI) inside `screenshots/week
 
 **Project Title**: Ride Analytics & Revenue Intelligence Platform  
 **Sub-Topic**: Week 3 — Revenue & Driver Performance Analysis  
-**Program**: ZYROO Data Analytics Internship • Week 3  
-**Deliverables**: Cleaned 100-Row Production Dataset, Production SQL Script (`sql/week_03_revenue_driver_analysis.sql`), Executed Python Engine & Jupyter Notebook (`week-03/week_03_revenue_driver_analysis.ipynb`), 10 High-Resolution Analytical Charts, and Comprehensive 16-Section Executive Markdown Report (`reports/week-03/week_03_revenue_driver_analysis_report.md`).
+**Deliverables**: Cleaned 100-Row Production Dataset, Production SQL Script (`sql/week_03_revenue_driver_analysis.sql`), Executed Python Engine & Jupyter Notebook, and 10 Analytical Charts.
 
 ---
 
 ## 🚕 Week 2 — Ride Analytics & Revenue Intelligence Platform
 
 **Project Title**: Ride Analytics & Revenue Intelligence Platform  
-**Program**: ZYROO Data Analytics Internship • Week 2  
-**Deliverables**: Cleaned Dataset, Data Pipeline Script, DAX Measure Catalog, Interactive Dashboard, and Power BI Report Specification
+**Deliverables**: Cleaned Dataset, Data Pipeline Script, DAX Measure Catalog, Interactive Dashboard, and Power BI Report Specification.
 
 ---
 
@@ -117,57 +166,55 @@ The objective of **Task 01** was establishing an isolated analytics environment,
 ```text
 zyro-data-analyst-internship/
 │
-├── powerbi/                                # Week 4: Power BI Dashboard & Models
-│   └── ride-analytics-dashboard/
-│       ├── dax_measures_week4.dax          # Power BI DAX Measures Catalog
-│       ├── index.html                      # Interactive Power BI Dashboard Emulator
-│       └── tailwindcss.min.js              # Offline-bundled stylesheet engine
+├── powerbi/
+│   ├── week-05-advanced-analytics/        # Week 5: Advanced Decision Support Platform
+│   │   ├── dax_measures_week5.dax          # 20+ Advanced DAX & Scenario Measures
+│   │   ├── index.html                      # Multi-Page Decision Dashboard
+│   │   └── tailwindcss.min.js              # Offline-bundled stylesheet
+│   └── week-04-dashboard/                  # Week 4: Preserved Executive Dashboard
+│       ├── dax_measures_week4.dax
+│       ├── index.html
+│       └── tailwindcss.min.js
 │
-├── reports/                                # Centralized executive reporting
+├── reports/
+│   ├── week-05-advanced-bi/
+│   │   ├── week_05_decision_analytics_report.md # Comprehensive 10-section BI report
+│   │   └── charts/                         # 8 High-resolution decision charts (PNG)
 │   ├── week-04-powerbi-dashboard/
-│   │   ├── week_04_powerbi_report.md       # Comprehensive 11-section executive report
-│   │   └── charts/                         # 10 High-resolution analytical charts (PNG)
+│   │   └── week_04_powerbi_report.md
 │   └── week-03/
-│       ├── week_03_revenue_driver_analysis_report.md
-│       ├── driver_performance_ranking.csv
-│       ├── location_revenue_analysis.csv
-│       └── charts/
+│       └── week_03_revenue_driver_analysis_report.md
 │
-├── screenshots/                            # Visual evidence for internship evaluations
+├── screenshots/
+│   ├── week-05/ (8 PNGs - Decision Intelligence & Scenarios)
 │   ├── week-04/ (10 PNGs - Power BI Visual Evidence)
 │   ├── week-03/ (10 PNGs - Driver & Revenue Analysis)
-│   └── week-01/ (7 PNGs - Tooling & Environment Verification)
+│   └── week-01/ (7 PNGs - Tooling Verification)
 │
-├── data/                                   # Cleaned & standardized production datasets
+├── data/
 │   ├── rides_data_week3.csv                # Primary 100-row production telemetry
 │   └── rides_data_cleaned.csv
 │
-├── sql/                                    # Centralized SQL pipelines
+├── sql/
+│   ├── week_05_decision_analytics.sql      # Advanced ANSI SQL decision validation
 │   └── week_03_revenue_driver_analysis.sql
 │
-├── python/                                 # Automated data engines & scripts
-│   ├── generate_week4_charts.py            # High-resolution chart generator
-│   ├── build_pbi_html.py                   # Power BI dashboard compiler
-│   └── week-03-revenue-driver-analysis/
+├── python/
+│   ├── generate_week5_charts.py            # Week 5 300 DPI chart engine
+│   ├── build_week5_html.py                 # Multi-page dashboard compiler
+│   └── build_pbi_html.py
 │
-├── week-04/                                # Week 4 Quick-Launch Directory
-│   ├── index.html                          # Standalone offline dashboard
-│   └── tailwindcss.min.js
-│
-├── week-03/                                # Week 3 Deliverables
-├── week-02/                                # Week 2 Deliverables
-├── week-01/                                # Week 1 Deliverables
-│
+├── app.py                                  # Local Streamlit BI application
 ├── index.html                              # Root interactive web dashboard (offline-ready)
 ├── README.md                               # Master portfolio documentation
 ├── requirements.txt                        # Pinned dependencies
-└── .gitignore                              # Git exclusion rules
+└── vercel.json                             # 1-Click Vercel cloud deployment config
 ```
 
 ---
 
 ## 💻 Technical Environment
 * **Platform**: Windows 11 / PowerShell 5.1 / Python 3.13.15
-* **Analytics Stack**: Pandas, NumPy, Matplotlib, Seaborn, OpenPyXL, SQLite3, nbclient, nbformat
+* **Analytics Stack**: Pandas, NumPy, Matplotlib, Seaborn, OpenPyXL, SQLite3, Streamlit, Plotly
 * **Business Intelligence**: Power BI Desktop, Microsoft Excel 2016/365, Google Looker Studio
 * **Version Control**: Git 2.55 & GitHub CLI

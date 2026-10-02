@@ -1,0 +1,147 @@
+
+=== PAGE 1 ===
+ 
+ 
+ZYROO Data Analytics Internship | Week 5 | Page 1 
+ZYROO INTERNSHIP PROGRAM 
+ 
+ZYROO INTERNSHIP PROGRAM 
+DATA ANALYTICS INTERNSHIP 
+WEEK 5 
+ 
+Advanced Business Intelligence & Decision Analytics 
+Project: Ride Analytics & Revenue Intelligence Platform 
+Project Progress 
+Week 2: Ride demand, locations, customer behavior, peak periods, and new vs repeat customers were analyzed. 
+Week 3: Revenue patterns and driver performance were analyzed using operational and financial KPIs. 
+Week 4: These findings were transformed into an interactive Power BI dashboard with KPIs, visuals, and filters. 
+Current Stage: Week 5 upgrades the dashboard into an advanced analytical and decision-support system. Week 6 will be 
+the final end-to-end completion, validation, presentation, and evaluation. 
+Goal: Explain not only what happened, but why the observed patterns matter and what the business should investigate 
+next. 
+1. Understand the Business Problem 
+• Move beyond descriptive charts and analyze relationships between demand, revenue, customers, drivers, 
+cancellations,ratings, distance, ride type, and location. 
+• Every major conclusion must be supported by a measurable KPI, comparison, trend, or segment. 
+2. Advanced Data Model 
+• Review relationships, data types, duplicate IDs, missing keys, invalid dates, impossible distances, negative or zero 
+fares,and inconsistent statuses. 
+• Create or improve a dedicated Date table where applicable and document the main relationships. 
+• Keep source data, calculated columns, measures, and presentation logic clearly separated. 
+3. Advanced DAX Measures 
+• Create Total Revenue, Completed Rides, Cancellation Rate, Completion Rate, Average Fare, Average Distance, 
+AverageRating, and Revenue per Completed Ride. 
+• Add previous-period values, absolute change, percentage change, ranking, and contribution-percentage measures 
+wheresupported. 
+• Validate important measures against SQL or Python calculations. 
+4. Revenue & Segment Intelligence 
+• Compare revenue by month, location, ride type, payment method, and driver. 
+• Identify high-volume/low-revenue and lower-volume/high-average-fare segments. 
+• Do not claim profitability unless cost data exists. 
+
+=== PAGE 2 ===
+ 
+ 
+ZYROO Data Analytics Internship | Week 5 | Page 2 
+ZYROO INTERNSHIP PROGRAM 
+5. Customer Segmentation 
+• Create meaningful customer segments using ride frequency or available behavior data. 
+• Compare high-frequency and low-frequency customers, repeat-customer contribution, average fare, ride frequency, 
+andpreferred ride types. 
+• Document the evidence and business meaning of each segment. 
+6. Driver Performance Intelligence 
+• Build a driver view using rides, completed rides, cancellations, revenue, rating, and completion rate. 
+• Create a clearly documented ranking metric and compare drivers against relevant averages. 
+• Investigate unusual combinations such as high volume with high cancellation rate. 
+7. Cancellation & Operational Analysis 
+• Analyze cancellation rate by hour, weekday, location, ride type, and other available dimensions. 
+• Identify where cancellations concentrate and whether they overlap with high-demand periods. 
+• Clearly state that correlation does not prove causation. 
+8. Advanced Power BI Features 
+• Add a dedicated advanced-analysis page. 
+• Use appropriate features such as drill-through, report tooltips, bookmarks, decomposition tree, key influencers, 
+conditionalformatting, or dynamic titles where supported. 
+• Advanced does not mean overcrowded. 
+9. Scenario / What-If Analysis 
+• Create at least one practical scenario if the dataset supports it, such as estimated revenue change from a 
+hypotheticalchange in completed rides, average fare, or cancellation rate. 
+• Clearly label scenario results as estimates and document all assumptions. 
+10. Business Questions 
+• Which periods or locations combine high demand with high cancellation rates? 
+• Which segments generate the largest share of completed-ride revenue? 
+• Which customer segments contribute most to rides or revenue? 
+• Which drivers differ most from the relevant benchmark? 
+• Which locations have strong demand but weaker revenue per completed ride? 
+• Which areas deserve further investigation before the final project? 
+11. Advanced Business Insights 
+• Produce at least 8 evidence-based insights. 
+• Include findings covering demand, revenue, customers, drivers, and cancellations. 
+• Use actual values and percentages from the dataset wherever possible. 
+12. Business Recommendations 
+• Produce at least 5 practical recommendations linked directly to findings. 
+• Recommendations may address peak-period supply, cancellations, retention, driver operations, pricing analysis, 
+orlocation strategy. 
+• Separate dataset-supported recommendations from ideas requiring additional data or testing. 
+=== PAGE 3 ===
+ 
+ 
+ZYROO Data Analytics Internship | Week 5 | Page 3 
+ZYROO INTERNSHIP PROGRAM 
+13. Week 5 Deliverable 
+• Advanced Power BI analytical dashboard preserving the Week 4 dashboard. 
+• Advanced DAX and time/segment comparisons; customer segmentation; driver intelligence; cancellation 
+analysis;scenario analysis where applicable; 8+ insights; 5+ recommendations; methodology and data-quality notes. 
+14. GitHub Submission 
+• Push Week 5 work to the existing repository. 
+• Include the Power BI file where allowed, screenshots, analysis notes, and SQL/Python validation where used. 
+• Add a Week 5 README section covering the model, major measures, advanced features, insights, limitations, 
+andrecommendations. 
+15. Suggested GitHub Structure 
+• ride-analytics-revenue-intelligence/ 
+• data/ 
+• sql/ 
+• python/ 
+• powerbi/week-04-dashboard/ 
+• powerbi/week-05-advanced-analytics/ 
+• reports/week-05-advanced-bi/ 
+• screenshots/week-05/ 
+• README.md 
+16. Submission Checklist 
+■ Advanced data model reviewed 
+■ Date table/time analysis implemented where applicable 
+■ Advanced DAX measures created and validated 
+■ Revenue and segmentation completed 
+■ Customer segmentation completed 
+■ Driver performance intelligence completed 
+■ Cancellation analysis completed 
+■ Advanced Power BI features added 
+■ Scenario analysis completed where applicable 
+■ 8+ evidence-based insights 
+■ 5+ recommendations 
+■ Limitations documented 
+■ GitHub and README updated 
+17. Week 5 Success Criteria 
+• The intern can build and explain reliable advanced DAX measures. 
+• The dashboard responds correctly to filters and comparisons. 
+• Demand, revenue, customer, driver, and operational metrics are connected. 
+• Findings are evidence-based and clearly separated from assumptions. 
+=== PAGE 4 ===
+ 
+ 
+ZYROO Data Analytics Internship | Week 5 | Page 4 
+ZYROO INTERNSHIP PROGRAM 
+• Another analyst can understand and review the work from the documentation. 
+18. Final Week 5 Flow 
+• Week 4 Dashboard → Advanced Data Model → DAX & KPI Layer → Segmentation → Driver & Cancellation Intelligence 
+→ Scenario Analysis → Evidence-Based Insights → Business Recommendations → Week 6 Final Project 
+19. Next Stage: Week 6 
+• Week 6 will be the final and most comprehensive stage: final validation, advanced dashboard refinement, executive 
+reporting, complete business recommendations, full GitHub documentation, final presentation, and project evaluation. 
+ 
+ 
+20. Official ZYROO Links 
+Website https://zyroo.org 
+Internships https://zyroo.org/internships 
+LinkedIn https://www.linkedin.com/company/zyr0-co/ 
+Contact https://zyroo.org/contact 
+ 

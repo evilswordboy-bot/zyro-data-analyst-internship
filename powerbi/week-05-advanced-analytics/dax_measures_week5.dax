@@ -1,0 +1,202 @@
+/*
+========================================================================================
+ ZYROO DATA ANALYTICS INTERNSHIP • WEEK 5
+ RIDE ANALYTICS & REVENUE INTELLIGENCE PLATFORM
+ Advanced DAX Measures & Decision Analytics Specification
+========================================================================================
+ Tables:
+   - 'Fact_Rides' (Primary telemetry: 100 records)
+   - 'Dim_Date'   (Dedicated Date dimension)
+========================================================================================
+*/
+
+// ==========================================
+// 1. BASELINE CORE OPERATIONAL MEASURES
+// ==========================================
+
+Total Rides = 
+COUNTROWS('Fact_Rides')
+
+Completed Rides = 
+CALCULATE(
+    COUNTROWS('Fact_Rides'),
+    'Fact_Rides'[ride_status] = "Completed"
+)
+
+Cancelled Rides = 
+CALCULATE(
+    COUNTROWS('Fact_Rides'),
+    'Fact_Rides'[ride_status] = "Cancelled"
+)
+
+Completion Rate = 
+DIVIDE([Completed Rides], [Total Rides], 0)
+
+Cancellation Rate = 
+DIVIDE([Cancelled Rides], [Total Rides], 0)
+
+
+// ==========================================
+// 2. FINANCIAL & VALUE INTELLIGENCE
+// ==========================================
+
+Total Revenue = 
+CALCULATE(
+    SUM('Fact_Rides'[fare]),
+    'Fact_Rides'[ride_status] = "Completed"
+)
+
+Gross Booking Value = 
+SUM('Fact_Rides'[fare])
+
+Revenue Lost to Churn = 
+CALCULATE(
+    SUM('Fact_Rides'[fare]),
+    'Fact_Rides'[ride_status] = "Cancelled"
+)
+
+Average Fare = 
+CALCULATE(
+    AVERAGE('Fact_Rides'[fare]),
+    'Fact_Rides'[ride_status] = "Completed"
+)
+
+Revenue per Completed Ride = 
+DIVIDE([Total Revenue], [Completed Rides], 0)
+
+Revenue per Dispatched Ride = 
+DIVIDE([Total Revenue], [Total Rides], 0)
+
+Average Distance = 
+CALCULATE(
+    AVERAGE('Fact_Rides'[distance_km]),
+    'Fact_Rides'[ride_status] = "Completed"
+)
+
+Average Rating = 
+CALCULATE(
+    AVERAGE('Fact_Rides'[rating]),
+    'Fact_Rides'[ride_status] = "Completed",
+    NOT(ISBLANK('Fact_Rides'[rating]))
+)
+
+
+// ==========================================
+// 3. ADVANCED TIME INTELLIGENCE & PERIOD COMPARISON
+// ==========================================
+
+Previous Day Revenue = 
+CALCULATE(
+    [Total Revenue],
+    DATEADD('Dim_Date'[Date], -1, DAY)
+)
+
+Revenue Daily Change = 
+IF(
+    ISBLANK([Previous Day Revenue]),
+    BLANK(),
+    [Total Revenue] - [Previous Day Revenue]
+)
+
+Revenue Daily Change % = 
+DIVIDE([Revenue Daily Change], [Previous Day Revenue], 0)
+
+Previous Day Rides = 
+CALCULATE(
+    [Total Rides],
+    DATEADD('Dim_Date'[Date], -1, DAY)
+)
+
+Rides Daily Change % = 
+DIVIDE([Total Rides] - [Previous Day Rides], [Previous Day Rides], 0)
+
+
+// ==========================================
+// 4. RANKING & CONTRIBUTION INTELLIGENCE
+// ==========================================
+
+Location Revenue Rank = 
+RANKX(
+    ALL('Fact_Rides'[pickup_location]),
+    [Total Revenue],
+    ,
+    DESC,
+    Dense
+)
+
+Driver Revenue Rank = 
+RANKX(
+    ALL('Fact_Rides'[driver_id]),
+    [Total Revenue],
+    ,
+    DESC,
+    Dense
+)
+
+Location Revenue Contribution % = 
+DIVIDE(
+    [Total Revenue],
+    CALCULATE([Total Revenue], ALL('Fact_Rides'[pickup_location])),
+    0
+)
+
+Ride Type Revenue Contribution % = 
+DIVIDE(
+    [Total Revenue],
+    CALCULATE([Total Revenue], ALL('Fact_Rides'[ride_type])),
+    0
+)
+
+Payment Channel Contribution % = 
+DIVIDE(
+    [Total Revenue],
+    CALCULATE([Total Revenue], ALL('Fact_Rides'[payment_method])),
+    0
+)
+
+
+// ==========================================
+// 5. DRIVER BENCHMARK COMPARISON MEASURES
+// ==========================================
+
+Cohort Average Revenue = 
+CALCULATE(
+    DIVIDE([Total Revenue], DISTINCTCOUNT('Fact_Rides'[driver_id]), 0),
+    ALL('Fact_Rides'[driver_id])
+)
+
+Driver Revenue vs Benchmark = 
+[Total Revenue] - [Cohort Average Revenue]
+
+Cohort Average Completion Rate = 
+CALCULATE(
+    [Completion Rate],
+    ALL('Fact_Rides'[driver_id])
+)
+
+Driver Completion vs Benchmark = 
+[Completion Rate] - [Cohort Average Completion Rate]
+
+
+// ==========================================
+// 6. WHAT-IF SCENARIO PARAMETERS & DYNAMIC MODELING
+// ==========================================
+
+// Parameter 1: Hypothetical % Change in Completed Rides (-20% to +30%)
+Scenario_Ride_Growth_Pct = 0.10 // 10% default growth parameter
+
+Estimated Scenario Revenue (Rides Growth) = 
+[Total Revenue] * (1 + [Scenario_Ride_Growth_Pct])
+
+Estimated Revenue Impact (Rides Growth) = 
+[Estimated Scenario Revenue (Rides Growth)] - [Total Revenue]
+
+
+// Parameter 2: Churn Recovery % (Reclaiming Cancelled Revenue 0% to 100%)
+Scenario_Churn_Recovery_Pct = 0.50 // 50% churn recovery parameter
+
+Estimated Recovered Churn Revenue = 
+[Revenue Lost to Churn] * [Scenario_Churn_Recovery_Pct]
+
+Estimated New Total Revenue (Churn Recovery) = 
+[Total Revenue] + [Estimated Recovered Churn Revenue]
