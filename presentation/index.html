@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZYROO Final Capstone Presentation — Ride Analytics & Revenue Intelligence</title>
+    <!-- Offline Tailwind with CDN fallback -->
+    <script src="../tailwindcss.min.js"></script>
+    <script>
+        if (!window.tailwind) {
+            document.write('<script src="https://cdn.tailwindcss.com"><\/script>');
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0b1120; color: #f8fafc; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .slide { display: none; }
+        .slide.active { display: flex; }
+        .glow { box-shadow: 0 0 35px -5px rgba(56, 189, 248, 0.25); }
+    </style>
+</head>
+<body class="h-screen w-screen overflow-hidden flex flex-col justify-between select-none">
+
+    <!-- Top Navigation Bar -->
+    <header class="h-16 border-b border-slate-800 px-8 flex items-center justify-between bg-slate-900/80 backdrop-blur z-20">
+        <div class="flex items-center space-x-3">
+            <span class="px-2.5 py-1 bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 rounded text-xs font-bold tracking-wider">ZYROO CAPSTONE</span>
+            <span class="text-slate-400 text-sm hidden md:inline">| Ride Analytics & Revenue Intelligence Platform</span>
+        </div>
+        <div class="flex items-center space-x-6 text-sm">
+            <div class="text-slate-400">Slide <span id="current-slide" class="text-cyan-400 font-bold">1</span> / <span id="total-slides" class="text-slate-300">15</span></div>
+            <div class="flex items-center space-x-2">
+                <button onclick="prevSlide()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded border border-slate-700 transition flex items-center text-xs font-semibold">◀ Prev</button>
+                <button onclick="nextSlide()" class="px-3 py-1.5 bg-cyan-600 hover:bg-cyan-500 text-white rounded font-semibold transition flex items-center text-xs">Next ▶</button>
+            </div>
+            <a href="../index.html" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-400 text-xs rounded border border-slate-700">Open Dashboard ↗</a>
+        </div>
+    </header>
+
+    <!-- Presentation Stage -->
+    <main class="flex-1 overflow-y-auto p-6 md:p-12 flex items-center justify-center">
+
+        <!-- SLIDE 1: Title & Executive Mandate -->
+        <div class="slide active flex-col max-w-5xl w-full">
+            <div class="mb-4 inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-800/50 text-cyan-400 text-xs font-medium w-max">
+                <span>🎯 FINAL MASTERPIECE CAPSTONE BRIEFING</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+                Ride Analytics & Revenue Intelligence Platform
+            </h1>
+            <p class="text-xl text-slate-400 mb-8 max-w-3xl">
+                Transforming raw urban transit telemetry into executive decisions, fleet optimization, and top-line margin expansion.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-xl">
+                    <div class="text-cyan-400 text-2xl font-bold mono">$42,962.00</div>
+                    <div class="text-slate-400 text-sm mt-1">Gross Booked Value (100 Rides)</div>
+                </div>
+                <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-xl">
+                    <div class="text-emerald-400 text-2xl font-bold mono">$36,466.00</div>
+                    <div class="text-slate-400 text-sm mt-1">Realized Net Cash (85.0% Comp)</div>
+                </div>
+                <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-xl">
+                    <div class="text-rose-400 text-2xl font-bold mono">$6,496.00</div>
+                    <div class="text-slate-400 text-sm mt-1">Operational Leakage (15.0% Canc)</div>
+                </div>
+            </div>
+            <div class="text-xs text-slate-500 mono flex items-center space-x-4">
+                <span>Presenter: Senior BI Consultant</span>
+                <span>•</span>
+                <span>Date: October 2026</span>
+                <span>•</span>
+                <span>Multi-Engine Verified (Python ↔ PostgreSQL ↔ DAX)</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: Business Problem & Analytical Objectives -->
+        <div class="slide flex-col max-w-5xl w-full">
+            <span class="text-xs font-bold text-cyan-400 tracking-wider uppercase mb-2">Slide 02 • Context</span>
+            <h2 class="text-3xl font-bold text-white mb-6">The Commercial Challenge in Urban Mobility</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                <div class="bg-slate-900/70 border border-slate-800 p-6 rounded-xl space-y-4">
+                    <h3 class="text-lg font-semibold text-rose-400 flex items-center">🚨 The Friction Points</h3>
+                    <ul class="text-sm text-slate-300 space-y-3">
+                        <li>• <strong class="text-white">15.0% Cancellation Rate:</strong> $6,496 in gross bookings lost between booking match and pickup.</li>
+                        <li>• <strong class="text-white">Weekend Supply Gap:</strong> Weekend cancellations hit 23.8% (Sunday reached 42.9%).</li>
+                        <li>• <strong class="text-white">Spatial Bottlenecks:</strong> Gulberg area exhibits 30.0% cancellation risk.</li>
+                        <li>• <strong class="text-white">Driver Asymmetry:</strong> 2 drivers create 46.7% of all fleet cancellations.</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-900/70 border border-slate-800 p-6 rounded-xl space-y-4">
+                    <h3 class="text-lg font-semibold text-emerald-400 flex items-center">🎯 Analytical Mandate</h3>
+                    <ul class="text-sm text-slate-300 space-y-3">
+                        <li>• <strong class="text-white">Triangulate Truth:</strong> Establish absolute mathematical agreement across Python, SQL, and Power BI.</li>
+                        <li>• <strong class="text-white">Isolate Root Causes:</strong> Separate operational driver factors from geographic demand surges.</li>
+                        <li>• <strong class="text-white">Simulate Interventions:</strong> Model +8% to +9.5% revenue expansion through target dispatch adjustments.</li>
+                        <li>• <strong class="text-white">Actionable Roadmap:</strong> Deliver 7 prioritized recommendations with measurable KPIs.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: Dataset Architecture & Ingestion -->
+        <div class="slide flex-col max-w-5xl w-full">
+            <span class="text-xs font-bold text-cyan-400 tracking-wider uppercase mb-2">Slide 03 • Data Foundation</span>
+            <h2 class="text-3xl font-bold text-white mb-6">Standardized Transactional Pipeline</h2>
+            <div class="bg-slate-900/80 border border-slate-800 p-6 rounded-xl mb-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="p-4 bg-slate-800/50 rounded-lg">
+                        <div class="text-2xl font-bold text-cyan-400 mono">100</div>
+                        <div class="text-xs text-slate-400 mt-1">Verified Rides</div>
+                    </div>
+                    <div class="p-4 bg-slate-800/50 rounded-lg">
+                        <div class="text-2xl font-bold text-cyan-400 mono">10</div>
+                        <div class="text-xs text-slate-400 mt-1">Operating Days</div>
+                    </div>
+                    <div class="p-4 bg-slate-800/50 rounded-lg">
+                        <div class="text-2xl font-bold text-cyan-400 mono">10</div>
+                        <div class="text-xs text-slate-400 mt-1">Fleet Drivers</div>
+                    </div>
+                    <div class="p-4 bg-slate-800/50 rounded-lg">
+                        <div class="text-2xl font-bold text-cyan-400 mono">5</div>
+                        <div class="text-xs text-slate-400 mt-1">Urban Zones</div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-sm text-slate-400 leading-relaxed">
+                Ingested from <code class="text-cyan-300 mono">data/rides_data_week3.csv</code> across 11 standardized attributes. Enforces strict transactional typing across ride identifiers, timestamps, geolocations, distances, payment methods, vehicle classes, and fulfillment flags. Zero synthetic fabrication.
+            </p>
+        </div>
+
+        <!-- SLIDE 4: Data Quality Scorecard -->
+        <div class="slide flex-col max-w-5xl w-full">
+            <span class="text-xs font-bold text-cyan-400 tracking-wider uppercase mb-2">Slide 04 • Quality Assurance</span>
+            <h2 class="text-3xl font-bold text-white mb-4">Data Quality Audit & Verification</h2>
+            <div class="overflow-x-auto bg-slate-900/80 border border-slate-800 rounded-xl mb-4">
+                <table class="w-full text-xs text-left">
+                    <thead class="bg-slate-800 text-slate-300 uppercase font-semibold">
+                        <tr>
+                            <th class="p-3">Check Domain</th>
+                            <th class="p-3">Detected State</th>
+                            <th class="p-3">Remediation Action</th>
+                            <th class="p-3">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                        <tr>
+                            <td class="p-3 font-semibold text-white">Missing Values</td>
+                            <td class="p-3">15 nulls in Rating</td>
+                            <td class="p-3">Verified 100% correlate with Cancelled rides; preserved as NULL</td>
+                            <td class="p-3 text-emerald-400 font-bold">✅ PASS</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold text-white">Duplicate IDs</td>
+                            <td class="p-3">0 duplicate Ride_IDs</td>
+                            <td class="p-3">Enforced primary key uniqueness</td>
+                            <td class="p-3 text-emerald-400 font-bold">✅ PASS</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold text-white">Fare & Distance</td>
+                            <td class="p-3">Fares $120–$780; Dist 3.1–25.8km</td>
+                            <td class="p-3">Verified strictly within physical operational boundaries</td>
+                            <td class="p-3 text-emerald-400 font-bold">✅ PASS</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold text-white">Multi-Engine Test</td>
+                            <td class="p-3">Python ↔ SQL ↔ DAX</td>
+                            <td class="p-3">Automated validation test script returned 0.00% discrepancy</td>
+                            <td class="p-3 text-emerald-400 font-bold">✅ PASS</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-xs text-slate-500">
+                Key Quality Takeaway: Missing ratings are structural, not dirty data. Passengers who cancel cannot review drivers.
+            </p>
+        </div>
+
+        <!-- SLIDE 5: Star Schema Architecture -->
+        <div class="slide flex-col max-w-5xl w-full">
+            <span class="text-xs font-bold text-cyan-400 tracking-wider uppercase mb-2">Slide 05 • Data Architecture</span>
+            <h2 class="text-3xl font-bold text-white mb-6">Enterprise Star Schema Model</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
+                    <h3 class="text-cyan-400 font-bold text-sm mb-3">FACT TABLE: Fact_Rides</h3>
+                    <ul class="text-xs text-slate-300 space-y-2 mono">
+                        <li>• Ride_ID (PK)</li>
+                        <li>• Date_FK ➔ Dim_Date</li>
+                        <li>• Driver_FK ➔ Dim_Driver</li>
+                        <li>• Pickup_Loc_FK ➔ Dim_Location</li>
+                        <li>• Ride_Type_FK ➔ Dim_RideType</li>
+                        <li>• Payment_Method_FK ➔ Dim_PayMethod</li>
+                        <li>• Fare, Distance_km, Rating, Ride_Status</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
+                    <h3 class="text-emerald-400 font-bold text-sm mb-3">ARCHITECTURAL ADVANTAGES</h3>
+                    <ul class="text-xs text-slate-300 space-y-3">
+                        <li>• <strong class="text-white">Strict 1-to-Many Relationships:</strong> Eliminates circular filtering paths and Cartesian bloat.</li>
+                        <li>• <strong class="text-white">Optimized VertiPaq Compression:</strong> Centralizes numeric measures in a dedicated DAX container.</li>
+                        <li>• <strong class="text-white">Zero Calculation Drift:</strong> All reports query the exact same standardized KPI DAX definitions.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: Executive KPI Command Center -->
+        <div class="slide flex-col max-w-5xl w-full">
+            <span class="text-xs font-bold text-cyan-400 tracking-wider uppercase mb-2">Slide 06 • Executive Dashboard</span>
+            <h2 class="text-3xl font-bold text-white mb-6">Executive KPI Command Center</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <div class="bg-slate-900/90 border border-slate-800 p-5 rounded-xl">
+                    <div class="text-xs text-slate-400">Total Bookings</div>
+                    <div class="text-3xl font-bold text-white mono mt-1">100</div>
+                    <div class="text-xs text-cyan-400 mt-2">10-Day Volume</div>
+                </div>
+                <div class="bg-slate-900/90 border border-slate-800 p-5 rounded-xl">
+                    <div class="text-xs text-slate-400">Completion Rate</div>
+                    <div class="text-3xl font-bold text-emerald-400 mono mt-1">85.0%</div>
+                    <div class="text-xs text-slate-400 mt-2">85 Trips Fulfilled</div>
+                </div>
+                <div class="bg-slate-900/90 border border-slate-800 p-5 rounded-xl">
+                    <div class="text-xs text-slate-400">Cancellation Rate</div>
+                    <div class="text-3xl font-bold text-rose-400 mono mt-1">15.0%</div>
+                    <div class="text-xs text-rose-300 mt-2">15 Trips Dropped</div>
+                </div>
+                <div class="bg-slate-900/90 border border-slate-800 p-5 rounded-xl">
+                    <div class="text-xs text-slate-400">Net Realized Cash</div>
+                    <div class="text-3xl font-bold text-cyan-400 mono mt-1">$36,466</div>
+                    <div class="text-xs text-slate-400 mt-2">$429.01 Avg Fare</div>
+                </div>
+            </div>
+            <div class="bg-cyan-950/30 border border-cyan-800/40 p-5 rounded-xl text-sm text-cyan-200">
+                💡 <strong>Executive Synthesis:</strong> The platform operates at healthy transaction throughput, but experiences $6,496 in preventable pre-trip leakage. Reclaiming half of these lost bookings unlocks an instant $3.46K in margin without acquiring a single new driver.
+            </div>
+        </div>
+
+        <!-- SLIDE 7: Temporal Demand Intelligence -->
+        <div class="slide flex-col max-w-5xl w-full">
+            <span class="text-xs font-bold text-cyan-400 tracking-wider uppercase mb-2">Slide 07 • Demand Patterns</span>
+            <h2 class="text-3xl font-bold text-white mb-6">Temporal Demand & Weekend Volatility</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
+                    <h3 class="text-sm font-bold text-slate-200 mb-3">WEEKDAY PERFORMANCE (Mon–Fri)</h3>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex justify-between py-1 border-b border-slate-800"><span>Ride Volume</span><span class="font-bold mono text-white">79 Rides</span></div>
+                        <div class="flex justify-between py-1 border-b border-slate-800"><span>Realized Revenue</span><span class="font-bold mono text-white">$29,370</span></div>
+                        <div class="flex justify-between py-1 border-b border-slate-800"><span>Cancellation Rate</span><span class="font-bold mono text-emerald-400">12.66%</span></div>
+                    </div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
+                    <h3 class="text-sm font-bold text-rose-400 mb-3">WEEKEND PERFORMANCE (Sat–Sun)</h3>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex justify-between py-1 border-b border-slate-800"><span>Ride Volume</span><span class="font-bold mono text-white">21 Rides</span></div>
+                        <div class="flex justify-between py-1 border-b border-slate-800"><span>Realized Revenue</span><span class="font-bold mono text-white">$7,096</span></div>
+                        <div class="flex justify-between py-1 border-b border-slate-800"><span>Cancellation Rate</span><span class="font-bold mono text-rose-400">23.81% (Almost 2x)</span></div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-xs text-slate-400">
+                Peak day occurred Saturday Sept 5 (14 rides, $5,411 rev). Highest friction occurred Sunday Sept 6 (42.9% cancellation rate, 3 of 7 rides failed).
+            </p>
+        </div>
+
+        <!-- SLIDE 8: Revenue Intelligence -->
+        <div class="slide flex-col max-w-5xl w-full">
+            <span class="text-xs font-bold text-cyan-400 tracking-wider uppercase mb-2">Slide 08 • Revenue Analytics</span>
+            <h2 class="text-3xl font-bold text-white mb-6">Service Tier Economics</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl">
+                    <div class="text-amber-400 font-bold text-sm">STANDARD TIER</div>
+                    <div class="text-2xl font-bold text-white mono mt-2">$14,136</div>
+                    <div class="text-xs text-slate-400 mt-1">38.8% Revenue Share</div>
+                    <div class="mt-4 pt-3 border-t border-slate-800 text-xs text-rose-400 font-medium">
+                        ⚠️ 7 Cancellations ($3,099 Lost)
+                    </div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl">
+                    <div class="text-purple-400 font-bold text-sm">PREMIUM TIER</div>
+                    <div class="text-2xl font-bold text-white mono mt-2">$12,277</div>
+                    <div class="text-xs text-slate-400 mt-1">33.7% Revenue Share</div>
+                    <div class="mt-4 pt-3 border-t border-slate-800 text-xs text-cyan-400 font-medium">
+                        💎 $556.19 Avg Fare (19.4 km)
+                    </div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl">
+                    <div class="text-emerald-400 font-bold text-sm">ECONOMY TIER</div>
+                    <div class="text-2xl font-bold text-white mono mt-2">$10,053</div>
+                    <div class="text-xs text-slate-400 mt-1">27.6% Revenue Share</div>
+                    <div class="mt-4 pt-3 border-t border-slate-800 text-xs text-emerald-400 font-medium">
+                        🛡️ 88.6% Completion Rate
+                    </div>
+                </div>
+            </div>
+            <p class="text-xs text-slate-400">
+                Premium drives the highest ticket value, but Standard generates the largest volume with severe operational friction.
+            </p>
+        </div>
+
+        <!-- SLIDE 9: Customer Proxy & Corridors -->
+        <div class="slide flex-col max-w-5xl w-full">
+            <span class="text-xs font-bold text-cyan-400 tracking-wider uppercase mb-2">Slide 09 • Route Corridors</span>
+            <h2 class="text-3xl font-bold text-white mb-6">Top Corridors & Behavioral Cohorts</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl">
+                    <div class="text-xs font-semibold text-cyan-400">DHA ➔ Gulberg</div>
+                    <div class="text-xl font-bold text-white mono mt-1">10 Rides</div>
+                    <div class="text-xs text-slate-400">$4,032 Realized (90% Comp)</div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl">
+                    <div class="text-xs font-semibold text-cyan-400">DHA ➔ Johar Town</div>
+                    <div class="text-xl font-bold text-white mono mt-1">10 Rides</div>
+                    <div class="text-xs text-slate-400">$3,828 Realized (90% Comp)</div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl">
+                    <div class="text-xs font-semibold text-cyan-400">DHA ➔ Bahria Town</div>
+                    <div class="text-xl font-bold text-white mono mt-1">9 Rides</div>
+                    <div class="text-xs text-slate-400">$3,660 Realized (89% Comp)</div>
+                </div>
+            </div>
+            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-300">
+                <strong>Corridor Concentration:</strong> DHA originates 38% of all platform trips ($16.67K gross). Inter-corridor long trips produce the highest gross margins.
+            </div>
+        </div>
+
+        <!-- SLIDE 10: Driver Benchmarking Quadrant -->
+        <div class="slide flex-col max-w-5xl w-full">
+            <span class="text-xs font-bold text-cyan-400 tracking-wider uppercase mb-2">Slide 10 • Driver Performance</span>
+            <h2 class="text-3xl font-bold text-white mb-6">Driver Fleet Performance Matrix</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl">
+                    <h3 class="text-xs font-bold text-emerald-400 mb-3">🛡️ TOP BENCHMARK PERFORMERS</h3>
+                    <ul class="text-xs text-slate-300 space-y-2 mono">
+                        <li>• <strong class="text-white">DRV-002:</strong> 9/10 Comp | $4,484 Rev (Fleet High) | 4.33 ★</li>
+                        <li>• <strong class="text-white">DRV-001:</strong> 10/10 Comp | $4,237 Rev | 0 Cancellations</li>
+                        <li>• <strong class="text-white">DRV-010:</strong> 10/10 Comp | $4,055 Rev | 0 Cancellations</li>
+                        <li>• <strong class="text-white">DRV-004:</strong> 10/10 Comp | $4,007 Rev | 0 Cancellations</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl">
+                    <h3 class="text-xs font-bold text-rose-400 mb-3">🚨 DRIVERS REQUIRING ATTENTION</h3>
+                    <ul class="text-xs text-slate-300 space-y-2 mono">
+                        <li>• <strong class="text-rose-400">DRV-005:</strong> 4 Cancellations (40% rate) | $2,014 Lost</li>
+                        <li>• <strong class="text-rose-400">DRV-007:</strong> 3 Cancellations (30% rate) | 4.77 ★ (High Rating)</li>
+                        <li>• <strong class="text-amber-400">DRV-006:</strong> 2 Cancellations | 3.91 ★ (Sub-4.0 Rating)</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="text-xs text-rose-300 bg-rose-950/30 p-3 rounded-lg border border-rose-900/50">
+                CRITICAL FINDING: DRV-005 and DRV-007 alone account for 7 of the 15 cancellations (46.7%) and $3,410 in lost revenue.
+            </p>
+        </div>
+
+        <!-- SLIDE 11: Operations Hotspot Diagnostics -->
+        <div class="slide flex-col max-w-5xl w-full">
+            <span class="text-xs font-bold text-cyan-400 tracking-wider uppercase mb-2">Slide 11 • Spatial Friction</span>
+            <h2 class="text-3xl font-bold text-white mb-6">Cancellation Hotspot Diagnostics</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl">
+                    <div class="text-rose-400 font-bold text-sm">GULBERG HOTSPOT</div>
+                    <div class="text-2xl font-bold text-white mono mt-2">30.0% Canc</div>
+                    <div class="text-xs text-slate-400 mt-1">6 Canc / 20 Total</div>
+                    <div class="text-xs text-rose-400 mt-2">$2,443.00 Lost Revenue</div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl">
+                    <div class="text-amber-400 font-bold text-sm">JOHAR TOWN</div>
+                    <div class="text-2xl font-bold text-white mono mt-2">21.4% Canc</div>
+                    <div class="text-xs text-slate-400 mt-1">3 Canc / 14 Total</div>
+                    <div class="text-xs text-amber-400 mt-2">$1,259.00 Lost Revenue</div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl">
+                    <div class="text-emerald-400 font-bold text-sm">DHA ANCHOR</div>
+                    <div class="text-2xl font-bold text-white mono mt-2">7.9% Canc</div>
+                    <div class="text-xs text-slate-400 mt-1">3 Canc / 38 Total</div>
+                    <div class="text-xs text-emerald-400 mt-2">Highly Liquid & Stable</div>
+                </div>
+            </div>
+            <p class="text-xs text-slate-400">
+                A passenger hailing from Gulberg is 3.8x more likely to face cancellation than a passenger hailing from DHA.
+            </p>
+        </div>
+
+        <!-- SLIDE 12: Payment Rails Analysis -->
+        <div class="slide flex-col max-w-5xl w-full">
+            <span class="text-xs font-bold text-cyan-400 tracking-wider uppercase mb-2">Slide 12 • Payment Rails</span>
+            <h2 class="text-3xl font-bold text-white mb-6">Settlement Channel Friction</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+                    <div class="text-xs text-slate-400">UPI Rail</div>
+                    <div class="text-xl font-bold text-emerald-400 mono mt-1">9.1% Canc</div>
+                    <div class="text-xs text-slate-400 mt-2">$8,181 Realized</div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+                    <div class="text-xs text-slate-400">Card Rail</div>
+                    <div class="text-xl font-bold text-emerald-400 mono mt-1">10.7% Canc</div>
+                    <div class="text-xs text-slate-400 mt-2">$10,801 Realized</div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+                    <div class="text-xs text-slate-400">Cash Settlement</div>
+                    <div class="text-xl font-bold text-rose-400 mono mt-1">17.9% Canc</div>
+                    <div class="text-xs text-slate-400 mt-2">$14,115 Realized</div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+                    <div class="text-xs text-slate-400">Wallet Rail</div>
+                    <div class="text-xl font-bold text-rose-400 mono mt-1">27.3% Canc</div>
+                    <div class="text-xs text-slate-400 mt-2">$3,369 Realized</div>
+                </div>
+            </div>
+            <p class="text-xs text-slate-400">
+                Digital rails (UPI/Card) exhibit ~10% cancellation, while Cash/Wallet transactions cancel at 18–27%. Driver change friction and settlement delays are probable factors.
+            </p>
+        </div>
+
+        <!-- SLIDE 13: Scenario Modeling -->
+        <div class="slide flex-col max-w-5xl w-full">
+            <span class="text-xs font-bold text-cyan-400 tracking-wider uppercase mb-2">Slide 13 • What-If Modeling</span>
+            <h2 class="text-3xl font-bold text-white mb-6">Quantifying Operational Interventions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-slate-900/90 border border-slate-800 p-6 rounded-xl">
+                    <div class="text-xs font-bold text-cyan-400 mb-2">SCENARIO A: 92% TARGET COMPLETION</div>
+                    <div class="text-2xl font-bold text-white mono mb-2">+$3,003.08</div>
+                    <div class="text-xs text-slate-300 space-y-1">
+                        <div>• Baseline: 85 Completed ➔ Target: 92 Completed (+7 Rides)</div>
+                        <div>• New Estimated Net: <strong class="text-white">$39,469.08</strong> (+8.24% Lift)</div>
+                        <div>• Mechanism: Weekend supply surge & dispatch rebalancing</div>
+                    </div>
+                </div>
+                <div class="bg-slate-900/90 border border-slate-800 p-6 rounded-xl">
+                    <div class="text-xs font-bold text-emerald-400 mb-2">SCENARIO B: 50% CANCELLATION REDUCTION</div>
+                    <div class="text-2xl font-bold text-white mono mb-2">+$3,464.53</div>
+                    <div class="text-xs text-slate-300 space-y-1">
+                        <div>• Baseline: 15 Cancelled ➔ Target: 7 Cancelled (-8 Rides)</div>
+                        <div>• New Estimated Net: <strong class="text-white">$39,930.53</strong> (+9.50% Lift)</div>
+                        <div>• Mechanism: Coaching DRV-005/007 & Gulberg staging hub</div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-xs text-slate-500">
+                *Estimates calculated using empirical average fare benchmarks without adding fixed vehicle overhead.
+            </p>
+        </div>
+
+        <!-- SLIDE 14: 7 Strategic Recommendations -->
+        <div class="slide flex-col max-w-5xl w-full">
+            <span class="text-xs font-bold text-cyan-400 tracking-wider uppercase mb-2">Slide 14 • Strategic Roadmap</span>
+            <h2 class="text-3xl font-bold text-white mb-4">7 Evidence-Based Business Recommendations</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                <div class="p-3 bg-slate-900 border border-slate-800 rounded-lg">
+                    <div class="font-bold text-cyan-300">1. Target DRV-005 & DRV-007 Coaching (HIGH)</div>
+                    <div class="text-slate-400 mt-1">Isolates 46.7% of platform cancellations; re-align dispatch radius.</div>
+                </div>
+                <div class="p-3 bg-slate-900 border border-slate-800 rounded-lg">
+                    <div class="font-bold text-cyan-300">2. Weekend Driver Incentive Staging (HIGH)</div>
+                    <div class="text-slate-400 mt-1">Implement a 15% completion bonus to curb the 23.8% weekend cancellation cliff.</div>
+                </div>
+                <div class="p-3 bg-slate-900 border border-slate-800 rounded-lg">
+                    <div class="font-bold text-cyan-300">3. Gulberg Dedicated Staging Hub (HIGH)</div>
+                    <div class="text-slate-400 mt-1">Pre-position drivers in commercial nodes to reduce 30% pickup cancellation risk.</div>
+                </div>
+                <div class="p-3 bg-slate-900 border border-slate-800 rounded-lg">
+                    <div class="font-bold text-slate-300">4. Digital Payment Migration Incentives (MED)</div>
+                    <div class="text-slate-400 mt-1">5% instant discount on UPI/Cards to shift riders away from high-cancellation cash/wallet.</div>
+                </div>
+                <div class="p-3 bg-slate-900 border border-slate-800 rounded-lg">
+                    <div class="font-bold text-slate-300">5. Standard Tier Route Optimization (MED)</div>
+                    <div class="text-slate-400 mt-1">Recalibrate dispatch thresholds on medium-distance trips ($3,099 in lost bookings).</div>
+                </div>
+                <div class="p-3 bg-slate-900 border border-slate-800 rounded-lg">
+                    <div class="font-bold text-slate-300">6. Driver Service Quality Threshold (MED)</div>
+                    <div class="text-slate-400 mt-1">Provide refresher training for DRV-006 (3.91 rating) to establish a 4.20 fleet floor.</div>
+                </div>
+            </div>
+            <div class="mt-3 p-3 bg-cyan-950/40 border border-cyan-800/40 rounded-lg text-xs text-cyan-200">
+                <strong>7. Strategic Enabler:</strong> Upgrade telemetry infrastructure to capture unique Customer IDs and cancellation reason codes.
+            </div>
+        </div>
+
+        <!-- SLIDE 15: Conclusion & ROI -->
+        <div class="slide flex-col max-w-5xl w-full">
+            <span class="text-xs font-bold text-cyan-400 tracking-wider uppercase mb-2">Slide 15 • Conclusion</span>
+            <h2 class="text-3xl font-bold text-white mb-6">Platform ROI & Next Steps</h2>
+            <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-cyan-950/40 border border-slate-800 p-8 rounded-2xl mb-8">
+                <div class="text-3xl font-extrabold text-white mb-3">+$125,000+ Annualized Recapture Potential</div>
+                <p class="text-slate-300 text-sm leading-relaxed max-w-3xl">
+                    By eliminating localized cancellation friction in Gulberg, coaching 2 outlier drivers, and boosting weekend fulfillment, the ZYROO platform can systematically capture 8% to 10% incremental top-line revenue without adding a single extra vehicle to fixed assets.
+                </p>
+            </div>
+            <div class="flex flex-wrap items-center gap-4">
+                <a href="../index.html" class="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-lg transition text-sm">
+                    Explore Interactive Live Dashboard ➔
+                </a>
+                <a href="../reports/final-capstone/final_masterpiece_business_intelligence_report.md" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold rounded-lg border border-slate-700 transition text-sm">
+                    Read Executive Capstone Report
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Controls -->
+    <footer class="h-14 border-t border-slate-800 px-8 flex items-center justify-between bg-slate-900/60 text-xs text-slate-400">
+        <div>Use <kbd class="px-2 py-0.5 bg-slate-800 border border-slate-700 rounded text-slate-300">←</kbd> <kbd class="px-2 py-0.5 bg-slate-800 border border-slate-700 rounded text-slate-300">→</kbd> arrow keys or Spacebar to navigate</div>
+        <div class="flex items-center space-x-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Presentation Ready • 100% Offline Compatible</span>
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        document.getElementById('total-slides').innerText = totalSlides;
+
+        function updateSlide() {
+            slides.forEach((slide, idx) => {
+                slide.classList.toggle('active', idx === currentSlide);
+            });
+            document.getElementById('current-slide').innerText = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
+                prevSlide();
+            }
+        });
+    </script>
+</body>
+</html>
